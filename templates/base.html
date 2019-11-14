@@ -81,21 +81,74 @@
                         <!-- main menu area end -->
 
                         <!-- set Language instead mini cart area -->
-                        <div class="col-lg-4 text-right">
-                            <div class="header-top-settings">
-                                <ul class="nav align-items-center justify-content-end">
-                                    <li class="language">
-                                        <img src="{% static 'img/icon/en.png' %}" alt="flag"> English
-                                        <i class="fa fa-angle-down"></i>
-                                        <ul class="dropdown-list">
-                                            <li><a href="#"><img src="{% static 'img/icon/en.png' %}" alt="flag"> english</a></li>
-                                            <li><a href="#"><img src="{% static 'img/icon/fr.png' %}" alt="flag"> french</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
+{#                        <div class="col-lg-4 text-right">#}
+{#                            <div class="header-top-settings">#}
+{#                                <ul class="nav align-items-center justify-content-end">#}
+{#                                    <li class="language">#}
+{#                                        <img src="{% static 'img/icon/en.png' %}" alt="flag"> English#}
+{#                                        <i class="fa fa-angle-down"></i>#}
+{#                                        <ul class="dropdown-list">#}
+{#                                            <li><a href="#"><img src="{% static 'img/icon/en.png' %}" alt="flag"> english</a></li>#}
+{#                                            <li><a href="#"><img src="{% static 'img/icon/fr.png' %}" alt="flag"> french</a></li>#}
+{#                                        </ul>#}
+{#                                    </li>#}
+{#                                </ul>#}
+{#                            </div>#}
+{#                        </div>#}
+                        <!-- end language -->
+
+                        <!-- mini cart area start -->
+                        <div class="col-lg-4">
+                            <div class="header-right d-flex align-items-center justify-content-xl-between justify-content-lg-end">
+                                <div class="header-search-container">
+                                    <button class="search-trigger d-xl-none d-lg-block"><i class="pe-7s-search"></i></button>
+                                    <form class="header-search-box d-lg-none d-xl-block animated jackInTheBox">
+                                        <input type="text" placeholder="Search entire store hire" class="header-search-field bg-white">
+                                        <button class="header-search-btn"><i class="pe-7s-search"></i></button>
+                                    </form>
+                                </div>
+
+                                <div class="header-configure-area">
+                                    <ul class="nav justify-content-end">
+                                        <li class="user-hover">
+                                            <a href="javascript:void(0);">
+                                                <i class="pe-7s-user"></i>
+                                            </a>
+                                            <ul class="dropdown-list">
+                                                <li><a href="login-register.html"> Login</a></li>
+                                                <li><a href="login-register.html"> Register</a></li>
+                                                <li><a href="my-account.html">My Account</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'wishlist' %}">
+                                                <i class="pe-7s-like"></i>
+                                                <div class="notification">0</div>
+                                            </a>
+                                        </li>
+{#                                        <li>#}
+{#                                            <a href="#" class="minicart-btn">#}
+{#                                                <i class="pe-7s-shopbag"></i>#}
+{#                                                <div class="notification">2</div>#}
+{#                                            </a>#}
+{#                                        </li>#}
+                                    </ul>
+                                </div>
+                                <div class="header-top-settings">
+                                    <ul class="nav align-items-center justify-content-end">
+                                        <li class="language">
+                                            <img src="{% static 'img/icon/en.png' %}" alt="flag"> English
+                                            <i class="fa fa-angle-down"></i>
+                                            <ul class="dropdown-list">
+                                                <li><a href="#"><img src="{% static 'img/icon/en.png' %}" alt="flag"> English</a></li>
+                                                <li><a href="#"><img src="{% static 'img/icon/fr.png' %}" alt="flag"> Spanish</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                        <!-- end language -->
+                        <!-- mini cart area end -->
 
                     </div>
                 </div>
@@ -176,34 +229,39 @@
                         <ul class="nav">
                             <li>
                                 <div class="dropdown mobile-top-dropdown">
-                                    <a href="#" class="dropdown-toggle" id="currency" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <a href="#" class="dropdown-toggle" id="myaccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Language
                                         <i class="fa fa-angle-down"></i>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="language">
 
-                                        <a class="dropdown-item" href="#">
+                                        <a href="#" class="dropdown-item">
                                             <img src="{% static 'img/icon/en.png' %}" alt="flag"> English
                                         </a>
-                                        <a class="dropdown-item" href="#">
+                                        <a href="#" class="dropdown-item">
                                             <img src="{% static 'img/icon/fr.png' %}" alt="flag"> Spanish
                                         </a>
                                     </div>
                                 </div>
                             </li>
-{#                            <li>#}
-{#                                <div class="dropdown mobile-top-dropdown">#}
-{#                                    <a href="#" class="dropdown-toggle" id="myaccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
-{#                                        My Account#}
-{#                                        <i class="fa fa-angle-down"></i>#}
-{#                                    </a>#}
-{#                                    <div class="dropdown-menu" aria-labelledby="myaccount">#}
-{#                                        <a class="dropdown-item" href="my-account.html">my account</a>#}
-{#                                        <a class="dropdown-item" href="login-register.html"> login</a>#}
-{#                                        <a class="dropdown-item" href="login-register.html">register</a>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </li>#}
+                            <li>
+                                <div class="dropdown mobile-top-dropdown">
+                                    <a href="#" class="dropdown-toggle" id="myaccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        My Account
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="myaccount">
+                                        <a class="dropdown-item" href="login-register.html"> Login</a>
+                                        <a class="dropdown-item" href="login-register.html"> Register</a>
+                                        <a class="dropdown-item" href="my-account.html">My Account</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="{% url 'wishlist' %}" style="color: #575757">
+                                    Wishlist
+                                </a>
+                            </li>
                         </ul>
                     </div>
 

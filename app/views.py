@@ -9,7 +9,7 @@ def index(request):
     return render(request, 'index.html', data)
 
 
-def product_details(request):
+def product_details(request, product_id):
     data = {
         'title': 'Sabadiaz Jewelry - Product Details',
         'option': 'product'
