@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="{% static 'css/vendor/pe-icon-7-stroke.css' %}">
     <!-- Font-awesome CSS -->
     <link rel="stylesheet" href="{% static 'css/vendor/font-awesome.min.css' %}">
+    <!-- Alertify CSS -->
+    <link rel="stylesheet" href="{% static 'css/vendor/alertify.min.css' %}">
     <!-- Slick slider css -->
     <link rel="stylesheet" href="{% static 'css/plugins/slick.min.css' %}">
     <!-- animate css -->
@@ -108,32 +110,6 @@
                                     </form>
                                 </div>
 
-                                <div class="header-configure-area">
-                                    <ul class="nav justify-content-end">
-                                        <li class="user-hover">
-                                            <a href="javascript:void(0);">
-                                                <i class="pe-7s-user"></i>
-                                            </a>
-                                            <ul class="dropdown-list">
-                                                <li><a href="login-register.html"> Login</a></li>
-                                                <li><a href="login-register.html"> Register</a></li>
-                                                <li><a href="my-account.html">My Account</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="{% url 'wishlist' %}">
-                                                <i class="pe-7s-like"></i>
-                                                <div class="notification">0</div>
-                                            </a>
-                                        </li>
-{#                                        <li>#}
-{#                                            <a href="#" class="minicart-btn">#}
-{#                                                <i class="pe-7s-shopbag"></i>#}
-{#                                                <div class="notification">2</div>#}
-{#                                            </a>#}
-{#                                        </li>#}
-                                    </ul>
-                                </div>
                                 <div class="header-top-settings">
                                     <ul class="nav align-items-center justify-content-end">
                                         <li class="language">
@@ -142,6 +118,46 @@
                                             <ul class="dropdown-list">
                                                 <li><a href="#"><img src="{% static 'img/icon/en.png' %}" alt="flag"> English</a></li>
                                                 <li><a href="#"><img src="{% static 'img/icon/fr.png' %}" alt="flag"> Spanish</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="header-configure-area">
+                                    <ul class="nav justify-content-end">
+                                        {% if not user.is_anonymous %}
+                                            <li>
+                                                <a href="{% url 'wishlist' %}">
+                                                    <i class="pe-7s-like"></i>
+                                                    <div class="notification">0</div>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+
+                                        <li class="user-hover">
+                                            <a href="javascript:void(0);">
+                                                <i class="pe-7s-user"></i>
+                                            </a>
+                                            <ul class="dropdown-list">
+                                                {% if not user.is_anonymous %}
+                                                    <li class="font-12 mb-3 text-center text-muted">
+                                                        Welcome <p style="color: #c29958">{{ user.first_name }} {{ user.last_name }}</p>
+                                                    </li>
+                                                    <li class="mobile-settings"></li>
+                                                    <li>
+                                                        <a href="{% url 'account' %}">My Account</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{% url 'logout' %}">Logout</a>
+                                                    </li>
+                                                {% else %}
+                                                    <li>
+                                                        <a href="{% url 'login' %}"> Login</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{% url 'register' %}"> Register</a>
+                                                    </li>
+                                                {% endif %}
                                             </ul>
                                         </li>
                                     </ul>
@@ -200,6 +216,13 @@
                 </div>
 
                 <div class="off-canvas-inner">
+
+                    {% if not user.is_anonymous %}
+                        <p class="font-12 mb-3 text-dark">
+                            Welcome <span style="color: #c29958">{{ user.first_name }} {{ user.last_name }} </span>
+                        </p>
+                    {% endif %}
+
                     <!-- search box start -->
                     <div class="search-box-offcanvas">
                         <form>
@@ -215,10 +238,18 @@
                         <!-- mobile menu navigation start -->
                         <nav>
                             <ul class="mobile-menu">
-                                <li class="{% ifequal option 'index' %}active{% endifequal %}"><a href="{% url 'index' %}">Home</a></li>
-                                <li class="{% ifequal option 'shop' %}active{% endifequal %}"><a href="{% url 'shop' %}">Shop</a></li>
-                                <li class="{% ifequal option 'about' %}active{% endifequal %}"><a href="{% url 'about' %}">About Us</a></li>
-                                <li class="{% ifequal option 'contact' %}active{% endifequal %}"><a href="{% url 'contact' %}">Contact</a></li>
+                                <li class="{% ifequal option 'index' %}active{% endifequal %}">
+                                    <a href="{% url 'index' %}">Home</a>
+                                </li>
+                                <li class="{% ifequal option 'shop' %}active{% endifequal %}">
+                                    <a href="{% url 'shop' %}">Shop</a>
+                                </li>
+                                <li class="{% ifequal option 'about' %}active{% endifequal %}">
+                                    <a href="{% url 'about' %}">About Us</a>
+                                </li>
+                                <li class="{% ifequal option 'contact' %}active{% endifequal %}">
+                                    <a href="{% url 'contact' %}">Contact</a>
+                                </li>
                             </ul>
                         </nav>
                         <!-- mobile menu navigation end -->
@@ -227,14 +258,33 @@
 
                     <div class="mobile-settings">
                         <ul class="nav">
-                            <li>
+                            {% if not user.is_anonymous %}
+                                <li>
+                                    <a href="{% url 'account' %}">My Account</a>
+                                 </li>
+                            {% else %}
+                                <li>
+                                    <a href="{% url 'login' %}"> Login</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'register' %}"> Register</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'wishlist' %}"> Wishlist</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+
+                    <div class="mobile-settings">
+                        <ul class="nav">
+                            <li class="ver">
                                 <div class="dropdown mobile-top-dropdown">
                                     <a href="#" class="dropdown-toggle" id="myaccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Language
                                         <i class="fa fa-angle-down"></i>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="language">
-
                                         <a href="#" class="dropdown-item">
                                             <img src="{% static 'img/icon/en.png' %}" alt="flag"> English
                                         </a>
@@ -243,24 +293,6 @@
                                         </a>
                                     </div>
                                 </div>
-                            </li>
-                            <li>
-                                <div class="dropdown mobile-top-dropdown">
-                                    <a href="#" class="dropdown-toggle" id="myaccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        My Account
-                                        <i class="fa fa-angle-down"></i>
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="myaccount">
-                                        <a class="dropdown-item" href="login-register.html"> Login</a>
-                                        <a class="dropdown-item" href="login-register.html"> Register</a>
-                                        <a class="dropdown-item" href="my-account.html">My Account</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="{% url 'wishlist' %}" style="color: #575757">
-                                    Wishlist
-                                </a>
                             </li>
                         </ul>
                     </div>
@@ -364,29 +396,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="row align-items-center mt-20">
-                    <div class="col-md-6">
-                        <div class="newsletter-wrapper">
-                            <h6 class="widget-title-text">Signup for newsletter</h6>
-                            <form class="newsletter-inner" id="mc-form">
-                                <input type="email" class="news-field" id="mc-email" autocomplete="off" placeholder="Enter your email address">
-                                <button class="news-btn" id="mc-submit">Subscribe</button>
-                            </form>
-                            <!-- mailchimp-alerts Start -->
-                            <div class="mailchimp-alerts">
-                                <div class="mailchimp-submitting"></div><!-- mailchimp-submitting end -->
-                                <div class="mailchimp-success"></div><!-- mailchimp-success end -->
-                                <div class="mailchimp-error"></div><!-- mailchimp-error end -->
-                            </div>
-                            <!-- mailchimp-alerts end -->
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="footer-payment">
-                            <img src="{% static 'img/payment.png' %}" alt="payment method">
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="footer-bottom">
@@ -394,7 +403,8 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="copyright-text text-center">
-                            <p>Powered By <a href="#">Corano</a>. Store 1 © 2019</p>
+                            <p>
+                                <a href="{% url 'index' %}">Sabadiaz Jewelry </a> All rights reserved © 2019
                         </div>
                     </div>
                 </div>
@@ -599,6 +609,8 @@
     <script src="{% static 'js/vendor/popper.min.js' %}"></script>
     <!-- Bootstrap JS -->
     <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+    <!-- Alertify JS -->
+    <script src="{% static 'js/vendor/alertify.min.js' %}"></script>
     <!-- slick Slider JS -->
     <script src="{% static 'js/plugins/slick.min.js' %}"></script>
     <!-- Countdown JS -->
@@ -623,6 +635,10 @@
     <script src="{% static 'js/plugins/google-map.js' %}"></script>
     <!-- Main JS -->
     <script src="{% static 'js/main.js' %}"></script>
+
+    <!-- Customs JS -->
+    {% block script %}{% endblock %}
+
 </body>
 
 </html>
