@@ -116,7 +116,8 @@ def register(request):
 def account(request):
     data = {
         'title': 'Sabadiaz Jewelry - My Account',
-        'option': 'My Account'
+        'option': 'My Account',
+        'user': request.user
     }
     return render(request, 'account.html', data)
 

@@ -1,7 +1,7 @@
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
-from app import views
+from app import views, administration
 from sabadiaz.settings import DEBUG, MEDIA_URL, MEDIA_ROOT, STATIC_URL, STATIC_ROOT
 
 urlpatterns = [
@@ -11,6 +11,9 @@ urlpatterns = [
 
     # index
     path('', views.index, name='index'),
+
+    # Admin Panel
+    path('administration', administration.view, name='administration'),
 
     # Login
     path('login', views.login_user, name='login'),

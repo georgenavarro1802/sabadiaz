@@ -82,23 +82,6 @@
                         </div>
                         <!-- main menu area end -->
 
-                        <!-- set Language instead mini cart area -->
-{#                        <div class="col-lg-4 text-right">#}
-{#                            <div class="header-top-settings">#}
-{#                                <ul class="nav align-items-center justify-content-end">#}
-{#                                    <li class="language">#}
-{#                                        <img src="{% static 'img/icon/en.png' %}" alt="flag"> English#}
-{#                                        <i class="fa fa-angle-down"></i>#}
-{#                                        <ul class="dropdown-list">#}
-{#                                            <li><a href="#"><img src="{% static 'img/icon/en.png' %}" alt="flag"> english</a></li>#}
-{#                                            <li><a href="#"><img src="{% static 'img/icon/fr.png' %}" alt="flag"> french</a></li>#}
-{#                                        </ul>#}
-{#                                    </li>#}
-{#                                </ul>#}
-{#                            </div>#}
-{#                        </div>#}
-                        <!-- end language -->
-
                         <!-- mini cart area start -->
                         <div class="col-lg-4">
                             <div class="header-right d-flex align-items-center justify-content-xl-between justify-content-lg-end">
@@ -141,7 +124,7 @@
                                             <ul class="dropdown-list">
                                                 {% if not user.is_anonymous %}
                                                     <li class="font-12 mb-3 text-center text-muted">
-                                                        Welcome <p style="color: #c29958">{{ user.first_name }} {{ user.last_name }}</p>
+                                                        Welcome <p style="color: #c29958">{{ user.first_name }}</p>
                                                     </li>
                                                     <li class="mobile-settings"></li>
                                                     <li>
@@ -150,6 +133,11 @@
                                                     <li>
                                                         <a href="{% url 'logout' %}">Logout</a>
                                                     </li>
+                                                    {% if user.is_superuser %}
+                                                        <li>
+                                                            <a href="/admin">Admin</a>
+                                                        </li>
+                                                    {% endif %}
                                                 {% else %}
                                                     <li>
                                                         <a href="{% url 'login' %}"> Login</a>

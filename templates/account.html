@@ -45,13 +45,13 @@
                                             <a href="#download" data-toggle="tab">
                                                 <i class="fa fa-cloud-download"></i> Download
                                             </a>
-                                            <a href="#payment-method" data-toggle="tab">
+                                            <a href="#payment" data-toggle="tab">
                                                 <i class="fa fa-credit-card"></i> Payment Method
                                             </a>
-                                            <a href="#address-edit" data-toggle="tab">
+                                            <a href="#address" data-toggle="tab">
                                                 <i class="fa fa-map-marker"></i> Address
                                             </a>
-                                            <a href="#account-info" data-toggle="tab">
+                                            <a href="#info" data-toggle="tab">
                                                 <i class="fa fa-user"></i> Account Details
                                             </a>
                                             <a href="{% url 'logout' %}">
@@ -63,14 +63,19 @@
 
                                     <!-- My Account Tab Content Start -->
                                     <div class="col-lg-9 col-md-8">
+
                                         <div class="tab-content" id="myaccountContent">
+
                                             <!-- Single Tab Content Start -->
-                                            <div class="tab-pane fade show active" id="dashboad" role="tabpanel">
+                                            <div id="dashboad" class="tab-pane fade show active" role="tabpanel">
                                                 <div class="myaccount-content">
                                                     <h5>Dashboard</h5>
                                                     <div class="welcome">
-                                                        <p>Hello, <strong>Erik Jhonson</strong> (If Not <strong>Jhonson
-                                                            !</strong><a href="login-register.html" class="logout"> Logout</a>)</p>
+                                                        <p>
+                                                            Hello, <strong>{{ user.first_name }} {{ user.last_name }}</strong>
+                                                            (If Not <strong>{{ user.first_name }}!</strong>
+                                                            <a href="{% url 'logout' %}" class="logout"> then do Logout</a>)
+                                                        </p>
                                                     </div>
                                                     <p class="mb-0">From your account dashboard. you can easily check &
                                                         view your recent orders, manage your shipping and billing addresses
@@ -80,7 +85,7 @@
                                             <!-- Single Tab Content End -->
 
                                             <!-- Single Tab Content Start -->
-                                            <div class="tab-pane fade" id="orders" role="tabpanel">
+                                            <div id="orders" class="tab-pane fade" role="tabpanel">
                                                 <div class="myaccount-content">
                                                     <h5>Orders</h5>
                                                     <div class="myaccount-table table-responsive text-center">
@@ -127,7 +132,7 @@
                                             <!-- Single Tab Content End -->
 
                                             <!-- Single Tab Content Start -->
-                                            <div class="tab-pane fade" id="download" role="tabpanel">
+                                            <div id="download" class="tab-pane fade" role="tabpanel">
                                                 <div class="myaccount-content">
                                                     <h5>Downloads</h5>
                                                     <div class="myaccount-table table-responsive text-center">
@@ -165,7 +170,7 @@
                                             <!-- Single Tab Content End -->
 
                                             <!-- Single Tab Content Start -->
-                                            <div class="tab-pane fade" id="payment-method" role="tabpanel">
+                                            <div id="payment" class="tab-pane fade" role="tabpanel">
                                                 <div class="myaccount-content">
                                                     <h5>Payment Method</h5>
                                                     <p class="saved-message">You Can't Saved Your Payment Method yet.</p>
@@ -174,7 +179,7 @@
                                             <!-- Single Tab Content End -->
 
                                             <!-- Single Tab Content Start -->
-                                            <div class="tab-pane fade" id="address-edit" role="tabpanel">
+                                            <div id="address" class="tab-pane fade" role="tabpanel">
                                                 <div class="myaccount-content">
                                                     <h5>Billing Address</h5>
                                                     <address>
@@ -190,7 +195,7 @@
                                             <!-- Single Tab Content End -->
 
                                             <!-- Single Tab Content Start -->
-                                            <div class="tab-pane fade" id="account-info" role="tabpanel">
+                                            <div id="info" class="tab-pane fade" role="tabpanel">
                                                 <div class="myaccount-content">
                                                     <h5>Account Details</h5>
                                                     <div class="account-details-form">
@@ -249,7 +254,9 @@
                                                         </form>
                                                     </div>
                                                 </div>
-                                            </div> <!-- Single Tab Content End -->
+                                            </div>
+                                            <!-- Single Tab Content End -->
+
                                         </div>
                                     </div> <!-- My Account Tab Content End -->
                                 </div>
