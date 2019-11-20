@@ -11,7 +11,7 @@
             </h3>
         </div>
         <div class="col-2 text-right">
-            <a href="#" class="btn btn-sm btn-dark">
+            <a href="#" class="btn btn-sm btn-success">
                 <i class="fa fa-plus"></i> Add product
             </a>
         </div>
@@ -22,47 +22,63 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
+
+                    <!-- Search input -->
                     <input type="search" class="form-control" id="inputFilterBox" placeholder="">
+
+                    <!--Table-->
                     <div class="table-responsive mt-1">
-                        <!--Table-->
-                        <table id="example" class="table filterable table-fixed">
+                        <table class="table filterable table-fixed">
 
                             <!--Table head-->
-                            <thead class="thead-purple">
+                            <thead class="thead-purple font-14">
                             <tr>
-                                <th>Image</th>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Category</th>
-                                <th>Stock</th>
-                                <th>Gender</th>
-                                <th>Price</th>
-                                <th>VPrice</th>
+                                <th class="p-3" colspan="2" >Product</th>
+                                <th class="text-center w-100px">Category</th>
+                                <th class="text-center w-100px">Gender</th>
+                                <th class="text-center w-100px">Stock</th>
+                                <th class="text-center w-100px">Price</th>
+                                <th class="text-center w-100px">VPrice</th>
+                                <th class="text-center w-80px">IsNew?</th>
+                                <th class="text-center w-120px"></th>
                             </tr>
                             </thead>
                             <!--Table head-->
 
                             <!--Table body-->
                             <tbody>
-                            {#                            {% for product in products %}#}
-                            <tr>
-                                <td>
+                            {% for l in lista %}
+                            <tr class="font-14">
+                                <td class="w-80px">
                                     <a href="{% static 'img/product/product-1.jpg' %}" data-lightbox="photos">
-                                        <img class="img-fluid" src="{% static 'img/product/product-1.jpg' %}" width="60px">
+                                        <img class="img-fluid" src="{% static 'img/product/product-1.jpg' %}" style="width: 100%">
                                     </a>
                                     <a href="{% static 'img/product/product-1.jpg' %}" data-lightbox="photos" style="display: none">
-                                        <img class="img-fluid" src="{% static 'img/product/product-1.jpg' %}" width="50px" height="50px">
+                                        <img class="img-fluid" src="{% static 'img/product/product-1.jpg' %}">
                                     </a>
                                 </td>
-                                <td>Jerry</td>
-                                <td>Horwitz</td>
-                                <td>Italy</td>
-                                <td>Bari</td>
-                                <td>Editor-in-chief</td>
-                                <td>41</td>
-                                <td>41</td>
+                                <td>
+                                    <p class="font-15 text-dark _600">Anillo de Perla</p>
+                                    <p class="font-12 text-muted" style="line-height: 0">asmkld als nwn kefnkwnkew</p>
+                                </td>
+                                <td class="text-center">Manilla</td>
+                                <td class="text-center">Men</td>
+                                <td class="text-center">2</td>
+                                <td class="text-center">$400.00</td>
+                                <td class="text-center">$520.00</td>
+                                <td class="text-center">
+                                    <i class="fa fa-check text-success"></i>
+                                </td>
+                                <td class="text-center">
+                                    <a href="" class="btn btn-outline-primary btn-sm tt" title="Edit">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                    <a href="" class="btn btn-outline-danger btn-sm tt ml-1" title="Remove">
+                                        <i class="fa fa-remove"></i>
+                                    </a>
+                                </td>
                             </tr>
-                            {#                            {% endfor %}#}
+                            {% endfor %}
                             </tbody>
                             <!--Table body-->
                         </table>

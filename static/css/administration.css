@@ -5,12 +5,12 @@
 
 
 body {
-    font-family: 'Poppins', sans-serif;
+    /*font-family: 'Poppins', sans-serif;*/
     background: #fafafa;
 }
 
 p {
-    font-family: 'Poppins', sans-serif;
+    /*font-family: 'Poppins', sans-serif;*/
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
@@ -236,4 +236,68 @@ thead tr:nth-child(1) th{
     position: sticky;
     top: 0;
     z-index: 10;
+}
+
+.font-10 {
+    font-size: 10px!important;
+}
+
+.font-11 {
+    font-size: 11px!important;
+}
+
+.font-12 {
+    font-size: 12px!important;
+}
+
+.font-14 {
+    font-size: 14px!important;
+}
+
+.font-15 {
+    font-size: 15px!important;
+}
+
+.font-17 {
+    font-size: 17px!important;
+}
+
+.w-200px {
+    width: 200px!important;
+}
+
+.w-170px {
+    width: 170px!important;
+}
+
+.w-140px {
+    width: 140px!important;
+}
+
+.w-120px {
+    width: 120px!important;
+}
+
+.w-100px {
+    width: 100px!important;
+}
+
+.w-80px {
+    width: 80px!important;
+}
+
+.w-60px {
+    width: 60px!important;
+}
+
+.w-40px {
+    width: 40px!important;
+}
+
+._600 {
+    font-weight: 600;
+}
+
+._700 {
+    font-weight: 700;
 }

@@ -44,7 +44,7 @@
 
         <ul class="list-unstyled components">
             <p>Products</p>
-            <li class="active">
+            <li class="{% if option == 'admin_products' %}active{% endif %}">
                 <a href="#">
                     <i class="fa fa-list-alt"></i> All Products
                 </a>
@@ -131,6 +131,11 @@
                 $(".filterable tr:visible .indexColumn:not(:contains('" + this + "'))").parent().hide();
             });
         });
+
+        $('.tl').tooltip({ placement: 'left' });
+        $('.tr').tooltip({ placement: 'right' });
+        $('.tt').tooltip({ placement: 'top' });
+        $('.tb').tooltip({ placement: 'bottom' });
 
     });
 </script>
