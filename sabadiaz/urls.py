@@ -12,9 +12,6 @@ urlpatterns = [
     # index
     path('', views.index, name='index'),
 
-    # Admin Panel
-    path('administration', administration.products, name='admin_products'),
-
     # Login
     path('login', views.login_user, name='login'),
 
@@ -41,6 +38,11 @@ urlpatterns = [
 
     # Product Details
     path('products/<int:product_id>/details', views.product_details, name='product_details'),
+
+    # Administration Panel
+    path('administration/products', administration.products, name='admin_products'),
+    path('administration/products/create', administration.create_product, name='admin_create_product'),
+
 
 ]
 

@@ -301,3 +301,25 @@ thead tr:nth-child(1) th{
 ._700 {
     font-weight: 700;
 }
+
+/* Loading */
+#loading {
+   width: 100%;
+   height: 100%;
+   top: 0;
+   left: 0;
+   position: fixed;
+   display: block;
+   opacity: 0.95;
+   background-color: #fff;
+   z-index: 99999;
+   text-align: center;
+}
+
+#loading-image {
+    position: absolute;
+    left: 45%;
+    top: 45%;
+    z-index: 100;
+    width: 80px;
+}

@@ -42,6 +42,8 @@ class Product(models.Model):
     p_discount = models.IntegerField(default=0)
     v_price = models.FloatField(default=0)
 
+    created_at = models.DateField(auto_now_add=True, blank=True, null=True)
+
     def __str__(self):
         return f"{self.code()} - {self.name}"
 
@@ -49,7 +51,7 @@ class Product(models.Model):
         verbose_name = 'Product'
         verbose_name_plural = 'Products'
         db_table = "products"
-        ordering = ('category', 'name')
+        ordering = ('-created_at', 'name')
         unique_together = ('category', 'name')
 
     def code(self):
