@@ -7,4 +7,4 @@ def view(request):
         'option': 'administration',
         'user': request.user
     }
-    return render(request, 'administration/view.html', data)
+    return render(request, 'administration/products.html', data)
