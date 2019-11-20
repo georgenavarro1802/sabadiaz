@@ -13,7 +13,7 @@ urlpatterns = [
     path('', views.index, name='index'),
 
     # Admin Panel
-    path('administration', administration.view, name='administration'),
+    path('administration', administration.products, name='admin_products'),
 
     # Login
     path('login', views.login_user, name='login'),

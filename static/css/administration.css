@@ -222,3 +222,18 @@ a.article, a.article:hover {
     }
 
 }
+
+/* Custom */
+.table-responsive{
+    height: 500px;
+    overflow:scroll;
+    overflow-x: auto;
+}
+
+thead tr:nth-child(1) th{
+    background: #7386d5;
+    color: #fff!important;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
