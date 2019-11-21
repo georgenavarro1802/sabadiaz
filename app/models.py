@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 
 from app.helpers import GENDERS
+from sabadiaz.settings import STATIC_URL
 
 
 class Category(models.Model):
@@ -60,6 +61,24 @@ class Product(models.Model):
 
     def code(self):
         return str(self.id).zfill(5)
+
+    def get_image1(self):
+        return self.image1.url if self.image1 else f"{STATIC_URL}/img/no_images.png"
+
+    def get_image2(self):
+        return self.image1.url if self.image2 else f"{STATIC_URL}/img/no_images.png"
+
+    def get_image3(self):
+        return self.image1.url if self.image3 else f"{STATIC_URL}/img/no_images.png"
+
+    def get_image4(self):
+        return self.image1.url if self.image4 else f"{STATIC_URL}/img/no_images.png"
+
+    def get_image5(self):
+        return self.image1.url if self.image5 else f"{STATIC_URL}/img/no_images.png"
+
+    def get_image6(self):
+        return self.image1.url if self.image6 else f"{STATIC_URL}/img/no_images.png"
 
 
 class WishList(models.Model):

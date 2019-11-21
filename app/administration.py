@@ -1,5 +1,6 @@
 import time
 
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db import transaction
 from django.shortcuts import render
 from django.urls import reverse
@@ -9,14 +10,25 @@ from app.models import Product, Category
 
 
 def products(request):
-    data = {
-        'title': 'Sabadiaz Jewelry Admin - All Products',
-        'option': 'admin_all_products',
-        'user': request.user,
-        'lista': [x for x in range(20)],
-        'products': Product.objects.all()
-    }
-    return render(request, 'administration/products.html', data)
+    products = Product.objects.all()
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(products, 2)
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
+
+    return render(request,
+                  'administration/products.html',
+                  {
+                      'title': 'Sabadiaz Jewelry Admin - All Products',
+                      'option': 'admin_all_products',
+                      'user': request.user,
+                      'products': products,
+                  })
 
 
 def create_product(request):
