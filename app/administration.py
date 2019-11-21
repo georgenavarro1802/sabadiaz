@@ -1,6 +1,10 @@
-from django.shortcuts import render
+import time
 
-from app.helpers import GENDERS, ok_json
+from django.db import transaction
+from django.shortcuts import render
+from django.urls import reverse
+
+from app.helpers import GENDERS, ok_json, bad_json
 from app.models import Product, Category
 
 
@@ -24,10 +28,43 @@ def create_product(request):
         'categories': Category.objects.all(),
         'pid': 0
     }
+
     if request.method == 'POST':
-        payload = request.POST
-        print(payload)
-        return ok_json(data={'message': 'Correct'})
+        try:
+            with transaction.atomic():
+                title = request.POST['title']
+                description = request.POST['description']
+                category_id = int(request.POST['category_id'])
+                gender = int(request.POST['gender'])
+                price = float(request.POST['price'])
+                stock = int(request.POST['stock'])
+                discount = float(request.POST['discount'])
+                vprice = float(request.POST['vprice'])
+                information = request.POST['information']
+                isnew = True if request.POST['isnew'] == 'on' else False
+
+                product = Product(category_id=category_id,
+                                  gender=gender,
+                                  title=title,
+                                  description=description,
+                                  information=information,
+                                  price=price,
+                                  v_price=vprice,
+                                  p_discount=discount,
+                                  stock=stock,
+                                  is_new=isnew)
+                product.save()
+
+                for index, key in enumerate(request.FILES):
+                    setattr(product, f'image{index+1}', request.FILES[key])
+                    product.save()
+
+                time.sleep(1)
+                return ok_json(data={'message': 'Product has been succesfully created!',
+                                     'redirect_url': reverse('admin_products')})
+
+        except Exception as ex:
+            return bad_json(message=ex.__str__())
 
     return render(request, 'administration/product.html', data)
 

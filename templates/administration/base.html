@@ -32,6 +32,8 @@
     <link rel="stylesheet" href="{% static 'css/vendor/file-upload-with-preview.min.css' %}">
     <!-- Alertify CSS -->
     <link rel="stylesheet" href="{% static 'css/vendor/alertify.min.css' %}">
+    <!-- Sweet Alert -->
+    <link rel="stylesheet" href="{% static 'css/vendor/sweetalert2.min.css' %}">
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/administration.css' %}">
 
@@ -109,8 +111,8 @@
             {% block admin_content %}{% endblock %}
         </div>
 
-        <div id="loading">
-            <img id="loading-image" src="{% static 'img/loading.gif' %}" alt="Loading..." />
+        <div id="divLoader">
+            <img id="imageLoader" src="{% static 'img/loading.gif' %}" alt="Loading..." />
         </div>
 
     </div>
@@ -128,6 +130,8 @@
 <script src="{% static 'js/vendor/alertify.min.js' %}"></script>
 <!-- LightBox -->
 <script src="{% static 'js/vendor/lightbox.min.js' %}"></script>
+<!-- Sweet Alert 2 -->
+<script src="{% static 'js/vendor/sweetalert2.min.js' %}"></script>
 <!-- Files Upload -->
 <script src="{% static 'js/vendor/file-upload-with-preview.min.js' %}"></script>
 
@@ -164,8 +168,8 @@
 
         // hide loading when page is loaded
         setTimeout(function () {
-            $('#loading').fadeOut(100);
-        }, 500);
+            $('#divLoader').fadeOut(100);
+        }, 600);
 
     });
 </script>

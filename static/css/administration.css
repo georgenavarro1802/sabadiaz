@@ -303,7 +303,7 @@ thead tr:nth-child(1) th{
 }
 
 /* Loading */
-#loading {
+#divLoader {
     width: 100%;
     height: 100%;
     top: 0;
@@ -316,7 +316,7 @@ thead tr:nth-child(1) th{
     text-align: center;
 }
 
-#loading-image {
+#imageLoader {
     position: absolute;
     left: 45%;
     top: 45%;

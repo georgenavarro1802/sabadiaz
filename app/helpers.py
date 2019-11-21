@@ -1,3 +1,4 @@
+import datetime
 import json
 
 from django.http import HttpResponse
@@ -32,3 +33,13 @@ def ok_json(data=None):
     else:
         data = {'result': 'ok'}
     return HttpResponse(json.dumps(data), content_type="application/json")
+
+
+def generate_filename(prefix, original):
+    """
+    example: generate_filename("product_", nfile._name)
+    :param prefix: str
+    :param original: str
+    :return:
+    """
+    return f"{prefix}_{datetime.datetime.today().strftime('%Y%m%d%f')}.{original.split('.')[-1]}"

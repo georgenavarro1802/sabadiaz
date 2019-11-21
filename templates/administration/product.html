@@ -9,13 +9,14 @@
             <h4>Add Product</h4>
         </div>
         <div class="col-2 text-right text-white font-14">
-            <a onclick="PRODUCTS.submit($(this), {{ pid }});" class="btn btn-success text-center">
+            <a href="javascript:void(0);" onclick="PRODUCTS.submit($(this), {{ pid }});" class="btn btn-success text-center">
                 Save
             </a>
         </div>
     </div>
 
-    <div class="row mt-2">
+    <form id="formProduct" enctype="multipart/form-data">
+        <div class="row mt-2">
         <!-- Left Side -->
         <div class="col-8">
 
@@ -43,7 +44,7 @@
                             </a>
                         </label>
                         <label class="custom-file-container__custom-file">
-                            <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="image/*" multiple aria-label="Choose Files">
+                            <input type="file" id="inputFiles" class="custom-file-container__custom-file__custom-file-input" accept="image/*" multiple aria-label="Choose Files">
                             <input type="hidden" name="MAX_FILE_SIZE" value="2097152" /> <!-- 10485760 (10MB) -->
                             <span class="custom-file-container__custom-file__custom-file-control font-12"></span>
                         </label>
@@ -120,6 +121,7 @@
         </div>
 
     </div>
+    </form>
 
 
 {% endblock %}
