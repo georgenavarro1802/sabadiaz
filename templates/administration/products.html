@@ -117,10 +117,6 @@
                             {% endfor %}
                             <!-- end Pages -->
 
-{#                            <li class="page-item"><a class="page-link" href="#">1</a></li>#}
-{#                            <li class="page-item active"><a class="page-link" href="#">2</a></li>#}
-{#                            <li class="page-item"><a class="page-link" href="#">3</a></li>#}
-
                             <!-- Next -->
                             <li class="page-item {% if not products.has_next %}disabled{% endif %}">
                                 <a class="page-link" href="{% if not products.has_next %}#{% else %}?page={{ products.next_page_number }}{% endif %}" aria-label="Next">
