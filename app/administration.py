@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
-from app.models import Product
+from app.helpers import GENDERS
+from app.models import Product, Category
 
 
 def products(request):
@@ -19,5 +20,7 @@ def create_product(request):
         'title': 'Sabadiaz Jewelry Admin - Create Product',
         'option': 'admin_create_product',
         'user': request.user,
+        'genders': GENDERS,
+        'categories': Category.objects.all()
     }
     return render(request, 'administration/create_product.html', data)

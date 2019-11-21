@@ -9,8 +9,8 @@ GENDER_WOMEN = 1
 GENDER_MEN = 2
 
 GENDERS = (
-    (GENDER_WOMEN, 'Women'),
-    (GENDER_MEN, 'Men'),
+    (GENDER_WOMEN, 'WOMEN'),
+    (GENDER_MEN, 'MEN'),
 
 )
 
