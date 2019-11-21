@@ -1,6 +1,4 @@
-// ref https://github.com/promosis/file-upload-with-preview
-let upload = new FileUploadWithPreview('divUploadID');
-
+// fields
 let inputTitle = $("#inputTitle");
 let inputDescription = $("#inputDescription");
 let selectCategory = $("#selectCategory");
@@ -13,14 +11,13 @@ let textareaInformation = $("#textareaInformation");
 let checkboxIsNew = $("#checkboxIsNew");
 
 let inputFiles = $("#inputFiles");
-let divLoader = $("#divLoader");
 
 
 let PRODUCTS = {
 
     name: 'PRODUCTS',
 
-    submit: function(elem, pid) {
+    submit: function (elem, pid) {
         // pid = 0 -> Create
         // pid > 0 -> Edit
 
@@ -95,7 +92,6 @@ let PRODUCTS = {
                     elem.removeClass('disabled').html(originalText);
                 },
                 error: function (response) {
-                    $('#divLoader').fadeOut(300);
                     elem.removeClass('disabled').html(originalText);
                     alertify.error('Server Error');
                 },
@@ -104,8 +100,53 @@ let PRODUCTS = {
             alertify.error('Missing required fields');
         }
 
+    },
+
+    delete: function (elem, pid) {
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+
+                $.ajax({
+                    type: "POST",
+                    url: '/administration/products/'+pid+'/delete',
+                    data: {},
+                    dataType: 'json',
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        if (response.result === 'ok'){
+
+                            Swal.fire(
+                                'Deleted!',
+                                response.message,
+                                'success'
+                            ).then((result) => {
+                                if (result.value) {
+                                    location.href = response.redirect_url;
+                                }
+                            });
+
+                        }else{
+                            alertify.error(response.message);
+                        }
+                    },
+                    error: function (response) {
+                        alertify.error('Server Error');
+                    },
+                });
+            }
+        })
+
     }
 
 };
-
 

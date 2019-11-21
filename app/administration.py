@@ -38,7 +38,7 @@ def create_product(request):
         'user': request.user,
         'genders': GENDERS,
         'categories': Category.objects.all(),
-        'pid': 0
+        'product': None
     }
 
     if request.method == 'POST':
@@ -90,4 +90,26 @@ def edit_product(request, product_id):
         'categories': Category.objects.all(),
         'pid': product_id
     }
+    return render(request, 'administration/product.html', data)
+
+
+def delete_product(request, product_id):
+    data = {
+        'title': 'Sabadiaz Jewelry Admin - Delete Product',
+        'option': 'admin_delete_product',
+        'user': request.user,
+    }
+    if request.method == 'POST':
+        try:
+            with transaction.atomic():
+                product = Product.objects.get(id=product_id)
+                product.delete()
+
+                time.sleep(1)
+                return ok_json(data={'message': 'Product has been succesfully deleted!',
+                                     'redirect_url': reverse('admin_products')})
+
+        except Exception as ex:
+            return bad_json(message=ex.__str__())
+
     return render(request, 'administration/product.html', data)
