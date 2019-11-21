@@ -339,3 +339,12 @@ thead tr:nth-child(1) th{
 .big-checkbox {
     width: 25px; height: 25px;
 }
+
+.custom-file-container {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.custom-file-container__image-preview{
+    height: 240px;
+}

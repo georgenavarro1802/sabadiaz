@@ -4,21 +4,22 @@
 {% block admin_content %}
 
     <!-- Heading -->
-    <div class="row mt-3">
+    <div class="row mt-2">
         <div class="col-10">
             <h4>Add Product</h4>
         </div>
         <div class="col-2 text-right text-muted color-purple font-14">
-            <a href="{% url 'admin_products' %}">
-                <i class="fa fa-chevron-left font-12"></i> Products
+            <a href="#" class="btn btn-success">
+                Save
             </a>
         </div>
     </div>
 
-    <div class="row">
+    <div class="row mt-2">
 
         <!-- Left Side -->
         <div class="col-8">
+
             <div class="card border-0 shadow">
                 <div class="card-body">
                     <form class="font-14">
@@ -27,30 +28,32 @@
                             <input type="text" class="form-control" id="inputTitle">
                         </div>
                         <div class="form-group">
-                            <label for="textareaDescription">Description</label>
-                            <textarea class="form-control" id="textareaDescription" style="resize: none"></textarea>
+                            <label for="inputDescription">Description</label>
+                            <input class="form-control" id="inputDescription"/>
                         </div>
                     </form>
+                </div>
+            </div>
 
-                    <div class="form-group">
-                        <label class="font-14">Images</label>
-                        <form id="formImages" enctype="multipart/form-data" style="border: 0.25rem dashed #A5A5C7; height: 250px;  margin: 5px" action="/{{ db_name }}/chargebacks/files/import_file_from_quickbooks" class="dropzone">
-                            <div class="fallback">
-                                <input name="file" type="file" />
-                            </div>
-                        </form>
+            <div class="card border-0 shadow mt-4" style="height: 375px">
+                <div class="card-body">
+
+                    <div class="custom-file-container" data-upload-id="myUniqueUploadId">
+                        <label class="font-11">
+                            Clear All Files <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">
+                            <i class="fa fa-remove"></i>
+                        </a>
+                        </label>
+                        <label class="custom-file-container__custom-file">
+                            <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="image/*" multiple aria-label="Choose Files">
+                            <input type="hidden" name="MAX_FILE_SIZE" value="2097152" /> <!-- 10485760 (10MB) -->
+                            <span class="custom-file-container__custom-file__custom-file-control font-12"></span>
+                        </label>
+                        <div class="custom-file-container__image-preview"></div>
                     </div>
+
                 </div>
             </div>
-
-            <div class="row mt-4">
-                <div class="col-12">
-                    <a href="#" class="btn btn-outline-success btn-block btn-lg">
-                        Confirm
-                    </a>
-                </div>
-            </div>
-
         </div>
 
         <!-- Right Side -->
@@ -83,10 +86,10 @@
                     <form class="font-14">
                         <div class="form-group">
                             <div class="row">
-                                 <div class="col-6">
+                                <div class="col-6">
                                     <label for="inputPrice">Real Price</label>
                                     <input type="text" class="form-control" id="inputPrice" value="0.00">
-                                 </div>
+                                </div>
                                 <div class="col-6">
                                     <label for="inputVPrice">Virtual Price</label>
                                     <input type="text" class="form-control" id="inputVPrice" value="0.00">
@@ -107,7 +110,7 @@
                             </div>
                         </div>
 
-                         <div class="form-group">
+                        <div class="form-group">
                             <label for="textareaInformation">More Information about the product</label>
                             <textarea class="form-control" id="textareaInformation" style="resize: none" rows="3"></textarea>
                         </div>
@@ -131,28 +134,8 @@
 {% block admin_scripts %}
     <script>
 
-        // Dropzone for Import 844 files
-        Dropzone.options.formImages = {
-            paramName: "file",      // The name that will be used to transfer the file
-            maxFilesize: 2,         // MB
-            acceptedFiles: '.jpg, .jpeg, .png',
-            uploadMultiple: true,
-            parallelUploads: 4,
-            maxFiles: 4,
-            init: function() {
-
-             }
-        };
-
-        $(function () {
-
-            $(".dz-message").html(
-                "<div>" +
-                    "<img src='{% static "img/upload_images.png" %}' width='80' />" +
-                    "<p class='text-dark _600 font-14'>Upload images</p>" +
-                    "<p class='text-muted font-12'>Drag and Drop or Click to upload images  (up to 4 files)</p>" +
-                "</div>");
-        });
+        // ref https://github.com/promosis/file-upload-with-preview
+        let upload = new FileUploadWithPreview('myUniqueUploadId');
 
     </script>
 {% endblock %}

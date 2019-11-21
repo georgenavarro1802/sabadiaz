@@ -28,8 +28,7 @@
     <link rel="stylesheet" href="{% static 'css/vendor/bootstrap-select.min.css' %}">
     <!-- LightBox -->
     <link rel="stylesheet" href="{% static 'css/vendor/lightbox.min.css' %}">
-    <!-- Dropzone -->
-    <link rel="stylesheet" href="{% static 'css/vendor/dropzone.css' %}">
+    <link rel="stylesheet" href="{% static 'css/vendor/file-upload-with-preview.min.css' %}">
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/administration.css' %}">
 
@@ -95,6 +94,11 @@
                     <span></span>
                 </button>
             </div>
+            <div class="col text-right">
+                <a href="{% url 'admin_products' %}" class="mr-3 font-12">
+                    <i class="fa fa-chevron-left font-10"></i> Products
+                </a>
+            </div>
         </div>
 
         <!-- Main Content -->
@@ -119,8 +123,7 @@
 <script src="{% static 'js/vendor/bootstrap-select.min.js' %}"></script>
 <!-- LightBox -->
 <script src="{% static 'js/vendor/lightbox.min.js' %}"></script>
-<!-- Dropzone -->
-<script src="{% static 'js/vendor/dropzone.js' %}"></script>
+<script src="{% static 'js/vendor/file-upload-with-preview.min.js' %}"></script>
 
 
 <script type="text/javascript">
