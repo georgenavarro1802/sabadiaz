@@ -348,3 +348,7 @@ thead tr:nth-child(1) th{
 .custom-file-container__image-preview{
     height: 240px;
 }
+
+.ajs-message {
+    color: white;
+}

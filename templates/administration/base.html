@@ -28,7 +28,10 @@
     <link rel="stylesheet" href="{% static 'css/vendor/bootstrap-select.min.css' %}">
     <!-- LightBox -->
     <link rel="stylesheet" href="{% static 'css/vendor/lightbox.min.css' %}">
+    <!-- File Upload -->
     <link rel="stylesheet" href="{% static 'css/vendor/file-upload-with-preview.min.css' %}">
+    <!-- Alertify CSS -->
+    <link rel="stylesheet" href="{% static 'css/vendor/alertify.min.css' %}">
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/administration.css' %}">
 
@@ -121,8 +124,11 @@
 <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
 <!-- Bootstrap Select -->
 <script src="{% static 'js/vendor/bootstrap-select.min.js' %}"></script>
+<!-- Alertify JS -->
+<script src="{% static 'js/vendor/alertify.min.js' %}"></script>
 <!-- LightBox -->
 <script src="{% static 'js/vendor/lightbox.min.js' %}"></script>
+<!-- Files Upload -->
 <script src="{% static 'js/vendor/file-upload-with-preview.min.js' %}"></script>
 
 
@@ -158,7 +164,7 @@
 
         // hide loading when page is loaded
         setTimeout(function () {
-            $('#loading').fadeOut(300);
+            $('#loading').fadeOut(100);
         }, 500);
 
     });

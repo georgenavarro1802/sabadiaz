@@ -1,0 +1,130 @@
+{% extends 'administration/base.html' %}
+{% load static %}
+
+{% block admin_content %}
+
+    <!-- Heading -->
+    <div class="row mt-2">
+        <div class="col-10">
+            <h4>Add Product</h4>
+        </div>
+        <div class="col-2 text-right text-white font-14">
+            <a onclick="PRODUCTS.submit($(this), {{ pid }});" class="btn btn-success text-center">
+                Save
+            </a>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <!-- Left Side -->
+        <div class="col-8">
+
+            <div class="card border-0 shadow">
+                <div class="card-body font-14">
+                    <div class="form-group">
+                        <label for="inputTitle">Title</label>
+                        <input id="inputTitle" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDescription">Description</label>
+                        <input  id="inputDescription" type="text" class="form-control"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow mt-4" style="height: 375px">
+                <div class="card-body">
+
+                    <div class="custom-file-container" data-upload-id="divUploadID">
+                        <label class="font-11">
+                            Clear All Files
+                            <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">
+                                <i class="fa fa-remove"></i>
+                            </a>
+                        </label>
+                        <label class="custom-file-container__custom-file">
+                            <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="image/*" multiple aria-label="Choose Files">
+                            <input type="hidden" name="MAX_FILE_SIZE" value="2097152" /> <!-- 10485760 (10MB) -->
+                            <span class="custom-file-container__custom-file__custom-file-control font-12"></span>
+                        </label>
+                        <div class="custom-file-container__image-preview"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side -->
+        <div class="col-4">
+            <div class="card border-0 shadow">
+                <div class="card-body font-14">
+                    <div class="form-group">
+                        <label for="selectCategory">Category</label>
+                        <select id="selectCategory" class="selectpicker show-tick form-control" data-style="btn-primary">
+                            {% for category in categories %}
+                                <option value="{{ category.id }}">{{ category }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="selectGender">Gender</label>
+                        <select id="selectGender" class="selectpicker show-tick form-control" data-style="btn-primary">
+                            {% for gender in genders %}
+                                <option value="{{ gender.0 }}">{{ gender.1 }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow mt-4">
+                <div class="card-body font-14">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="inputPrice">Real Price</label>
+                                <input  id="inputPrice" type="text" class="form-control" value="0.00">
+                            </div>
+                            <div class="col-6">
+                                <label for="inputVPrice">Virtual Price</label>
+                                <input id="inputVPrice" type="text" class="form-control" value="0.00">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="inputStock">Stock</label>
+                                <input id="inputStock" type="text" class="form-control" value="0">
+                            </div>
+                            <div class="col-6">
+                                <label for="inputDiscount">% Discount</label>
+                                <input id="inputDiscount" type="text" class="form-control" value="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="textareaInformation">More Information about the product</label>
+                        <textarea id="textareaInformation" class="form-control" style="resize: none" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-check">
+                        <input id="checkboxIsNew" type="checkbox" class="form-check-input big-checkbox" checked>
+                        <label class="form-check-label m-2" for="checkboxIsNew">Is New? </label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+{% block admin_scripts %}
+    <script src="{% static 'js/app/products.js' %}"></script>
+
+{% endblock %}

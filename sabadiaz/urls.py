@@ -42,6 +42,7 @@ urlpatterns = [
     # Administration Panel
     path('administration/products', administration.products, name='admin_products'),
     path('administration/products/create', administration.create_product, name='admin_create_product'),
+    path('administration/products/<int:product_id>/edit', administration.edit_product, name='admin_edit_product'),
 
 
 ]

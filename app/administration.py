@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from app.helpers import GENDERS
+from app.helpers import GENDERS, ok_json
 from app.models import Product, Category
 
 
@@ -21,6 +21,24 @@ def create_product(request):
         'option': 'admin_create_product',
         'user': request.user,
         'genders': GENDERS,
-        'categories': Category.objects.all()
+        'categories': Category.objects.all(),
+        'pid': 0
     }
-    return render(request, 'administration/create_product.html', data)
+    if request.method == 'POST':
+        payload = request.POST
+        print(payload)
+        return ok_json(data={'message': 'Correct'})
+
+    return render(request, 'administration/product.html', data)
+
+
+def edit_product(request, product_id):
+    data = {
+        'title': 'Sabadiaz Jewelry Admin - Edit Product',
+        'option': 'admin_edit_product',
+        'user': request.user,
+        'genders': GENDERS,
+        'categories': Category.objects.all(),
+        'pid': product_id
+    }
+    return render(request, 'administration/product.html', data)

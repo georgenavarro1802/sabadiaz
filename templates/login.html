@@ -76,14 +76,4 @@
 
 {% block script %}
     <script src="{% static 'js/app/auth.js' %}"></script>
-
-    <script>
-        $(function () {
-           $(document).keypress(function(e) {
-                if(e.which === 13) {
-                    AUTHENTICATION.login();
-                }
-            });
-        });
-    </script>
 {% endblock %}
