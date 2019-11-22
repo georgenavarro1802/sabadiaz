@@ -36,6 +36,7 @@
                                 <thead class="thead-purple font-14">
                                 <tr>
                                     <th class="p-3" colspan="2" >Product</th>
+                                    <th class="text-center w-60px">Code</th>
                                     <th class="text-center w-100px">Category</th>
                                     <th class="text-center w-100px">Gender</th>
                                     <th class="text-center w-80px">Stock</th>
@@ -53,13 +54,14 @@
                                     <tr class="font-14">
                                         <td class="w-100px">
                                             <a href="{{ product.get_image1 }}" data-lightbox="photos">
-                                                <img class="img-fluid" src="{{ product.get_image1 }}" alt="product_image"/>
+                                                <img class="img-fluid" src="{{ product.get_image1 }}" alt="product_image" style="width: 60px; height: 60px"/>
                                             </a>
                                         </td>
                                         <td>
                                             <p class="font-15 text-dark _600">{{ product.title }}</p>
                                             <p class="font-12 text-muted" style="line-height: 0">{{ product.description }}</p>
                                         </td>
+                                        <td class="text-center">{{ product.code }}</td>
                                         <td class="text-center">{{ product.category }}</td>
                                         <td class="text-center">{{ product.get_gender_display }}</td>
                                         <td class="text-center">{{ product.stock }}</td>

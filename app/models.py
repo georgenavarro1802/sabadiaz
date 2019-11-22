@@ -60,7 +60,7 @@ class Product(models.Model):
         unique_together = ('category', 'title')
 
     def code(self):
-        return str(self.id).zfill(5)
+        return str(self.id).zfill(4)
 
     def get_image1(self):
         return self.image1.url if self.image1 else f"{STATIC_URL}/img/no_images.png"
