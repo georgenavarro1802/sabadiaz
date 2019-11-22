@@ -104,8 +104,6 @@ def delete_product(request, product_id):
             with transaction.atomic():
                 product = Product.objects.get(id=product_id)
                 product.delete()
-
-                time.sleep(1)
                 return ok_json(data={'message': 'Product has been succesfully deleted!',
                                      'redirect_url': reverse('admin_products')})
 
