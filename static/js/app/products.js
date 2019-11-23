@@ -11,6 +11,14 @@ let textareaInformation = $("#textareaInformation");
 let checkboxIsNew = $("#checkboxIsNew");
 let inputFiles = $("#inputFiles");
 
+// edit images
+let uploadImage_1 = $("#uploadImage_1");
+let uploadImage_2 = $("#uploadImage_2");
+let uploadImage_3 = $("#uploadImage_3");
+let uploadImage_4 = $("#uploadImage_4");
+let uploadImage_5 = $("#uploadImage_5");
+let uploadImage_6 = $("#uploadImage_6");
+
 
 let PRODUCTS = {
 
@@ -22,7 +30,7 @@ let PRODUCTS = {
 
         let url = '/administration/products/create';
         if (pid){
-            url = 'administration/products/'+pid+'/edit';
+            url = '/administration/products/'+pid+'/edit';
         }
 
         // required fields
@@ -51,9 +59,11 @@ let PRODUCTS = {
         formData.append('information', information);
         formData.append('isnew', isnew);
 
-        $.each(inputFiles[0].files, function(i, file) {
-            formData.append('file['+i+']', file);
-        });
+        if (!pid){
+            $.each(inputFiles[0].files, function(i, file) {
+                formData.append('file['+i+']', file);
+            });
+        }
 
         if (title && description && category_id && gender && price > 0){
             let spinnerText = "<i class='fa fa-circle-o-notch fa-spin'></i> Saving ...";
@@ -113,7 +123,6 @@ let PRODUCTS = {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.value) {
-
                 $.ajax({
                     type: "POST",
                     url: '/administration/products/'+pid+'/delete',
@@ -188,6 +197,50 @@ let PRODUCTS = {
                 });
             }
         })
+
+    },
+
+    edit_image: function (iid, pid) {
+
+        let formData = new FormData();
+        if (iid === '1'){
+            formData.append('file', uploadImage_1[0].files[0]);
+        }
+        else if (iid === '2'){
+            formData.append('file', uploadImage_2[0].files[0]);
+        }
+        else if (iid === '3'){
+            formData.append('file', uploadImage_3[0].files[0]);
+        }
+        else if (iid === '4'){
+            formData.append('file', uploadImage_4[0].files[0]);
+        }
+        else if (iid === '5'){
+            formData.append('file', uploadImage_5[0].files[0]);
+        }
+        else if (iid === '6'){
+            formData.append('file', uploadImage_6[0].files[0]);
+        }
+
+        $.ajax({
+            url: '/administration/products/'+pid+'/images/'+iid+'/edit',
+            type: 'POST',
+            data: formData,
+            dataType: 'json',
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if (response.result === 'ok'){
+                    alertify.success(response.message);
+                    location.reload();
+                }else{
+                    alertify.error(response.message);
+                }
+            },
+            error: function (response) {
+                alertify.error('Server Error');
+            },
+        });
 
     }
 

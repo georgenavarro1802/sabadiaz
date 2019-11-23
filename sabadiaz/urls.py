@@ -44,8 +44,8 @@ urlpatterns = [
     path('administration/products/create', administration.create_product, name='admin_create_product'),
     path('administration/products/<int:product_id>/edit', administration.edit_product, name='admin_edit_product'),
     path('administration/products/<int:product_id>/delete', administration.delete_product, name='admin_delete_product'),
-    path('administration/products/<int:product_id>/images', administration.images, name='admin_product_images'),
     path('administration/products/<int:product_id>/images/<int:image_id>/delete', administration.delete_product_image, name='admin_delete_product_image'),
+    path('administration/products/<int:product_id>/images/<int:image_id>/edit', administration.edit_product_image, name='admin_edit_product_image'),
 
 ]
 

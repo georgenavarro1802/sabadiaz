@@ -33,10 +33,10 @@
                             <table class="table filterable table-fixed">
 
                                 <!--Table head-->
-                                <thead class="thead-purple font-14">
+                                <thead class="thead-purple font-12">
                                 <tr>
-                                    <th class="p-3" colspan="2" >Product</th>
-                                    <th class="text-center w-60px">Codeqs</th>
+                                    <th class="w-100px">Image</th>
+                                    <th>Product</th>
                                     <th class="text-center w-100px">Category</th>
                                     <th class="text-center w-100px">Gender</th>
                                     <th class="text-center w-80px">Stock</th>
@@ -51,17 +51,17 @@
                                 <!--Table body-->
                                 <tbody>
                                 {% for product in products %}
-                                    <tr class="font-14">
-                                        <td class="w-100px">
+                                    <tr class="font-12">
+                                        <td>
                                             <a href="{{ product.get_image1 }}" data-lightbox="photos">
-                                                <img class="img-fluid" src="{{ product.get_image1 }}" alt="product_image" style="width: 60px; height: 60px"/>
+                                                <img class="img-fluid" src="{{ product.get_image1 }}" alt="product_image" style="width: 70px; height: 70px"/>
                                             </a>
                                         </td>
                                         <td>
-                                            <p class="font-15 text-dark _600">{{ product.title }}</p>
-                                            <p class="font-12 text-muted" style="line-height: 0">{{ product.description }}</p>
+                                            <p class="font-12 text-dark _600">{{ product.code }}</p>
+                                            <p class="font-12 text-dark _600 no-line-height">{{ product.title }}</p>
+                                            <p class="font-11 text-muted" style="line-height: 0">{{ product.description }}</p>
                                         </td>
-                                        <td class="text-center">{{ product.code }}</td>
                                         <td class="text-center">{{ product.category }}</td>
                                         <td class="text-center">{{ product.get_gender_display }}</td>
                                         <td class="text-center">{{ product.stock }}</td>

@@ -82,14 +82,39 @@ def create_product(request):
 
 
 def edit_product(request, product_id):
+    product = Product.objects.get(id=product_id)
+
     data = {
         'title': 'Sabadiaz Jewelry Admin - Edit Product',
         'option': 'admin_edit_product',
         'user': request.user,
         'genders': GENDERS,
         'categories': Category.objects.all(),
-        'product': Product.objects.get(id=product_id)
+        'product': product
     }
+
+    if request.method == 'POST':
+        try:
+            with transaction.atomic():
+                product.title = request.POST['title']
+                product.description = request.POST['description']
+                product.category_id = int(request.POST['category_id'])
+                product.gender = int(request.POST['gender'])
+                product.price = float(request.POST['price'])
+                product.stock = int(request.POST['stock'])
+                product.discount = float(request.POST['discount'])
+                product.vprice = float(request.POST['vprice'])
+                product.information = request.POST['information']
+                product.isnew = True if request.POST['isnew'] == 'on' else False
+                product.save()
+
+                time.sleep(1)
+                return ok_json(data={'message': 'Product has been succesfully edited!',
+                                     'redirect_url': reverse('admin_products')})
+
+        except Exception as ex:
+            return bad_json(message=ex.__str__())
+
     return render(request, 'administration/product.html', data)
 
 
@@ -115,7 +140,7 @@ def delete_product(request, product_id):
 
 def delete_product_image(request, product_id, image_id):
     data = {
-        'title': 'Sabadiaz Jewelry Admin - Delete Product',
+        'title': 'Sabadiaz Jewelry Admin - Delete Product Image',
         'option': 'admin_delete_product_image',
         'user': request.user,
     }
@@ -134,26 +159,23 @@ def delete_product_image(request, product_id, image_id):
     return render(request, 'administration/product.html', data)
 
 
-def images(request, product_id):
-    product = Product.objects.get(id=product_id)
-    return ok_json(data={'images': product.get_images_list(), 'username': request.user.username})
+def edit_product_image(request, product_id, image_id):
+    data = {
+        'title': 'Sabadiaz Jewelry Admin - Edit Product Image',
+        'option': 'admin_delete_product_image',
+        'user': request.user,
+    }
 
-# if (jQuery.isEmptyObject(data.results)){
-#                                 inputPurchaserNameAddLine.val('');
-#                                 inputPurchaserAddress1AddLine.val('');
-#                                 inputPurchaserAddress2AddLine.val('');
-#                                 inputPurchaserCityAddLine.val('');
-#                                 inputPurchaserStateAddLine.val('');
-#                                 inputPurchaserZipAddLine.val('');
-#                                 return ''
-#                             }else{
-#                                 result($.map(data, function (item) {
-#                                     # inputPurchaserNameAddLine.val(item.company_name);
-# # inputPurchaserAddress1AddLine.val(item.address1);
-# # inputPurchaserAddress2AddLine.val(item.address2);
-# # inputPurchaserCityAddLine.val(item.city);
-# # inputPurchaserStateAddLine.val(item.state);
-# # inputPurchaserZipAddLine.val(item.zip_code);
-#                                 }));
-#                             }
+    if request.method == 'POST':
+        try:
+            with transaction.atomic():
+                product = Product.objects.get(id=product_id)
+                setattr(product, f'image{image_id}', request.FILES['file'])
+                product.save()
+                return ok_json(data={'message': f'Image {image_id} succesfully edited!'})
+
+        except Exception as ex:
+            return bad_json(message=ex.__str__())
+
+    return render(request, 'administration/product.html', data)
 

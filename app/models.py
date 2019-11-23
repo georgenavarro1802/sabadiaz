@@ -66,19 +66,19 @@ class Product(models.Model):
         return self.image1.url if self.image1 else f"{STATIC_URL}/img/no_images.png"
 
     def get_image2(self):
-        return self.image1.url if self.image2 else f"{STATIC_URL}/img/no_images.png"
+        return self.image2.url if self.image2 else f"{STATIC_URL}/img/no_images.png"
 
     def get_image3(self):
-        return self.image1.url if self.image3 else f"{STATIC_URL}/img/no_images.png"
+        return self.image3.url if self.image3 else f"{STATIC_URL}/img/no_images.png"
 
     def get_image4(self):
-        return self.image1.url if self.image4 else f"{STATIC_URL}/img/no_images.png"
+        return self.image4.url if self.image4 else f"{STATIC_URL}/img/no_images.png"
 
     def get_image5(self):
-        return self.image1.url if self.image5 else f"{STATIC_URL}/img/no_images.png"
+        return self.image5.url if self.image5 else f"{STATIC_URL}/img/no_images.png"
 
     def get_image6(self):
-        return self.image1.url if self.image6 else f"{STATIC_URL}/img/no_images.png"
+        return self.image6.url if self.image6 else f"{STATIC_URL}/img/no_images.png"
 
     def get_images_list(self):
         return [

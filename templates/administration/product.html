@@ -54,10 +54,10 @@
                                                     </a>
                                                 {% endif %}
                                                 <a href="javascript:void(0);" class="btnEditImage" iid="{{ forloop.counter }}">
-                                                    <img src="{{ elem.image_url }}" class="figure-img img-fluid rounded" alt="product_image{{ forloop.counter }}" width="100">
+                                                    <img src="{{ elem.image_url }}" class="figure-img img-fluid rounded" alt="product_image{{ forloop.counter }}" style="width: 120px; height: 120px">
                                                 </a>
                                             </figure>
-                                            <input id="uploadImage_{{ forloop.counter }}" type="file" style="display: none"/>
+                                            <input id="uploadImage_{{ forloop.counter }}" class="inputImages" onchange="PRODUCTS.edit_image('{{ forloop.counter }}', '{{ product.id }}');" type="file" style="display: none"/>
                                         </div>
                                     {% endfor %}
                                 </div>

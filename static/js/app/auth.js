@@ -30,9 +30,6 @@ let AUTHENTICATION = {
                     'password': login_password.val()
                 },
                 dataType: 'json',
-                beforeSend: function () {
-
-                },
                 success: function (response) {
                     if (response.result === 'ok'){
 
