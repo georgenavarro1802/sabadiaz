@@ -9,7 +9,7 @@ from app.helpers import GENDERS, ok_json, bad_json
 from app.models import Product, Category
 
 
-def products(request):
+def view(request):
     products = Product.objects.all()
     page = request.GET.get('page', 1)
 
@@ -22,7 +22,7 @@ def products(request):
         products = paginator.page(paginator.num_pages)
 
     return render(request,
-                  'administration/products.html',
+                  'administration/products/view.html',
                   {
                       'title': 'Sabadiaz Jewelry Admin - All Products',
                       'option': 'admin_all_products',
@@ -78,7 +78,7 @@ def create_product(request):
         except Exception as ex:
             return bad_json(message=ex.__str__())
 
-    return render(request, 'administration/product.html', data)
+    return render(request, 'administration/products/product.html', data)
 
 
 def edit_product(request, product_id):
@@ -115,7 +115,7 @@ def edit_product(request, product_id):
         except Exception as ex:
             return bad_json(message=ex.__str__())
 
-    return render(request, 'administration/product.html', data)
+    return render(request, 'administration/products/product.html', data)
 
 
 def delete_product(request, product_id):
@@ -135,7 +135,7 @@ def delete_product(request, product_id):
         except Exception as ex:
             return bad_json(message=ex.__str__())
 
-    return render(request, 'administration/product.html', data)
+    return render(request, 'administration/products/product.html', data)
 
 
 def delete_product_image(request, product_id, image_id):
@@ -156,7 +156,7 @@ def delete_product_image(request, product_id, image_id):
         except Exception as ex:
             return bad_json(message=ex.__str__())
 
-    return render(request, 'administration/product.html', data)
+    return render(request, 'administration/products/product.html', data)
 
 
 def edit_product_image(request, product_id, image_id):
@@ -177,5 +177,4 @@ def edit_product_image(request, product_id, image_id):
         except Exception as ex:
             return bad_json(message=ex.__str__())
 
-    return render(request, 'administration/product.html', data)
-
+    return render(request, 'administration/products/product.html', data)

@@ -6,23 +6,18 @@ from django.shortcuts import render
 from django.urls import reverse
 
 from app.helpers import ok_json, bad_json
+from app.models import Product, HomeSlider
 
 
+# Website Views
 def index(request):
     data = {
         'title': 'Sabadiaz Jewelry - Welcome',
         'option': 'index',
-        'user': request.user
+        'user': request.user,
+        'home_sliders': HomeSlider.objects.all()
     }
     return render(request, 'index.html', data)
-
-
-def product_details(request, product_id):
-    data = {
-        'title': 'Sabadiaz Jewelry - Product Details',
-        'option': 'product'
-    }
-    return render(request, 'product_details.html', data)
 
 
 def shop(request):
@@ -57,6 +52,17 @@ def wishlist(request):
     return render(request, 'wishlist.html', data)
 
 
+def product_details(request, product_id):
+    product = Product.objects.get(id=product_id)
+    data = {
+        'title': 'Sabadiaz Jewelry - Product Details',
+        'option': 'product',
+        'product': product
+    }
+    return render(request, 'product_details.html', data)
+
+
+# Common Views
 def login_user(request):
     data = {
         'title': 'Sabadiaz Jewelry - Log In',

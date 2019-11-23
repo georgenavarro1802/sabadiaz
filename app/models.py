@@ -124,3 +124,40 @@ class WishList(models.Model):
         db_table = "wishList"
         ordering = ('-created_at', )
         unique_together = ('user', 'product')
+
+
+class HomeSlider(models.Model):
+    """
+    Examples:
+        Ex1
+        text1: Flower Diamond
+        text2: Collection
+        desc: Budget Jewellery Starting At $295.99
+
+        Ex2
+        text1: New Diamond
+        text2: & Wedding Rings
+        desc: Avail 15% off on Making Charges for all Jewellery
+
+        Ex3
+        text1: Grace Designer
+        text2: Jewellery
+        desc: Rings, Occasion Pieces, Pandora & More
+
+    """
+    text1 = models.CharField(max_length=50)
+    text2 = models.CharField(max_length=50)
+    description = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='sliders')
+
+    def __str__(self):
+        return self.text1
+
+    class Meta:
+        verbose_name = 'HomePage Slider'
+        verbose_name_plural = 'HomePage Sliders'
+        db_table = "home_sliders"
+
+    def get_image(self):
+        return self.image.url if self.image else f"{STATIC_URL}/img/slide.jpg"
+

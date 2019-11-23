@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from app.models import Category, Product, WishList
+from app.models import Category, Product, WishList, HomeSlider
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -29,3 +29,12 @@ class WishListAdmin(admin.ModelAdmin):
 
 
 admin.site.register(WishList, WishListAdmin)
+
+
+# Website HomePage
+class HomeSliderAdmin(admin.ModelAdmin):
+    list_display = ('text1', 'text2', 'description', 'image')
+    search_fields = ('text1', 'text2', 'description')
+
+
+admin.site.register(HomeSlider, HomeSliderAdmin)

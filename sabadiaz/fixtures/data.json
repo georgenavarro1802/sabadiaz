@@ -1,0 +1,26 @@
+[
+  {
+    "model": "app.homeslider",
+    "fields": {
+      "text1": "Flower Diamond",
+      "text2": "Collection",
+      "description": "Budget Jewellery Starting At $295.99"
+    }
+  },
+  {
+    "model": "app.homeslider",
+    "fields": {
+      "text1": "New Diamond",
+      "text2": "& Wedding Rings",
+      "description": "Avail 15% off on Making Charges for all Jewellery"
+    }
+  },
+  {
+    "model": "app.homeslider",
+    "fields": {
+      "text1": "Grace Designer",
+      "text2": "Jewellery",
+      "description": "Rings, Occasion Pieces, Pandora & More"
+    }
+  }
+]

@@ -1,0 +1,58 @@
+{% extends 'administration/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block admin_content %}
+
+    <!-- Heading -->
+    <div class="row">
+        <div class="col-10">
+            <h3 class="text-center">
+                Homepage Sliders
+            </h3>
+        </div>
+        <div class="col-2 text-right text-white font-14">
+            <a href="javascript:void(0);" onclick="PRODUCTS.submit()" class="btn btn-success text-center">
+                Save
+            </a>
+        </div>
+    </div>
+
+    {% for hs in home_sliders %}
+        <div class="row my-3">
+            <div class="col-12">
+                <div class="card border-0 shadow">
+                    <div class="card-body">
+
+                        <form id="formSlide{{ forloop.counter }}" enctype="multipart/form-data" autocomplete="off">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <label for="inputHomeSliderText1_{{ hs.id }}" class="font-12 _600">Text 1</label>
+                                        <input  id="inputHomeSliderText1_{{ hs.id }}" type="text" class="form-control font-12" value="{{ hs.text1 }}">
+                                    </div>
+                                    <div class="col-3">
+                                        <label for="inputHomeSliderText2_{{ hs.id }}" class="font-12 _600">Text 2</label>
+                                        <input id="inputHomeSliderText2_{{ hs.id }}" type="text" class="form-control font-12" value="{{ hs.text2 }}">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="inputHomeSliderDescription_{{ hs.id }}" class="font-12 _600">Description</label>
+                                        <input id="inputHomeSliderDescription_{{ hs.id }}" type="text" class="form-control font-12" value="{{ hs.description }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <a data-toggle="collapse" href="#collapseImage_{{ hs.id }}" class="font-12" style="color: cornflowerblue">
+                                <i class="fa fa-image"></i> Show Image
+                            </a>
+                            <div class="collapse" id="collapseImage_{{ hs.id }}">
+                                <img src="{{ hs.get_image }}" alt="slider{{ hs.id }}_image" style="width: 100%"/>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}

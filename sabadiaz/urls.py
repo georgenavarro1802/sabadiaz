@@ -1,7 +1,8 @@
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
-from app import views, administration
+from app import views
+from app.administration import products, webite
 from sabadiaz.settings import DEBUG, MEDIA_URL, MEDIA_ROOT, STATIC_URL, STATIC_ROOT
 
 urlpatterns = [
@@ -39,13 +40,16 @@ urlpatterns = [
     # Product Details
     path('products/<int:product_id>/details', views.product_details, name='product_details'),
 
-    # Administration Panel
-    path('administration/products', administration.products, name='admin_products'),
-    path('administration/products/create', administration.create_product, name='admin_create_product'),
-    path('administration/products/<int:product_id>/edit', administration.edit_product, name='admin_edit_product'),
-    path('administration/products/<int:product_id>/delete', administration.delete_product, name='admin_delete_product'),
-    path('administration/products/<int:product_id>/images/<int:image_id>/delete', administration.delete_product_image, name='admin_delete_product_image'),
-    path('administration/products/<int:product_id>/images/<int:image_id>/edit', administration.edit_product_image, name='admin_edit_product_image'),
+    # Administration - Products
+    path('administration/products', products.view, name='admin_products'),
+    path('administration/products/create', products.create_product, name='admin_create_product'),
+    path('administration/products/<int:product_id>/edit', products.edit_product, name='admin_edit_product'),
+    path('administration/products/<int:product_id>/delete', products.delete_product, name='admin_delete_product'),
+    path('administration/products/<int:product_id>/images/<int:image_id>/delete', products.delete_product_image, name='admin_delete_product_image'),
+    path('administration/products/<int:product_id>/images/<int:image_id>/edit', products.edit_product_image, name='admin_edit_product_image'),
+
+    # Administration - Products
+    path('administration/website/home_sliders', webite.home_sliders, name='admin_website_home_sliders'),
 
 ]
 
