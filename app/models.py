@@ -80,6 +80,35 @@ class Product(models.Model):
     def get_image6(self):
         return self.image1.url if self.image6 else f"{STATIC_URL}/img/no_images.png"
 
+    def get_images_list(self):
+        return [
+            {
+                'image_url': self.get_image1(),
+                'is_static': False if self.image1 else True
+            },
+            {
+                'image_url': self.get_image2(),
+                'is_static': False if self.image2 else True
+            },
+            {
+                'image_url': self.get_image3(),
+                'is_static': False if self.image3 else True
+            },
+            {
+                'image_url': self.get_image4(),
+                'is_static': False if self.image4 else True
+            },{
+                'image_url': self.get_image5(),
+                'is_static': False if self.image5 else True
+            },{
+                'image_url': self.get_image6(),
+                'is_static': False if self.image6 else True
+            },
+        ]
+
+    def has_images(self):
+        return self.image1 or self.image2 or self.image3 or self.image4 or self.image5 or self.image6
+
 
 class WishList(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -9,7 +9,6 @@ let inputStock = $("#inputStock");
 let inputDiscount = $("#inputDiscount");
 let textareaInformation = $("#textareaInformation");
 let checkboxIsNew = $("#checkboxIsNew");
-
 let inputFiles = $("#inputFiles");
 
 
@@ -139,7 +138,51 @@ let PRODUCTS = {
                             alertify.error(response.message);
                         }
                     },
-                    error: function (response) {
+                    error: function () {
+                        alertify.error('Server Error');
+                    },
+                });
+            }
+        })
+
+    },
+
+    remove_image: function (iid, pid) {
+
+        Swal.fire({
+            title: 'Are you sure to delete this image?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+
+                $.ajax({
+                    type: "POST",
+                    url: '/administration/products/'+pid+'/images/'+iid+'/delete',
+                    data: {},
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response.result === 'ok'){
+
+                            Swal.fire(
+                                'Image Deleted!',
+                                response.message,
+                                'success'
+                            ).then((result) => {
+                                if (result.value) {
+                                    location.reload();
+                                }
+                            });
+
+                        }else{
+                            alertify.error(response.message);
+                        }
+                    },
+                    error: function () {
                         alertify.error('Server Error');
                     },
                 });
@@ -149,4 +192,3 @@ let PRODUCTS = {
     }
 
 };
-

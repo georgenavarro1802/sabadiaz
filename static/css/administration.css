@@ -352,3 +352,7 @@ thead tr:nth-child(1) th{
 .ajs-message {
     color: white;
 }
+
+.no-line-height {
+    line-height: 0!important;
+}

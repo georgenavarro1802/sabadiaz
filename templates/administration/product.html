@@ -1,12 +1,14 @@
 {% extends 'administration/base.html' %}
 {% load static %}
+{% load humanize %}
+
 
 {% block admin_content %}
 
     <!-- Heading -->
     <div class="row mt-2">
         <div class="col-10">
-            <h4>{% if not product %}Edit{% else %}Add{% endif %} Product</h4>
+            <h4>{% if product %}Edit{% else %}Add{% endif %} Product</h4>
         </div>
         <div class="col-2 text-right text-white font-14">
             <a href="javascript:void(0);" onclick="PRODUCTS.submit($(this), {% if product %}{{ product.id }}{% else %}0{% endif %});" class="btn btn-success text-center">
@@ -24,35 +26,64 @@
                     <div class="card-body font-14">
                         <div class="form-group">
                             <label for="inputTitle">Title</label>
-                            <input id="inputTitle" type="text" class="form-control">
+                            <input id="inputTitle" type="text" class="form-control" value="{{ product.title }}">
                         </div>
                         <div class="form-group">
                             <label for="inputDescription">Description</label>
-                            <input  id="inputDescription" type="text" class="form-control"/>
+                            <input  id="inputDescription" type="text" class="form-control" value="{{ product.description }}" />
                         </div>
                     </div>
                 </div>
 
+                <!-- Images upload -->
                 <div class="card border-0 shadow mt-4" style="height: 375px">
                     <div class="card-body">
 
-                        <div class="custom-file-container" data-upload-id="divUploadID">
-                            <label class="font-11">
-                                Clear All Files
-                                <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">
-                                    <i class="fa fa-remove"></i>
-                                </a>
-                            </label>
-                            <label class="custom-file-container__custom-file">
-                                <input type="file" id="inputFiles" class="custom-file-container__custom-file__custom-file-input" accept="image/*" multiple aria-label="Choose Files">
-                                <input type="hidden" name="MAX_FILE_SIZE" value="2097152" /> <!-- 10485760 (10MB) -->
-                                <span class="custom-file-container__custom-file__custom-file-control font-12"></span>
-                            </label>
-                            <div class="custom-file-container__image-preview"></div>
-                        </div>
+                        {% if product %}
+                            <div class="form-group">
+                                <div class="row text-center">
+                                    {% for elem in product.get_images_list %}
+                                        <div class="col-4 {% if forloop.counter == 4 or forloop.counter == 5 or forloop.counter == 6 %}mt-4{% endif %}">
+                                            <figure class="figure">
+                                                <figcaption class="figure-caption text-center">
+                                                    <p class="font-12 text-dark _600 no-line-height">Image {{ forloop.counter }}</p>
+                                                </figcaption>
+                                                {% if not elem.is_static %}
+                                                    <a onclick="PRODUCTS.remove_image('{{ forloop.counter }}', '{{ product.id }}')" href="javascript:void(0);" class="btnRemoveImage text-danger tt" title="Remove" style="position: absolute">
+                                                        <i class="fa fa-times"></i>
+                                                    </a>
+                                                {% endif %}
+                                                <a href="javascript:void(0);" class="btnEditImage" iid="{{ forloop.counter }}">
+                                                    <img src="{{ elem.image_url }}" class="figure-img img-fluid rounded" alt="product_image{{ forloop.counter }}" width="100">
+                                                </a>
+                                            </figure>
+                                            <input id="uploadImage_{{ forloop.counter }}" type="file" style="display: none"/>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                        {% else %}
+
+                            <div class="custom-file-container" data-upload-id="divUploadID">
+                                <label class="font-11">
+                                    Clear All Files
+                                    <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">
+                                        <i class="fa fa-remove"></i>
+                                    </a>
+                                </label>
+                                <label class="custom-file-container__custom-file">
+                                    <input type="file" id="inputFiles" class="custom-file-container__custom-file__custom-file-input" accept="image/*" multiple aria-label="Choose Files">
+                                    <input type="hidden" name="MAX_FILE_SIZE" value="2097152" /> <!-- 10485760 (10MB) -->
+                                    <span class="custom-file-container__custom-file__custom-file-control font-12"></span>
+                                </label>
+                                <div class="custom-file-container__image-preview"></div>
+                            </div>
+                        {% endif %}
 
                     </div>
                 </div>
+
             </div>
 
             <!-- Right Side -->
@@ -63,7 +94,9 @@
                             <label for="selectCategory">Category</label>
                             <select id="selectCategory" class="selectpicker show-tick form-control" data-style="btn-primary">
                                 {% for category in categories %}
-                                    <option value="{{ category.id }}">{{ category }}</option>
+                                    <option value="{{ category.id }}" {% if product.category.id == category.id %}selected{% endif %}>
+                                        {{ category }}
+                                    </option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -71,7 +104,9 @@
                             <label for="selectGender">Gender</label>
                             <select id="selectGender" class="selectpicker show-tick form-control" data-style="btn-primary">
                                 {% for gender in genders %}
-                                    <option value="{{ gender.0 }}">{{ gender.1 }}</option>
+                                    <option value="{{ gender.0 }}" {% if product.gender == gender.0 %}selected{% endif %}>
+                                        {{ gender.1 }}
+                                    </option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -84,11 +119,11 @@
                             <div class="row">
                                 <div class="col-6">
                                     <label for="inputPrice">Real Price</label>
-                                    <input  id="inputPrice" type="text" class="form-control" value="0.00">
+                                    <input  id="inputPrice" type="text" class="form-control" value="{{ product.price|floatformat:2|intcomma }}">
                                 </div>
                                 <div class="col-6">
                                     <label for="inputVPrice">Virtual Price</label>
-                                    <input id="inputVPrice" type="text" class="form-control" value="0.00">
+                                    <input id="inputVPrice" type="text" class="form-control" value="{{ product.v_price|floatformat:2|intcomma }}">
                                 </div>
                             </div>
                         </div>
@@ -97,23 +132,23 @@
                             <div class="row">
                                 <div class="col-6">
                                     <label for="inputStock">Stock</label>
-                                    <input id="inputStock" type="text" class="form-control" value="0">
+                                    <input id="inputStock" type="text" class="form-control" value="{{ product.stock|floatformat:0|intcomma }}">
                                 </div>
                                 <div class="col-6">
                                     <label for="inputDiscount">% Discount</label>
-                                    <input id="inputDiscount" type="text" class="form-control" value="0">
+                                    <input id="inputDiscount" type="text" class="form-control" value="{{ product.p_discount|floatformat:0|intcomma }}">
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="textareaInformation">More Information about the product</label>
-                            <textarea id="textareaInformation" class="form-control" style="resize: none" rows="3"></textarea>
+                            <textarea id="textareaInformation" class="form-control" style="resize: none" rows="3">{{ product.information }}</textarea>
                         </div>
 
                         <div class="form-check">
-                            <input id="checkboxIsNew" type="checkbox" class="form-check-input big-checkbox" checked>
-                            <label class="form-check-label m-2" for="checkboxIsNew">Is New? </label>
+                            <input id="checkboxIsNew" type="checkbox" class="form-check-input big-checkbox" {% if product.is_new %}checked{% endif %}>
+                            <label class="form-check-label m-2" for="checkboxIsNew">Is New?</label>
                         </div>
                     </div>
                 </div>
@@ -123,3 +158,25 @@
     </form>
 
 {% endblock %}
+
+
+{% block admin_scripts %}
+    <script>
+        $(function () {
+
+            $(".btnEditImage").on('click', function(e){
+                e.preventDefault();
+                let iid = $(this).attr('iid');
+                $("#uploadImage_"+iid).trigger('click');
+            });
+
+            {% if not product %}
+                let upload = new FileUploadWithPreview('divUploadID');
+            {% endif %}
+
+        });
+    </script>
+
+{% endblock %}
+
+
