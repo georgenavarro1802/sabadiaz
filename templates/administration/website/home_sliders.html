@@ -40,11 +40,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <a data-toggle="collapse" href="#collapseImage_{{ forloop.counter }}" class="font-12" style="color: cornflowerblue">
+                            <a data-toggle="collapse" href="#collapseImage_{{ hs.id }}" class="font-12" style="color: cornflowerblue">
                                 <i class="fa fa-image"></i> Show Image
                             </a>
-                            <div class="collapse" id="collapseImage_{{ forloop.counter }}">
-                                <img src="{{ hs.get_image }}" alt="slider{{ forloop.counter }}_image" style="width: 100%"/>
+                            <div class="collapse" id="collapseImage_{{ hs.id }}">
+                                <a href="javascript:void(0);" class="btnHomeSlideEditImages" hsid="{{ hs.id }}">
+                                    <img src="{{ hs.get_image }}" alt="slider{{ hs.id }}_image" style="width: 100%; height: 600px!important;"/>
+                                </a>
+                                <input id="inputHomeSlideUploadImage_{{ hs.id }}" onchange="WEBSITE.edit_image('{{ hs.id }}');" type="file" style="display: none"/>
                             </div>
                         </div>
                     </div>
@@ -52,5 +55,20 @@
             </div>
         {% endfor %}
     </form>
+
+{% endblock %}
+
+{% block admin_scripts %}
+    <script>
+        $(function () {
+
+            $(".btnHomeSlideEditImages").on('click', function(e){
+                e.preventDefault();
+                let hsid = $(this).attr('hsid');
+                $("#inputHomeSlideUploadImage_"+hsid).trigger('click');
+            });
+
+        });
+    </script>
 
 {% endblock %}

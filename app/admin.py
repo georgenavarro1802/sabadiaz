@@ -13,10 +13,11 @@ admin.site.register(Category, CategoryAdmin)
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('id', 'category', 'title', 'description', 'price', 'v_price', 'stock', 'is_new', 'created_at')
+    list_display = ('id', 'category', 'material', 'title', 'description', 'created_at',
+                    'price', 'v_price', 'stock', 'is_new', 'is_featured', 'is_bestseller', 'is_onsale')
     ordering = ('-created_at', )
     search_fields = ('category__name', 'title', 'description')
-    list_filter = ('is_new', 'gender')
+    list_filter = ('gender', 'material', 'is_new', 'is_featured', 'is_bestseller', 'is_onsale')
 
 
 admin.site.register(Product, ProductAdmin)

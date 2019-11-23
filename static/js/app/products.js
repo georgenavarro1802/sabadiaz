@@ -3,13 +3,17 @@ let inputTitle = $("#inputTitle");
 let inputDescription = $("#inputDescription");
 let selectCategory = $("#selectCategory");
 let selectGender = $("#selectGender");
+let selectMaterial = $("#selectMaterial");
 let inputPrice = $("#inputPrice");
 let inputVPrice = $("#inputVPrice");
 let inputStock = $("#inputStock");
 let inputDiscount = $("#inputDiscount");
 let textareaInformation = $("#textareaInformation");
-let checkboxIsNew = $("#checkboxIsNew");
 let inputFiles = $("#inputFiles");
+let checkboxIsNew = $("#checkboxIsNew");
+let checkboxIsFeatured = $("#checkboxIsFeatured");
+let checkboxIsBestSeller = $("#checkboxIsBestSeller");
+let checkboxIsOnSale = $("#checkboxIsOnSale");
 
 // edit images
 let uploadImage_1 = $("#uploadImage_1");
@@ -38,6 +42,7 @@ let PRODUCTS = {
         let description = inputDescription.val();
         let category_id = selectCategory.val();
         let gender = selectGender.val();
+        let material = selectMaterial.val();
         let price = parseFloat(inputPrice.val());
 
         // optional fields
@@ -45,19 +50,26 @@ let PRODUCTS = {
         let discount = inputDiscount.val();
         let vprice = inputVPrice.val();
         let information = textareaInformation.val();
-        let isnew = checkboxIsNew.val();
+        let is_new = checkboxIsNew.val();
+        let is_featured = checkboxIsFeatured.val();
+        let is_bestseller = checkboxIsBestSeller.val();
+        let is_onsale = checkboxIsOnSale.val();
 
         let formData = new FormData();
         formData.append('title', title);
         formData.append('description', description);
         formData.append('category_id', category_id);
         formData.append('gender', gender);
+        formData.append('material', material);
         formData.append('price', price);
         formData.append('stock', stock);
         formData.append('discount', discount);
         formData.append('vprice', vprice);
         formData.append('information', information);
-        formData.append('isnew', isnew);
+        formData.append('is_new', is_new);
+        formData.append('is_featured', is_featured);
+        formData.append('is_bestseller', is_bestseller);
+        formData.append('is_onsale', is_onsale);
 
         if (!pid){
             $.each(inputFiles[0].files, function(i, file) {
@@ -65,7 +77,7 @@ let PRODUCTS = {
             });
         }
 
-        if (title && description && category_id && gender && price > 0){
+        if (title && description && category_id && gender && material && price > 0){
             let spinnerText = "<i class='fa fa-circle-o-notch fa-spin'></i> Saving ...";
             let originalText = elem.html();
 

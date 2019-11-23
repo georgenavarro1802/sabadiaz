@@ -5,7 +5,7 @@ from django.db import transaction
 from django.shortcuts import render
 from django.urls import reverse
 
-from app.helpers import GENDERS, ok_json, bad_json
+from app.helpers import GENDERS, ok_json, bad_json, MATERIALS
 from app.models import Product, Category
 
 
@@ -36,6 +36,7 @@ def create_product(request):
         'title': 'Sabadiaz Jewelry Admin - Create Product',
         'option': 'admin_create_product',
         'user': request.user,
+        'materials': MATERIALS,
         'genders': GENDERS,
         'categories': Category.objects.all(),
         'product': None
@@ -48,15 +49,20 @@ def create_product(request):
                 description = request.POST['description']
                 category_id = int(request.POST['category_id'])
                 gender = int(request.POST['gender'])
+                material = int(request.POST['material'])
                 price = float(request.POST['price'])
                 stock = int(request.POST['stock'])
                 discount = float(request.POST['discount'])
                 vprice = float(request.POST['vprice'])
                 information = request.POST['information']
-                isnew = True if request.POST['isnew'] == 'on' else False
+                is_new = True if request.POST['is_new'] == 'on' else False
+                is_featured = True if request.POST['is_featured'] == 'on' else False
+                is_bestseller = True if request.POST['is_bestseller'] == 'on' else False
+                is_onsale = True if request.POST['is_onsale'] == 'on' else False
 
                 product = Product(category_id=category_id,
                                   gender=gender,
+                                  material=material,
                                   title=title,
                                   description=description,
                                   information=information,
@@ -64,7 +70,10 @@ def create_product(request):
                                   v_price=vprice,
                                   p_discount=discount,
                                   stock=stock,
-                                  is_new=isnew)
+                                  is_new=is_new,
+                                  is_featured=is_featured,
+                                  is_bestseller=is_bestseller,
+                                  is_onsale=is_onsale)
                 product.save()
 
                 for index, key in enumerate(request.FILES):
@@ -88,6 +97,7 @@ def edit_product(request, product_id):
         'title': 'Sabadiaz Jewelry Admin - Edit Product',
         'option': 'admin_edit_product',
         'user': request.user,
+        'materials': MATERIALS,
         'genders': GENDERS,
         'categories': Category.objects.all(),
         'product': product
@@ -100,12 +110,16 @@ def edit_product(request, product_id):
                 product.description = request.POST['description']
                 product.category_id = int(request.POST['category_id'])
                 product.gender = int(request.POST['gender'])
+                product.material = int(request.POST['material'])
                 product.price = float(request.POST['price'])
                 product.stock = int(request.POST['stock'])
                 product.discount = float(request.POST['discount'])
                 product.vprice = float(request.POST['vprice'])
                 product.information = request.POST['information']
-                product.isnew = True if request.POST['isnew'] == 'on' else False
+                product.is_new = True if request.POST['is_new'] == 'on' else False
+                product.is_featured = True if request.POST['is_featured'] == 'on' else False
+                product.is_bestseller = True if request.POST['is_bestseller'] == 'on' else False
+                product.is_onsale = True if request.POST['is_onsale'] == 'on' else False
                 product.save()
 
                 time.sleep(1)

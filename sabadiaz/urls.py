@@ -50,6 +50,7 @@ urlpatterns = [
 
     # Administration - Products
     path('administration/website/home_sliders', webite.home_sliders, name='admin_website_home_sliders'),
+    path('administration/website/home_sliders/<int:hs_id>/update_image', webite.home_sliders_update_image, name='admin_website_home_sliders_update_image'),
 
 ]
 

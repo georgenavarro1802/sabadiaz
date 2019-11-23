@@ -1,7 +1,9 @@
+import time
+
 from django.db import transaction
 from django.shortcuts import render
 
-from app.helpers import bad_json
+from app.helpers import bad_json, ok_json
 from app.models import HomeSlider
 
 
@@ -41,15 +43,31 @@ def home_sliders(request):
                 slide3.description = request.POST['desc_3']
                 slide3.save()
 
-                for index, key in enumerate(request.FILES):
-                    setattr(product, f'image{index+1}', request.FILES[key])
-                    product.save()
-
                 time.sleep(1)
-                return ok_json(data={'message': 'Product has been succesfully created!',
-                                     'redirect_url': reverse('admin_products')})
+                return ok_json(data={'message': 'Homepage slides updated!'})
 
         except Exception as ex:
             return bad_json(message=ex.__str__())
 
     return render(request, 'administration/website/home_sliders.html', data)
+
+
+def home_sliders_update_image(request, hs_id):
+    data = {
+        'title': 'Sabadiaz Jewelry Admin - Update Home Slide Image',
+        'option': 'admin_website_home_sliders_update_image',
+        'user': request.user,
+    }
+
+    if request.method == 'POST':
+        try:
+            with transaction.atomic():
+                hs = HomeSlider.objects.get(id=hs_id)
+                hs.image = request.FILES['file']
+                hs.save()
+                return ok_json(data={'message': 'Image succesfully updated!'})
+
+        except Exception as ex:
+            return bad_json(message=ex.__str__())
+
+    return render(request, 'administration/products/product.html', data)

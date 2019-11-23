@@ -23,21 +23,25 @@
             <div class="col-8">
 
                 <div class="card border-0 shadow">
-                    <div class="card-body font-14">
+                    <div class="card-body">
                         <div class="form-group">
-                            <label for="inputTitle">Title</label>
-                            <input id="inputTitle" type="text" class="form-control" value="{{ product.title }}">
+                            <label for="inputTitle" class="font-14">Title</label>
+                            <input id="inputTitle" type="text" class="form-control font-12" value="{{ product.title }}">
                         </div>
                         <div class="form-group">
-                            <label for="inputDescription">Description</label>
-                            <input  id="inputDescription" type="text" class="form-control" value="{{ product.description }}" />
+                            <label for="inputDescription" class="font-14">Description</label>
+                            <input  id="inputDescription" type="text" class="form-control font-12" value="{{ product.description }}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="textareaInformation" class="font-14">Information</label>
+                            <textarea id="textareaInformation" class="form-control font-12" style="resize: none" rows="2">{{ product.information }}</textarea>
                         </div>
                     </div>
                 </div>
 
                 <!-- Images upload -->
-                <div class="card border-0 shadow mt-4" style="height: 375px">
-                    <div class="card-body">
+                <div class="card border-0 shadow mt-4" style="height: 360px">
+                    <div class="card-body mt-2">
 
                         {% if product %}
                             <div class="form-group">
@@ -54,7 +58,7 @@
                                                     </a>
                                                 {% endif %}
                                                 <a href="javascript:void(0);" class="btnEditImage" iid="{{ forloop.counter }}">
-                                                    <img src="{{ elem.image_url }}" class="figure-img img-fluid rounded" alt="product_image{{ forloop.counter }}" style="width: 120px; height: 120px">
+                                                    <img src="{{ elem.image_url }}" class="figure-img img-fluid rounded" alt="product_image{{ forloop.counter }}" style="width: 110px; height: 110px">
                                                 </a>
                                             </figure>
                                             <input id="uploadImage_{{ forloop.counter }}" class="inputImages" onchange="PRODUCTS.edit_image('{{ forloop.counter }}', '{{ product.id }}');" type="file" style="display: none"/>
@@ -110,6 +114,16 @@
                                 {% endfor %}
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="selectMaterial">Material</label>
+                            <select id="selectMaterial" class="selectpicker show-tick form-control" data-style="btn-primary">
+                                {% for material in materials %}
+                                    <option value="{{ material.0 }}" {% if product.material == material.0 %}selected{% endif %}>
+                                        {{ material.1 }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
                     </div>
                 </div>
 
@@ -119,11 +133,11 @@
                             <div class="row">
                                 <div class="col-6">
                                     <label for="inputPrice">Real Price</label>
-                                    <input  id="inputPrice" type="text" class="form-control" value="{{ product.price|floatformat:2|intcomma }}">
+                                    <input  id="inputPrice" type="text" class="form-control" value="{% if not product %}0.00{% else %}{{ product.price|floatformat:2|intcomma }}{% endif %}">
                                 </div>
                                 <div class="col-6">
                                     <label for="inputVPrice">Virtual Price</label>
-                                    <input id="inputVPrice" type="text" class="form-control" value="{{ product.v_price|floatformat:2|intcomma }}">
+                                    <input id="inputVPrice" type="text" class="form-control" value="{% if not product %}0.00{% else %}{{ product.v_price|floatformat:2|intcomma }}{% endif %}">
                                 </div>
                             </div>
                         </div>
@@ -132,24 +146,35 @@
                             <div class="row">
                                 <div class="col-6">
                                     <label for="inputStock">Stock</label>
-                                    <input id="inputStock" type="text" class="form-control" value="{{ product.stock|floatformat:0|intcomma }}">
+                                    <input id="inputStock" type="text" class="form-control" value="{% if not product %}0{% else %}{{ product.stock|floatformat:0|intcomma }}{% endif %}">
                                 </div>
                                 <div class="col-6">
                                     <label for="inputDiscount">% Discount</label>
-                                    <input id="inputDiscount" type="text" class="form-control" value="{{ product.p_discount|floatformat:0|intcomma }}">
+                                    <input id="inputDiscount" type="text" class="form-control" value="{% if not product %}0{% else %}{{ product.p_discount|floatformat:0|intcomma }}{% endif %}">
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="textareaInformation">More Information about the product</label>
-                            <textarea id="textareaInformation" class="form-control" style="resize: none" rows="3">{{ product.information }}</textarea>
-                        </div>
-
-                        <div class="form-check">
+                        <div class="form-check mt-1">
                             <input id="checkboxIsNew" type="checkbox" class="form-check-input big-checkbox" {% if product.is_new %}checked{% endif %}>
                             <label class="form-check-label m-2" for="checkboxIsNew">Is New?</label>
                         </div>
+
+                        <div class="form-check mt-1">
+                            <input id="checkboxIsFeatured" type="checkbox" class="form-check-input big-checkbox" {% if product.is_featured %}checked{% endif %}>
+                            <label class="form-check-label m-2" for="checkboxIsFeatured">Is Featured?</label>
+                        </div>
+
+                        <div class="form-check mt-1">
+                            <input id="checkboxIsBestSeller" type="checkbox" class="form-check-input big-checkbox" {% if product.is_bestseller %}checked{% endif %}>
+                            <label class="form-check-label m-2" for="checkboxIsBestSeller">Is Best Seller?</label>
+                        </div>
+
+                        <div class="form-check mt-1">
+                            <input id="checkboxIsOnSale" type="checkbox" class="form-check-input big-checkbox" {% if product.is_onsale %}checked{% endif %}>
+                            <label class="form-check-label m-2" for="checkboxIsOnSale">Is On Sale?</label>
+                        </div>
+
                     </div>
                 </div>
 
