@@ -1,62 +1,69 @@
 // fields
-let inputTitle = $("#inputTitle");
-let inputDescription = $("#inputDescription");
-let selectCategory = $("#selectCategory");
-let selectGender = $("#selectGender");
-let inputPrice = $("#inputPrice");
-let inputVPrice = $("#inputVPrice");
-let inputStock = $("#inputStock");
-let inputDiscount = $("#inputDiscount");
-let textareaInformation = $("#textareaInformation");
-let checkboxIsNew = $("#checkboxIsNew");
-let inputFiles = $("#inputFiles");
+// slide 1
+let inputHomeSliderText1_1 = $("#inputHomeSliderText1_1");
+let inputHomeSliderText2_1 = $("#inputHomeSliderText2_1");
+let inputHomeSliderDescription_1 = $("#inputHomeSliderDescription_1");
+// slide 2
+let inputHomeSliderText1_2 = $("#inputHomeSliderText1_2");
+let inputHomeSliderText2_2 = $("#inputHomeSliderText2_2");
+let inputHomeSliderDescription_2 = $("#inputHomeSliderDescription_2");
+// slide 3
+let inputHomeSliderText1_3 = $("#inputHomeSliderText1_3");
+let inputHomeSliderText2_3 = $("#inputHomeSliderText2_3");
+let inputHomeSliderDescription_3 = $("#inputHomeSliderDescription_3");
 
-// edit images
-let uploadImage_1 = $("#uploadImage_1");
-let uploadImage_2 = $("#uploadImage_2");
-let uploadImage_3 = $("#uploadImage_3");
-let uploadImage_4 = $("#uploadImage_4");
-let uploadImage_5 = $("#uploadImage_5");
-let uploadImage_6 = $("#uploadImage_6");
+// // edit images
+// let uploadImage_1 = $("#uploadImage_1");
+// let uploadImage_2 = $("#uploadImage_2");
+// let uploadImage_3 = $("#uploadImage_3");
 
 
 let WEBSITE = {
 
     name: 'WEBSITE',
 
-    submit_home_sliders: function (elem, hsid) {
+    submit_home_sliders: function (elem) {
 
-        // required fields
-        let text1 = inputTitle.val();
-        let description = inputDescription.val();
-        let category_id = selectCategory.val();
-        let gender = selectGender.val();
-        let price = parseFloat(inputPrice.val());
+        let dataOK = false;
 
-        // optional fields
-        let stock = inputStock.val();
-        let discount = inputDiscount.val();
-        let vprice = inputVPrice.val();
-        let information = textareaInformation.val();
-        let isnew = checkboxIsNew.val();
+        // slide 1
+        let inputHomeSliderText1_1 = inputHomeSliderText1_1.val();
+        let inputHomeSliderText2_1 = inputHomeSliderText2_1.val();
+        let inputHomeSliderDescription_1 = inputHomeSliderDescription_1.val();
+        // slide 2
+        let inputHomeSliderText1_2 = inputHomeSliderText1_2.val();
+        let inputHomeSliderText2_2 = inputHomeSliderText2_2.val();
+        let inputHomeSliderDescription_2 = inputHomeSliderDescription_2.val();
+        // slide 3
+        let inputHomeSliderText1_3 = inputHomeSliderText1_3.val();
+        let inputHomeSliderText2_3 = inputHomeSliderText2_3.val();
+        let inputHomeSliderDescription_3 = inputHomeSliderDescription_3.val();
 
-        let formData = new FormData();
-        formData.append('title', title);
-        formData.append('description', description);
-        formData.append('category_id', category_id);
-        formData.append('gender', gender);
-        formData.append('price', price);
-        formData.append('stock', stock);
-        formData.append('discount', discount);
-        formData.append('vprice', vprice);
-        formData.append('information', information);
-        formData.append('isnew', isnew);
+        if (inputHomeSliderText1_1 && inputHomeSliderText2_1 && inputHomeSliderDescription_1 &&
+            inputHomeSliderText1_2 && inputHomeSliderText2_2 && inputHomeSliderDescription_2 &&
+            inputHomeSliderText1_3 && inputHomeSliderText2_3 && inputHomeSliderDescription_3){
+            dataOK = true;
+        }
 
-        $.each(inputFiles[0].files, function(i, file) {
-            formData.append('file['+i+']', file);
-        });
+        if (dataOK){
+            let formData = new FormData();
+            // slide 1
+            formData.append('text1_1', inputHomeSliderText1_1);
+            formData.append('text2_1', inputHomeSliderText2_1);
+            formData.append('desc_1', inputHomeSliderDescription_1);
+            // slide 2
+            formData.append('text1_2', inputHomeSliderText1_2);
+            formData.append('text2_2', inputHomeSliderText2_2);
+            formData.append('desc_2', inputHomeSliderDescription_2);
+            // slide 3
+            formData.append('text1_3', inputHomeSliderText1_3);
+            formData.append('text2_3', inputHomeSliderText2_3);
+            formData.append('desc_3', inputHomeSliderDescription_3);
 
-        if (title && description && category_id && gender && price > 0){
+            // $.each(inputFiles[0].files, function(i, file) {
+            //     formData.append('file['+i+']', file);
+            // });
+
             let spinnerText = "<i class='fa fa-circle-o-notch fa-spin'></i> Saving ...";
             let originalText = elem.html();
 
@@ -96,143 +103,11 @@ let WEBSITE = {
                     alertify.error('Server Error');
                 },
             });
+
         }else{
             alertify.error('Missing required fields');
         }
 
     },
-
-    delete: function (elem, pid) {
-
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.value) {
-                $.ajax({
-                    type: "POST",
-                    url: '/administration/products/'+pid+'/delete',
-                    data: {},
-                    dataType: 'json',
-                    processData: false,
-                    contentType: false,
-                    success: function (response) {
-                        if (response.result === 'ok'){
-
-                            Swal.fire(
-                                'Deleted!',
-                                response.message,
-                                'success'
-                            ).then((result) => {
-                                if (result.value) {
-                                    location.href = response.redirect_url;
-                                }
-                            });
-
-                        }else{
-                            alertify.error(response.message);
-                        }
-                    },
-                    error: function () {
-                        alertify.error('Server Error');
-                    },
-                });
-            }
-        })
-
-    },
-
-    remove_image: function (iid, pid) {
-
-        Swal.fire({
-            title: 'Are you sure to delete this image?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.value) {
-
-                $.ajax({
-                    type: "POST",
-                    url: '/administration/products/'+pid+'/images/'+iid+'/delete',
-                    data: {},
-                    dataType: 'json',
-                    success: function (response) {
-                        if (response.result === 'ok'){
-
-                            Swal.fire(
-                                'Image Deleted!',
-                                response.message,
-                                'success'
-                            ).then((result) => {
-                                if (result.value) {
-                                    location.reload();
-                                }
-                            });
-
-                        }else{
-                            alertify.error(response.message);
-                        }
-                    },
-                    error: function () {
-                        alertify.error('Server Error');
-                    },
-                });
-            }
-        })
-
-    },
-
-    edit_image: function (iid, pid) {
-
-        let formData = new FormData();
-        if (iid === '1'){
-            formData.append('file', uploadImage_1[0].files[0]);
-        }
-        else if (iid === '2'){
-            formData.append('file', uploadImage_2[0].files[0]);
-        }
-        else if (iid === '3'){
-            formData.append('file', uploadImage_3[0].files[0]);
-        }
-        else if (iid === '4'){
-            formData.append('file', uploadImage_4[0].files[0]);
-        }
-        else if (iid === '5'){
-            formData.append('file', uploadImage_5[0].files[0]);
-        }
-        else if (iid === '6'){
-            formData.append('file', uploadImage_6[0].files[0]);
-        }
-
-        $.ajax({
-            url: '/administration/products/'+pid+'/images/'+iid+'/edit',
-            type: 'POST',
-            data: formData,
-            dataType: 'json',
-            processData: false,
-            contentType: false,
-            success: function (response) {
-                if (response.result === 'ok'){
-                    alertify.success(response.message);
-                    location.reload();
-                }else{
-                    alertify.error(response.message);
-                }
-            },
-            error: function (response) {
-                alertify.error('Server Error');
-            },
-        });
-
-    }
 
 };
