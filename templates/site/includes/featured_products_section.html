@@ -1,0 +1,23 @@
+{% load static %}
+
+<section class="feature-product section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title text-center">
+                    <h2 class="title">Featured Products</h2>
+                    <p class="sub-title">Add featured products to weekly lineup</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="product-carousel-4_2 slick-row-10 slick-arrow-style">
+                    {% for product in featured_products %}
+                        {% include 'site/includes/product_component1.html' %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

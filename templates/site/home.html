@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block main %}
+    <main>
+
+        <!-- Banner Slides -->
+        {% include 'site/includes/slides_section.html' %}
+        <!-- Banner Sliders end -->
+
+        <!-- Our Products -->
+        {% include 'site/includes/our_products_section.html' %}
+        <!-- Our Products end -->
+
+        <!-- Banner Grid Categories -->
+        {% include 'site/includes/banner_grid_section.html' %}
+        <!-- Banner Grid Categories end -->
+
+        <!-- Featured Products -->
+        {% include 'site/includes/featured_products_section.html' %}
+        <!-- Featured Products end -->
+
+        <!-- Testimonials Section -->
+        {% include 'site/includes/testimonials_section.html' %}
+        <!-- Testimonials end -->
+
+        <!-- Group Products -->
+        {% include 'site/includes/bestseller_onsale_section.html' %}
+        <!-- Group Products end -->
+
+    </main>
+
+{% endblock %}

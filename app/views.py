@@ -23,7 +23,7 @@ def index(request):
         'onsale_products': products.filter(is_onsale=True)[:8],
         'company': CompanyData.objects.first(),
     }
-    return render(request, 'index.html', data)
+    return render(request, 'site/home.html', data)
 
 
 def shop(request):

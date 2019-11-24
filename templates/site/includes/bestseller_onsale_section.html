@@ -1,0 +1,55 @@
+{% load static %}
+
+<section class="group-product-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="group-product-banner">
+                    <figure class="banner-statistics">
+                        <img src="{% static 'img/banner/img-bottom-banner.jpg' %}" alt="product banner">
+                        <div class="banner-content banner-content_style3 text-center">
+                            <h6 class="banner-text1">BEAUTIFUL</h6>
+                            <h2 class="banner-text2">Wedding Rings</h2>
+                            <a href="{% url 'shop' %}" class="btn btn-text">Shop Now</a>
+                        </div>
+                    </figure>
+                </div>
+            </div>
+            <!-- BestSeller products -->
+            <div class="col-lg-3">
+                <div class="categories-group-wrapper">
+                    <div class="section-title-append">
+                        <h4>Best Seller Products</h4>
+                        <div class="slick-append"></div>
+                    </div>
+                    <div class="group-list-item-wrapper">
+                        <div class="group-list-carousel">
+                            {% for product in bestseller_products %}
+                                {% include 'site/includes/product_component2.html' %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- BestSeller products end -->
+
+            <!-- OnSale products -->
+            <div class="col-lg-3">
+                <div class="categories-group-wrapper">
+                    <div class="section-title-append">
+                        <h4>On-sale Products</h4>
+                        <div class="slick-append"></div>
+                    </div>
+                    <div class="group-list-item-wrapper">
+                        <div class="group-list-carousel">
+                            {% for product in onsale_products %}
+                                {% include 'site/includes/product_component2.html' %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- OnSale products end -->
+        </div>
+    </div>
+</section>
