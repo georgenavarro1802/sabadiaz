@@ -212,7 +212,7 @@ let PRODUCTS = {
 
     },
 
-    edit_image: function (iid, pid) {
+    update_image: function (iid, pid) {
 
         let formData = new FormData();
         if (iid === '1'){

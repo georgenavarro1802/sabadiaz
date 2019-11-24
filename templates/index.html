@@ -5,18 +5,18 @@
 {% block main %}
     <main>
 
-        <!-- Banner Sliders -->
+        <!-- Banner Slides -->
         <section class="slider-area">
             <div class="hero-slider-active slick-arrow-style slick-arrow-style_hero slick-dot-style">
-                {% for hs in home_sliders %}
+                {% for slide in slides %}
                     <div class="hero-single-slide hero-overlay">
-                        <div class="hero-slider-item bg-img" data-bg="{{ hs.get_image }}">
+                        <div class="hero-slider-item bg-img" data-bg="{{ slide.get_image }}">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="hero-slider-content slide-1">
-                                            <h2 class="slide-title">{{ hs.text1 }}<span>{{ hs.text2 }}</span></h2>
-                                            <h4 class="slide-desc">{{ hs.description }}</h4>
+                                            <h2 class="slide-title">{{ slide.text1 }}<span>{{ slide.text2 }}</span></h2>
+                                            <h4 class="slide-desc">{{ slide.description }}</h4>
                                             <a href="{% url 'shop' %}" class="btn btn-hero">View More</a>
                                         </div>
                                     </div>
@@ -153,94 +153,14 @@
         </section>
         <!-- Featured Products end -->
 
-        <!-- Testimonials -->
-        <section class="testimonial-area section-padding bg-img" data-bg="{% static 'img/testimonial/testimonials-bg.jpg' %}">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="section-title text-center">
-                            <h2 class="title">Testimonials</h2>
-                            <p class="sub-title">What they say</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="testimonial-thumb-wrapper">
-                            <div class="testimonial-thumb-carousel">
-                                <div class="testimonial-thumb">
-                                    <img src="{% static 'img/testimonial/testimonial-1.png' %}" alt="testimonial-thumb">
-                                </div>
-                                <div class="testimonial-thumb">
-                                    <img src="{% static 'img/testimonial/testimonial-2.png' %}" alt="testimonial-thumb">
-                                </div>
-                                <div class="testimonial-thumb">
-                                    <img src="{% static 'img/testimonial/testimonial-3.png' %}" alt="testimonial-thumb">
-                                </div>
-                                <div class="testimonial-thumb">
-                                    <img src="{% static 'img/testimonial/testimonial-2.png' %}" alt="testimonial-thumb">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-content-wrapper">
-                            <div class="testimonial-content-carousel">
-                                <div class="testimonial-content">
-                                    <p>Vivamus a lobortis ipsum, vel condimentum magna. Etiam id turpis tortor. Nunc scelerisque, nisi a blandit varius, nunc purus venenatis ligula, sed venenatis orci augue nec sapien. Cum sociis natoque</p>
-                                    <div class="ratings">
-                                        <span><i class="fa fa-star-o"></i></span>
-                                        <span><i class="fa fa-star-o"></i></span>
-                                        <span><i class="fa fa-star-o"></i></span>
-                                        <span><i class="fa fa-star-o"></i></span>
-                                        <span><i class="fa fa-star-o"></i></span>
-                                    </div>
-                                    <h5 class="testimonial-author">lindsy niloms</h5>
-                                </div>
-                                <div class="testimonial-content">
-                                    <p>Vivamus a lobortis ipsum, vel condimentum magna. Etiam id turpis tortor. Nunc scelerisque, nisi a blandit varius, nunc purus venenatis ligula, sed venenatis orci augue nec sapien. Cum sociis natoque</p>
-                                    <div class="ratings">
-                                        <span><i class="fa fa-star-o"></i></span>
-                                        <span><i class="fa fa-star-o"></i></span>
-                                        <span><i class="fa fa-star-o"></i></span>
-                                        <span><i class="fa fa-star-o"></i></span>
-                                        <span><i class="fa fa-star-o"></i></span>
-                                    </div>
-                                    <h5 class="testimonial-author">Daisy Millan</h5>
-                                </div>
-                                <div class="testimonial-content">
-                                    <p>Vivamus a lobortis ipsum, vel condimentum magna. Etiam id turpis tortor. Nunc scelerisque, nisi a blandit varius, nunc purus venenatis ligula, sed venenatis orci augue nec sapien. Cum sociis natoque</p>
-                                    <div class="ratings">
-                                        <span><i class="fa fa-star-o"></i></span>
-                                        <span><i class="fa fa-star-o"></i></span>
-                                        <span><i class="fa fa-star-o"></i></span>
-                                        <span><i class="fa fa-star-o"></i></span>
-                                        <span><i class="fa fa-star-o"></i></span>
-                                    </div>
-                                    <h5 class="testimonial-author">Anamika lusy</h5>
-                                </div>
-                                <div class="testimonial-content">
-                                    <p>Vivamus a lobortis ipsum, vel condimentum magna. Etiam id turpis tortor. Nunc scelerisque, nisi a blandit varius, nunc purus venenatis ligula, sed venenatis orci augue nec sapien. Cum sociis natoque</p>
-                                    <div class="ratings">
-                                        <span><i class="fa fa-star-o"></i></span>
-                                        <span><i class="fa fa-star-o"></i></span>
-                                        <span><i class="fa fa-star-o"></i></span>
-                                        <span><i class="fa fa-star-o"></i></span>
-                                        <span><i class="fa fa-star-o"></i></span>
-                                    </div>
-                                    <h5 class="testimonial-author">Maria Mora</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- Testimonials Section -->
+        {% include 'site/includes/testimonials_section.html' %}
         <!-- Testimonials end -->
 
         <!-- Group Products -->
         <section class="group-product-area section-padding">
             <div class="container">
                 <div class="row">
-
                     <div class="col-lg-6">
                         <div class="group-product-banner">
                             <figure class="banner-statistics">
@@ -253,7 +173,6 @@
                             </figure>
                         </div>
                     </div>
-
                     <!-- BestSeller products -->
                     <div class="col-lg-3">
                         <div class="categories-group-wrapper">

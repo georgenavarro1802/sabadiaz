@@ -16,7 +16,7 @@ let COMPANY = {
 
     name: 'COMPANY',
 
-    update: function (elem) {
+    submit: function (elem) {
 
         // required fields
         let c_name = inputCompanyDataName.val();

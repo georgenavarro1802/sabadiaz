@@ -54,15 +54,22 @@
             <p>Website</p>
             <li class="{% if option == 'admin_website_company_data' %}active{% endif %}">
                 <a href="{% url 'admin_website_company_data' %}">
-                    <i class="fa fa-briefcase"></i> Company Data
+                    <i class="fa fa-briefcase"></i> Company
                 </a>
             </li>
 
-            <li class="{% if option == 'admin_website_home_sliders' %}active{% endif %}">
-                <a href="{% url 'admin_website_home_sliders' %}">
-                    <i class="fa fa-th-large"></i> Home Slides
+            <li class="{% if option == 'admin_website_slides' %}active{% endif %}">
+                <a href="{% url 'admin_website_slides' %}">
+                    <i class="fa fa-th-large"></i> Slides
                 </a>
             </li>
+
+            <li class="{% if option == 'admin_website_testimonials' %}active{% endif %}">
+                <a href="{% url 'admin_website_testimonials' %}">
+                    <i class="fa fa-file-text"></i> Testimonials
+                </a>
+            </li>
+
         </ul>
 
         <ul class="list-unstyled components">
@@ -137,12 +144,6 @@
 <script src="{% static 'js/vendor/sweetalert2.min.js' %}"></script>
 <!-- Files Upload -->
 <script src="{% static 'js/vendor/file-upload-with-preview.min.js' %}"></script>
-
-<!-- Custom Scripts -->
-<script src="{% static 'js/app/products.js' %}"></script>
-<script src="{% static 'js/app/website.js' %}"></script>
-<script src="{% static 'js/app/company.js' %}"></script>
-
 
 <script type="text/javascript">
 

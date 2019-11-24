@@ -202,18 +202,8 @@ class CompanyData(models.Model):
     def get_logo(self):
         return self.logo.url if self.logo else f"{STATIC_URL}/img/logo/logo.png"
 
-    def save(self, force_insert=False, force_update=False, using=None, **kwargs):
-        super().save()
-        if self.logo:
-            img = Image.open(self.logo.path)
-            if img.width > 100 or img.height > 30:
-                img.thumbnail((100, 30))
-                img.save(self.logo.path)
 
-        super(CompanyData, self).save(force_insert, force_update, using)
-
-
-class HomeSlider(models.Model):
+class Slide(models.Model):
     text1 = models.CharField(max_length=50)
     text2 = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
@@ -223,9 +213,9 @@ class HomeSlider(models.Model):
         return self.text1
 
     class Meta:
-        verbose_name = 'HomePage Slider'
-        verbose_name_plural = 'HomePage Sliders'
-        db_table = "home_sliders"
+        verbose_name = 'Slide'
+        verbose_name_plural = 'Slides'
+        db_table = "slides"
 
     def get_image(self):
         return self.image.url if self.image else f"{STATIC_URL}/img/slide.jpg"
@@ -238,4 +228,31 @@ class HomeSlider(models.Model):
                 img.thumbnail((1920, 670))
                 img.save(self.image.path)
 
-        super(HomeSlider, self).save(force_insert, force_update, using)
+        super(Slide, self).save(force_insert, force_update, using)
+
+
+class Testimonial(models.Model):
+    name = models.CharField(max_length=100)
+    testimonial = models.TextField(blank=True, null=True)
+    avatar = models.ImageField(upload_to='testimonials', blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Testimonial'
+        verbose_name_plural = 'Testimonials'
+        db_table = "testimonials"
+
+    def get_avatar(self):
+        return self.avatar.url if self.avatar else f"{STATIC_URL}/img/default-avatar.png"
+
+    def save(self, force_insert=False, force_update=False, using=None, **kwargs):
+        super().save()
+        if self.avatar:
+            img = Image.open(self.avatar.path)
+            if img.width > 100 or img.height > 100:
+                img.thumbnail((100, 100))
+                img.save(self.avatar.path)
+
+        super(Testimonial, self).save(force_insert, force_update, using)

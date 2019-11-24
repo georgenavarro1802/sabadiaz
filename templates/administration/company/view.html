@@ -12,7 +12,7 @@
             </h3>
         </div>
         <div class="col-2 text-right text-white font-14">
-            <a href="javascript:void(0);" onclick="COMPANY.update($(this))" class="btn btn-success text-center">
+            <a href="javascript:void(0);" onclick="COMPANY.submit($(this))" class="btn btn-success text-center">
                 Save
             </a>
         </div>
@@ -33,7 +33,7 @@
                                 <div class="col-4 text-center">
                                     <label for="inputCompanyDataLogo" class="font-12 _600">Logo</label><br>
                                     <a id="btnUploadLogo" href="javascript:void(0);">
-                                        <img src="{{ company.get_logo }}" class="figure-img img-fluid rounded" alt="company_logo" style="width: 110px; height: 30px">
+                                        <img src="{{ company.get_logo }}" class="figure-img img-fluid rounded" alt="company_logo">
                                     </a>
                                     <input id="inputCompanyDataLogo" type="file" onchange="COMPANY.update_logo();" style="display: none"/>
                                 </div>
@@ -94,6 +94,10 @@
 {% endblock %}
 
 {% block admin_scripts %}
+
+    <!-- Custom Script -->
+    <script src="{% static 'js/app/company.js' %}"></script>
+
     <script>
         $(function () {
 

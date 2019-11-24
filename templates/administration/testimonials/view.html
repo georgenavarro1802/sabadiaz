@@ -1,0 +1,72 @@
+{% extends 'administration/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block admin_content %}
+
+    <!-- Heading -->
+    <div class="row">
+        <div class="col-10">
+            <h3 class="text-center">
+                Testimonials
+            </h3>
+        </div>
+        <div class="col-2 text-right text-white font-14">
+            <a href="javascript:void(0);" onclick="TESTIMONIALS.submit($(this))" class="btn btn-success text-center">
+                Save
+            </a>
+        </div>
+    </div>
+
+    <form enctype="multipart/form-data" autocomplete="off">
+        {% for testimonial in testimonials %}
+            <div class="row my-3">
+                <div class="col-12">
+                    <div class="card border-0 shadow">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-2 text-center">
+                                        <label class="font-12 _600">Avatar</label>
+                                        <div>
+                                            <a href="javascript:void(0);" class="btnTestimonialEditAvatar" tid="{{ testimonial.id }}">
+                                                <img src="{{ testimonial.get_avatar }}" alt="avatar{{ testimonial.id }}" style="width: 100px; height: 100px"/>
+                                            </a>
+                                            <input id="inputTestimonialUploadAvatar_{{ testimonial.id }}" onchange="TESTIMONIALS.update_avatar($(this), '{{ testimonial.id }}');" type="file" style="display: none"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-10">
+                                        <label for="inputTestimonialName_{{ forloop.counter }}" class="font-12 _600">Name</label>
+                                        <input  id="inputTestimonialName_{{ forloop.counter }}" type="text" class="form-control font-12 w-50" value="{{ testimonial.name }}">
+                                        <label for="textareaTestimonialText_{{ forloop.counter }}" class="font-12 _600">Testimonial</label>
+                                        <textarea  id="textareaTestimonialText_{{ forloop.counter }}" class="form-control font-12" rows="2" style="resize: none">{{ testimonial.testimonial }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </form>
+
+{% endblock %}
+
+{% block admin_scripts %}
+
+    <!-- Custom Script -->
+    <script src="{% static 'js/app/testimonials.js' %}"></script>
+
+    <script>
+        $(function () {
+
+            $(".btnTestimonialEditAvatar").on('click', function(e){
+                e.preventDefault();
+                let tid = $(this).attr('tid');
+                $("#inputTestimonialUploadAvatar_"+tid).trigger('click');
+            });
+
+        });
+    </script>
+
+{% endblock %}

@@ -1,12 +1,11 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from django.db import transaction
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
 from app.helpers import ok_json, bad_json
-from app.models import Product, HomeSlider, Category, CompanyData
+from app.models import Product, Slide, Category, CompanyData, Testimonial
 
 
 # Website Views
@@ -16,7 +15,8 @@ def index(request):
         'title': 'Sabadiaz Jewelry - Welcome',
         'option': 'index',
         'user': request.user,
-        'home_sliders': HomeSlider.objects.all(),
+        'slides': Slide.objects.all(),
+        'testimonials': Testimonial.objects.all(),
         'categories': Category.objects.filter(product__isnull=False).distinct(),
         'featured_products': products.filter(is_featured=True)[:10],
         'bestseller_products': products.filter(is_bestseller=True)[:8],

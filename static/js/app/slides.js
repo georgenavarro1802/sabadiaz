@@ -13,11 +13,11 @@ let inputHomeSliderText2_3 = $("#inputHomeSliderText2_3");
 let inputHomeSliderDescription_3 = $("#inputHomeSliderDescription_3");
 
 
-let WEBSITE = {
+let SLIDES = {
 
-    name: 'WEBSITE',
+    name: 'SLIDES',
 
-    submit_home_sliders: function (elem) {
+    submit: function (elem) {
 
         // slide 1
         let HomeSliderText1_1 = inputHomeSliderText1_1.val();
@@ -62,7 +62,7 @@ let WEBSITE = {
             // send to server
             $.ajax({
                 type: "POST",
-                url: '/administration/website/home_sliders',
+                url: '/administration/website/slides',
                 data: formData,
                 dataType: 'json',
                 processData: false,
@@ -90,7 +90,7 @@ let WEBSITE = {
                 complete: function () {
                     elem.removeClass('disabled').html(originalText);
                 },
-                error: function (response) {
+                error: function () {
                     elem.removeClass('disabled').html(originalText);
                     alertify.error('Server Error');
                 },
@@ -102,13 +102,13 @@ let WEBSITE = {
 
     },
 
-    edit_image: function (hsid) {
+    update_image: function (hsid) {
 
         let formData = new FormData();
         formData.append('file', $("#inputHomeSlideUploadImage_"+hsid)[0].files[0]);
 
         $.ajax({
-            url: '/administration/website/home_sliders/'+hsid+'/update_image',
+            url: '/administration/website/slides/'+hsid+'/update_image',
             type: 'POST',
             data: formData,
             dataType: 'json',
@@ -124,12 +124,11 @@ let WEBSITE = {
                     alertify.error(response.message);
                 }
             },
-            error: function (response) {
+            error: function () {
                 alertify.error('Server Error');
             },
         });
 
     }
-
 
 };

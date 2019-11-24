@@ -8,18 +8,18 @@
     <div class="row">
         <div class="col-10">
             <h3 class="text-center">
-                Homepage Sliders
+                Slides
             </h3>
         </div>
         <div class="col-2 text-right text-white font-14">
-            <a href="javascript:void(0);" onclick="WEBSITE.submit_home_sliders($(this))" class="btn btn-success text-center">
+            <a href="javascript:void(0);" onclick="SLIDES.submit($(this))" class="btn btn-success text-center">
                 Save
             </a>
         </div>
     </div>
 
     <form enctype="multipart/form-data" autocomplete="off">
-        {% for hs in home_sliders %}
+        {% for slide in slides %}
             <div class="row my-3">
                 <div class="col-12">
                     <div class="card border-0 shadow">
@@ -28,26 +28,26 @@
                                 <div class="row">
                                     <div class="col-3">
                                         <label for="inputHomeSliderText1_{{ forloop.counter }}" class="font-12 _600">Text 1</label>
-                                        <input  id="inputHomeSliderText1_{{ forloop.counter }}" type="text" class="form-control font-12" value="{{ hs.text1 }}">
+                                        <input  id="inputHomeSliderText1_{{ forloop.counter }}" type="text" class="form-control font-12" value="{{ slide.text1 }}">
                                     </div>
                                     <div class="col-3">
                                         <label for="inputHomeSliderText2_{{ forloop.counter }}" class="font-12 _600">Text 2</label>
-                                        <input id="inputHomeSliderText2_{{ forloop.counter }}" type="text" class="form-control font-12" value="{{ hs.text2 }}">
+                                        <input id="inputHomeSliderText2_{{ forloop.counter }}" type="text" class="form-control font-12" value="{{ slide.text2 }}">
                                     </div>
                                     <div class="col-6">
                                         <label for="inputHomeSliderDescription_{{ forloop.counter }}" class="font-12 _600">Description</label>
-                                        <input id="inputHomeSliderDescription_{{ forloop.counter }}" type="text" class="form-control font-12" value="{{ hs.description }}">
+                                        <input id="inputHomeSliderDescription_{{ forloop.counter }}" type="text" class="form-control font-12" value="{{ slide.description }}">
                                     </div>
                                 </div>
                             </div>
-                            <a data-toggle="collapse" href="#collapseImage_{{ hs.id }}" class="font-12" style="color: cornflowerblue">
+                            <a data-toggle="collapse" href="#collapseImage_{{ slide.id }}" class="font-12" style="color: cornflowerblue">
                                 <i class="fa fa-image"></i> Show Image
                             </a>
-                            <div class="collapse" id="collapseImage_{{ hs.id }}">
-                                <a href="javascript:void(0);" class="btnHomeSlideEditImages" hsid="{{ hs.id }}">
-                                    <img src="{{ hs.get_image }}" alt="slider{{ hs.id }}_image" style="width: 100%; height: 600px!important;"/>
+                            <div class="collapse" id="collapseImage_{{ slide.id }}">
+                                <a href="javascript:void(0);" class="btnHomeSlideEditImages" hsid="{{ slide.id }}">
+                                    <img src="{{ slide.get_image }}" alt="slider{{ slide.id }}_image" style="width: 100%; height: 600px!important;"/>
                                 </a>
-                                <input id="inputHomeSlideUploadImage_{{ hs.id }}" onchange="WEBSITE.edit_image('{{ hs.id }}');" type="file" style="display: none"/>
+                                <input id="inputHomeSlideUploadImage_{{ slide.id }}" onchange="SLIDES.update_image('{{ slide.id }}');" type="file" style="display: none"/>
                             </div>
                         </div>
                     </div>
@@ -59,6 +59,10 @@
 {% endblock %}
 
 {% block admin_scripts %}
+
+    <!-- Custom Script -->
+    <script src="{% static 'js/app/slides.js' %}"></script>
+
     <script>
         $(function () {
 
