@@ -51,20 +51,6 @@
         </div>
 
         <ul class="list-unstyled components">
-            <p>Products</p>
-            <li class="{% if option == 'admin_all_products' %}active{% endif %}">
-                <a href="{% url 'admin_products' %}">
-                    <i class="fa fa-list-alt"></i> All Products
-                </a>
-            </li>
-            <li class="{% if option == 'admin_create_product' %}active{% endif %}">
-                <a href="{% url 'admin_create_product' %}">
-                    <i class="fa fa-plus-circle"></i> Create Product
-                </a>
-            </li>
-        </ul>
-
-        <ul class="list-unstyled components">
             <p>Website</p>
             <li class="{% if option == 'admin_website_company_data' %}active{% endif %}">
                 <a href="{% url 'admin_website_company_data' %}">
@@ -74,12 +60,21 @@
 
             <li class="{% if option == 'admin_website_home_sliders' %}active{% endif %}">
                 <a href="{% url 'admin_website_home_sliders' %}">
-                    <i class="fa fa-th-large"></i> Header
+                    <i class="fa fa-th-large"></i> Home Slides
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <i class="fa fa-align-justify"></i> Footer
+        </ul>
+
+        <ul class="list-unstyled components">
+            <p>Products</p>
+            <li class="{% if option == 'admin_all_products' %}active{% endif %}">
+                <a href="{% url 'admin_products' %}">
+                    <i class="fa fa-list-alt"></i> All Products
+                </a>
+            </li>
+            <li class="{% if option == 'admin_create_product' %}active{% endif %}">
+                <a href="{% url 'admin_create_product' %}">
+                    <i class="fa fa-plus-circle"></i> Create Product
                 </a>
             </li>
         </ul>

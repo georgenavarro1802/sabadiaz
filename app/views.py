@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.urls import reverse
 
 from app.helpers import ok_json, bad_json
-from app.models import Product, HomeSlider, Category
+from app.models import Product, HomeSlider, Category, CompanyData
 
 
 # Website Views
@@ -21,6 +21,7 @@ def index(request):
         'featured_products': products.filter(is_featured=True)[:10],
         'bestseller_products': products.filter(is_bestseller=True)[:8],
         'onsale_products': products.filter(is_onsale=True)[:8],
+        'company': CompanyData.objects.first(),
     }
     return render(request, 'index.html', data)
 

@@ -6685,12 +6685,12 @@ blockquote {
 }
 
 .info-list {
-  display: grid;
+  display: block;
   grid-template-columns: auto auto;
 }
 
 .info-list li {
-  margin-bottom: 8px;
+  margin-bottom: 5px;
 }
 
 .info-list li a {
