@@ -1,0 +1,101 @@
+{% load static %}
+
+<footer class="footer-widget-area">
+    <div class="footer-top section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="widget-item">
+                        <div class="widget-title">
+                            <div class="widget-logo">
+                                <a href="{% url 'index' %}">
+                                    <img src="{{ company.get_logo }}" alt="brand logo">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="widget-body">
+                            <p>{{ company.description }} </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="widget-item">
+                        <h6 class="widget-title">Contact Us</h6>
+                        <div class="widget-body">
+                            <address class="contact-block">
+                                <ul>
+                                    <li>
+                                        <i class="pe-7s-home"></i>
+                                        {{ company.address }}
+                                    </li>
+                                    <li>
+                                        <i class="pe-7s-mail"></i>
+                                        <a href="mailto:{{ company.email }}">{{ company.email }} </a>
+                                    </li>
+                                    <li>
+                                        <i class="pe-7s-call"></i>
+                                        <a href="tel:{{ company.phone }}">{{ company.phone }}</a>
+                                    </li>
+                                </ul>
+                            </address>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="widget-item">
+                        <h6 class="widget-title">Information</h6>
+                        <div class="widget-body">
+                            <ul class="info-list">
+                                <li>
+                                    <a href="{% url 'about' %}">About Us</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'contact' %}">Contact Us</a>
+                                </li>
+{#                                <li>#}
+{#                                    <a href="#">Privacy policy</a>#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <a href="#">Terms & Conditions</a>#}
+{#                                </li>#}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="widget-item">
+                        <h6 class="widget-title">Follow Us</h6>
+                        <div class="widget-body social-link">
+                            <a href="{% if company.facebook %}https://www.facebook.com/{{ company.facebook }}{% else %}javascript:void(0);{% endif %}">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                            <a href="{% if company.twitter %}https://www.twitter.com/{{ company.twitter }}{% else %}javascript:void(0);{% endif %}">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                            <a href="{% if company.instagram %}https://www.instagram.com/{{ company.instagram }}{% else %}javascript:void(0);{% endif %}">
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                            <a href="{% if company.youtube %}https://www.youtube.com/{{ company.youtube }}{% else %}javascript:void(0);{% endif %}">
+                                <i class="fa fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="copyright-text text-center">
+                        <p>
+                            <a href="{% url 'index' %}">{{ company.name }} </a> All rights reserved © 2019
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

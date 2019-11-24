@@ -2,76 +2,51 @@
 {% load static %}
 
 {% block main %}
-    <main>
-        <!-- breadcrumb area start -->
-        <div class="breadcrumb-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="breadcrumb-wrap">
-                            <nav aria-label="breadcrumb">
-                                <ul class="breadcrumb">
-                                    <li class="breadcrumb-item">
-                                        <a href="{% url 'index' %}">
-                                            <i class="fa fa-home"></i>
-                                        </a>
-                                    </li>
-                                    <li class="breadcrumb-item active" aria-current="page">
-                                        {{ option }}
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- breadcrumb area end -->
 
-        <!-- login register wrapper start -->
-        <div class="login-register-wrapper section-padding">
-            <div class="container">
-                <div class="member-area-from-wrap">
-                    <div class="row">
-                        <!-- Login Content Start -->
-                        <div class="col-lg-3"></div>
-                        <div class="col-lg-6">
-                            <div class="login-reg-form-wrap">
-                                <h5>Log In</h5>
-                                <form>
-                                    <div class="single-input-item">
-                                        <input id="inputLoginEmail" type="email" placeholder="Email" required value="mcpons2010@hotmail.es" />
-                                    </div>
-                                    <div class="single-input-item">
-                                        <input id="inputLoginPassword" type="password" placeholder="Password" required />
-                                    </div>
-                                    <div class="single-input-item">
-                                        <div class="login-reg-form-meta d-flex align-items-center justify-content-between">
-                                            <div class="remember-meta">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="rememberMe">
-                                                    <label class="custom-control-label" for="rememberMe">Remember Me</label>
-                                                </div>
+    <!-- login register wrapper start -->
+    <div class="login-register-wrapper section-padding">
+        <div class="container">
+            <div class="member-area-from-wrap">
+                <div class="row">
+                    <!-- Login Content Start -->
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-6">
+                        <div class="login-reg-form-wrap">
+                            <h5>Log In</h5>
+                            <form>
+                                <div class="single-input-item">
+                                    <input id="inputLoginEmail" type="email" placeholder="Email" required value="mcpons2010@hotmail.es" />
+                                </div>
+                                <div class="single-input-item">
+                                    <input id="inputLoginPassword" type="password" placeholder="Password" required />
+                                </div>
+                                <div class="single-input-item">
+                                    <div class="login-reg-form-meta d-flex align-items-center justify-content-between">
+                                        <div class="remember-meta">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="rememberMe">
+                                                <label class="custom-control-label" for="rememberMe">Remember Me</label>
                                             </div>
-                                            <a href="#" class="forget-pwd">Forget Password?</a>
                                         </div>
+                                        <a href="#" class="forget-pwd">Forget Password?</a>
                                     </div>
-                                    <div class="single-input-item">
-                                        <a class="btn btn-sqr text-white" onclick="AUTHENTICATION.login();">
-                                            Login
-                                        </a>
-                                    </div>
-                                </form>
-                            </div>
+                                </div>
+                                <div class="single-input-item">
+                                    <a class="btn btn-sqr text-white" onclick="AUTHENTICATION.login();">
+                                        Login
+                                    </a>
+                                </div>
+                            </form>
                         </div>
-                        <div class="col-lg-3"></div>
-                        <!-- Login Content End -->
                     </div>
+                    <div class="col-lg-3"></div>
+                    <!-- Login Content End -->
                 </div>
             </div>
         </div>
-        <!-- login register wrapper end -->
-    </main>
+    </div>
+    <!-- login register wrapper end -->
+
 {% endblock %}
 
 {% block script %}
