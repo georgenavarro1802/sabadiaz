@@ -125,38 +125,38 @@ class Product(models.Model):
         super().save()
         if self.image1:
             img = Image.open(self.image1.path)
-            if img.height > 400 or img.width > 400:
-                img.thumbnail((400, 400))
+            if img.height > 370 or img.width > 370:
+                img.thumbnail((370, 370))
                 img.save(self.image1.path)
 
         if self.image2:
             img = Image.open(self.image2.path)
-            if img.height > 400 or img.width > 400:
-                img.thumbnail((400, 400))
+            if img.height > 370 or img.width > 370:
+                img.thumbnail((370, 370))
                 img.save(self.image2.path)
 
         if self.image3:
             img = Image.open(self.image3.path)
-            if img.height > 400 or img.width > 400:
-                img.thumbnail((400, 400))
+            if img.height > 370 or img.width > 370:
+                img.thumbnail((370, 370))
                 img.save(self.image3.path)
 
         if self.image4:
             img = Image.open(self.image4.path)
-            if img.height > 400 or img.width > 400:
-                img.thumbnail((400, 400))
+            if img.height > 370 or img.width > 370:
+                img.thumbnail((370, 370))
                 img.save(self.image4.path)
 
         if self.image5:
             img = Image.open(self.image5.path)
-            if img.height > 400 or img.width > 400:
-                img.thumbnail((400, 400))
+            if img.height > 370 or img.width > 370:
+                img.thumbnail((370, 370))
                 img.save(self.image5.path)
 
         if self.image6:
             img = Image.open(self.image6.path)
-            if img.height > 400 or img.width > 400:
-                img.thumbnail((400, 400))
+            if img.height > 370 or img.width > 370:
+                img.thumbnail((370, 370))
                 img.save(self.image6.path)
 
         super(Product, self).save(force_insert, force_update, using)
@@ -212,3 +212,13 @@ class HomeSlider(models.Model):
 
     def get_image(self):
         return self.image.url if self.image else f"{STATIC_URL}/img/slide.jpg"
+
+    def save(self, force_insert=False, force_update=False, using=None, **kwargs):
+        super().save()
+        if self.image:
+            img = Image.open(self.image.path)
+            if img.height > 670 or img.width > 1920:
+                img.thumbnail((1920, 670))
+                img.save(self.image.path)
+
+        super(HomeSlider, self).save(force_insert, force_update, using)

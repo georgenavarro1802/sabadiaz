@@ -16,7 +16,7 @@ def index(request):
         'option': 'index',
         'user': request.user,
         'home_sliders': HomeSlider.objects.all(),
-        'categories': Category.objects.filter(product__isnull=False)
+        'categories': Category.objects.filter(product__isnull=False).distinct()
     }
     return render(request, 'index.html', data)
 
