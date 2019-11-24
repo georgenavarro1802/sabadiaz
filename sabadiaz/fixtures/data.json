@@ -22,5 +22,16 @@
       "text2": "Jewellery",
       "description": "Rings, Occasion Pieces, Pandora & More"
     }
+  },
+  {
+    "model": "app.companydata",
+    "fields": {
+      "name": "Sabadiaz Jewerly",
+      "description": "We are a team of designers and developers that create high quality wordpress, shopify, Opencart",
+      "address": "4710-4890 Breckinridge USA",
+      "email": "demo@yourdomain.com",
+      "phone": "(012) 800 456 789-987"
+    }
   }
+
 ]

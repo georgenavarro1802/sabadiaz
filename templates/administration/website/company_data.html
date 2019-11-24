@@ -1,0 +1,108 @@
+{% extends 'administration/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block admin_content %}
+
+    <!-- Heading -->
+    <div class="row">
+        <div class="col-10">
+            <h3 class="text-center">
+                Company Data
+            </h3>
+        </div>
+        <div class="col-2 text-right text-white font-14">
+            <a href="javascript:void(0);" onclick="COMPANY.update($(this))" class="btn btn-success text-center">
+                Save
+            </a>
+        </div>
+    </div>
+
+    <form enctype="multipart/form-data" autocomplete="off">
+        <div class="row mt-2">
+            <div class="col-8">
+
+                <div class="card border-0 shadow">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-8">
+                                    <label for="inputCompanyDataName" class="font-12 _600">Name</label>
+                                    <input id="inputCompanyDataName" type="text" class="form-control font-12" value="{{ company.name }}">
+                                </div>
+                                <div class="col-4 text-center">
+                                    <label for="inputCompanyDataLogo" class="font-12 _600">Logo</label><br>
+                                    <a id="btnUploadLogo" href="javascript:void(0);">
+                                        <img src="{{ company.get_logo }}" class="figure-img img-fluid rounded" alt="company_logo" style="width: 110px; height: 30px">
+                                    </a>
+                                    <input id="inputCompanyDataLogo" type="file" onchange="COMPANY.update_logo();" style="display: none"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputCompanyDataDescription" class="font-12 _600">Description</label>
+                            <input  id="inputCompanyDataDescription" type="text" class="form-control font-12" value="{{ company.description|default_if_none:'' }}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="inputCompanyDataAddress" class="font-12 _600">Address</label>
+                            <input  id="inputCompanyDataAddress" type="text" class="form-control font-12" value="{{ company.address|default_if_none:'' }}" />
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="inputCompanyDataEmail" class="font-12 _600">Email</label>
+                                    <input  id="inputCompanyDataEmail" type="text" class="form-control font-12" value="{{ company.email|default_if_none:'' }}" />
+                                </div>
+                                <div class="col-6">
+                                    <label for="inputCompanyDataPhone" class="font-12 _600">Phone</label>
+                                    <input  id="inputCompanyDataPhone" type="text" class="form-control font-12" value="{{ company.phone|default_if_none:'' }}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-4">
+
+                <div class="card border-0 shadow">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="inputCompanyDataFacebook" class="font-12 _600">Facebook</label>
+                            <input id="inputCompanyDataFacebook" type="text" class="form-control font-12" value="{{ company.facebook|default_if_none:'' }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputCompanyDataTwitter" class="font-12 _600">Twitter</label>
+                            <input id="inputCompanyDataTwitter" type="text" class="form-control font-12" value="{{ company.twitter|default_if_none:'' }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputCompanyDataInstagram" class="font-12 _600">Instagram</label>
+                            <input id="inputCompanyDataInstagram" type="text" class="form-control font-12" value="{{ company.instagram|default_if_none:'' }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputCompanyDataYoutube" class="font-12 _600">Youtube</label>
+                            <input id="inputCompanyDataYoutube" type="text" class="form-control font-12" value="{{ company.youtube|default_if_none:'' }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+{% endblock %}
+
+{% block admin_scripts %}
+    <script>
+        $(function () {
+
+            $("#btnUploadLogo").on('click', function(e){
+                e.preventDefault();
+                $("#inputCompanyDataLogo").trigger('click');
+            });
+
+        });
+    </script>
+
+{% endblock %}

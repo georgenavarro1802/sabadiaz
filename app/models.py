@@ -178,25 +178,42 @@ class WishList(models.Model):
         unique_together = ('user', 'product')
 
 
+# WebSite Pages and Content
+class CompanyData(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.CharField(max_length=200)
+    address = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    phone = models.CharField(max_length=100)
+    facebook = models.CharField(max_length=100, blank=True, null=True)
+    twitter = models.CharField(max_length=100, blank=True, null=True)
+    instagram = models.CharField(max_length=100, blank=True, null=True)
+    youtube = models.CharField(max_length=100, blank=True, null=True)
+    logo = models.ImageField(upload_to='logos', blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Company Data'
+        verbose_name_plural = 'Company Data'
+        db_table = "company_data"
+
+    def get_logo(self):
+        return self.logo.url if self.logo else f"{STATIC_URL}/img/logo/logo.png"
+
+    def save(self, force_insert=False, force_update=False, using=None, **kwargs):
+        super().save()
+        if self.logo:
+            img = Image.open(self.logo.path)
+            if img.width > 100 or img.height > 30:
+                img.thumbnail((100, 30))
+                img.save(self.logo.path)
+
+        super(CompanyData, self).save(force_insert, force_update, using)
+
+
 class HomeSlider(models.Model):
-    """
-    Examples:
-        Ex1
-        text1: Flower Diamond
-        text2: Collection
-        desc: Budget Jewellery Starting At $295.99
-
-        Ex2
-        text1: New Diamond
-        text2: & Wedding Rings
-        desc: Avail 15% off on Making Charges for all Jewellery
-
-        Ex3
-        text1: Grace Designer
-        text2: Jewellery
-        desc: Rings, Occasion Pieces, Pandora & More
-
-    """
     text1 = models.CharField(max_length=50)
     text2 = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
@@ -217,7 +234,7 @@ class HomeSlider(models.Model):
         super().save()
         if self.image:
             img = Image.open(self.image.path)
-            if img.height > 670 or img.width > 1920:
+            if img.width > 1920 or img.height > 670:
                 img.thumbnail((1920, 670))
                 img.save(self.image.path)
 
