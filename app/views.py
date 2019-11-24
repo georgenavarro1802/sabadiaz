@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.urls import reverse
 
 from app.helpers import ok_json, bad_json
-from app.models import Product, HomeSlider
+from app.models import Product, HomeSlider, Category
 
 
 # Website Views
@@ -15,7 +15,8 @@ def index(request):
         'title': 'Sabadiaz Jewelry - Welcome',
         'option': 'index',
         'user': request.user,
-        'home_sliders': HomeSlider.objects.all()
+        'home_sliders': HomeSlider.objects.all(),
+        'categories': Category.objects.filter(product__isnull=False)
     }
     return render(request, 'index.html', data)
 

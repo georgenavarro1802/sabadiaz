@@ -1,3 +1,4 @@
+from PIL import Image
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -17,6 +18,9 @@ class Category(models.Model):
         db_table = "categories"
         ordering = ('name', )
         unique_together = ('name', )
+
+    def get_my_first_products(self):
+        return self.product_set.all()[:10]
 
     def save(self, force_insert=False, force_update=False, using=None, **kwargs):
         self.name = self.name.capitalize()
@@ -116,6 +120,46 @@ class Product(models.Model):
 
     def has_images(self):
         return self.image1 or self.image2 or self.image3 or self.image4 or self.image5 or self.image6
+
+    def save(self, force_insert=False, force_update=False, using=None, **kwargs):
+        super().save()
+        if self.image1:
+            img = Image.open(self.image1.path)
+            if img.height > 400 or img.width > 400:
+                img.thumbnail((400, 400))
+                img.save(self.image1.path)
+
+        if self.image2:
+            img = Image.open(self.image2.path)
+            if img.height > 400 or img.width > 400:
+                img.thumbnail((400, 400))
+                img.save(self.image2.path)
+
+        if self.image3:
+            img = Image.open(self.image3.path)
+            if img.height > 400 or img.width > 400:
+                img.thumbnail((400, 400))
+                img.save(self.image3.path)
+
+        if self.image4:
+            img = Image.open(self.image4.path)
+            if img.height > 400 or img.width > 400:
+                img.thumbnail((400, 400))
+                img.save(self.image4.path)
+
+        if self.image5:
+            img = Image.open(self.image5.path)
+            if img.height > 400 or img.width > 400:
+                img.thumbnail((400, 400))
+                img.save(self.image5.path)
+
+        if self.image6:
+            img = Image.open(self.image6.path)
+            if img.height > 400 or img.width > 400:
+                img.thumbnail((400, 400))
+                img.save(self.image6.path)
+
+        super(Product, self).save(force_insert, force_update, using)
 
 
 class WishList(models.Model):
