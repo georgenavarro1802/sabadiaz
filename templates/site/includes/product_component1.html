@@ -1,0 +1,54 @@
+{% load static %}
+{% load humanize %}
+
+<div class="product-item">
+
+    <figure class="product-thumb">
+        <a href="{% url 'product_details' product.id %}">
+            <img class="pri-img" src="{{ product.get_image1 }}" alt="product_image1" width="200" height="200">
+            <img class="sec-img" src="{{ product.get_image2 }}" alt="product_image2" width="200" height="200">
+        </a>
+
+        <div class="product-badge">
+            {% if product.is_new %}
+                <div class="product-label new">
+                    <span>New</span>
+                </div>
+            {% endif %}
+            {% if product.p_discount %}
+                <div class="product-label discount">
+                    <span>{{ product.p_discount }}%</span>
+                </div>
+            {% endif %}
+        </div>
+        <div class="button-group">
+            <a href="{% url 'wishlist' %}" data-toggle="tooltip" data-placement="left" title="Add to wishlist">
+                <i class="pe-7s-like"></i>
+            </a>
+            <a href="#" data-toggle="modal" data-target="#quick_view">
+                <span data-toggle="tooltip" data-placement="left" title="Quick View">
+                    <i class="pe-7s-search"></i>
+                </span>
+            </a>
+        </div>
+    </figure>
+
+    <div class="product-caption text-center">
+        <div class="product-identity">
+            <p class="manufacturer-name">
+                <a href="{% url 'product_details' product.id %}">
+                    {{ product.get_material_display }}
+                </a>
+            </p>
+        </div>
+        <h6 class="product-name">
+            <a href="{% url 'product_details' product.id %}">
+                {{ product.title }}
+            </a>
+        </h6>
+        <div class="price-box">
+            <span class="price-regular">${{ product.price|floatformat:2|intcomma }}</span>
+            <span class="price-old"><del>${{ product.v_price|floatformat:2|intcomma }}</del></span>
+        </div>
+    </div>
+</div>

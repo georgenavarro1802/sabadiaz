@@ -11,12 +11,16 @@ from app.models import Product, HomeSlider, Category
 
 # Website Views
 def index(request):
+    products = Product.objects.all()
     data = {
         'title': 'Sabadiaz Jewelry - Welcome',
         'option': 'index',
         'user': request.user,
         'home_sliders': HomeSlider.objects.all(),
-        'categories': Category.objects.filter(product__isnull=False).distinct()
+        'categories': Category.objects.filter(product__isnull=False).distinct(),
+        'featured_products': products.filter(is_featured=True)[:10],
+        'bestseller_products': products.filter(is_bestseller=True)[:8],
+        'onsale_products': products.filter(is_onsale=True)[:8],
     }
     return render(request, 'index.html', data)
 
@@ -26,7 +30,7 @@ def shop(request):
         'title': 'Sabadiaz Jewelry - Shop',
         'option': 'shop'
     }
-    return render(request, 'shop.html', data)
+    return render(request, 'site/shop.html', data)
 
 
 def about(request):
@@ -34,7 +38,7 @@ def about(request):
         'title': 'Sabadiaz Jewelry - About Us',
         'option': 'about'
     }
-    return render(request, 'about.html', data)
+    return render(request, 'site/about.html', data)
 
 
 def contact(request):
@@ -42,7 +46,7 @@ def contact(request):
         'title': 'Sabadiaz Jewelry - Contact Us',
         'option': 'contact'
     }
-    return render(request, 'contact.html', data)
+    return render(request, 'site/contact.html', data)
 
 
 def wishlist(request):
@@ -50,7 +54,7 @@ def wishlist(request):
         'title': 'Sabadiaz Jewelry - WishList',
         'option': 'wishlist'
     }
-    return render(request, 'wishlist.html', data)
+    return render(request, 'site/wishlist.html', data)
 
 
 def product_details(request, product_id):
@@ -60,7 +64,7 @@ def product_details(request, product_id):
         'option': 'product',
         'product': product
     }
-    return render(request, 'product_details.html', data)
+    return render(request, 'site/product_details.html', data)
 
 
 # Common Views

@@ -1,0 +1,23 @@
+{% load static %}
+{% load humanize %}
+
+<div class="group-slide-item">
+    <div class="group-item">
+        <div class="group-item-thumb">
+            <a href="{% url 'product_details' product.id %}">
+                <img src="{{ product.get_image1 }}" alt="image_bestseller_{{ product.id }}">
+            </a>
+        </div>
+        <div class="group-item-desc">
+            <h5 class="group-product-name">
+                <a href="{% url 'product_details' product.id %}">
+                    {{ product.title }}
+                </a>
+            </h5>
+            <div class="price-box">
+                <span class="price-regular">${{ product.price|floatformat:2|intcomma }}</span>
+                <span class="price-old"><del>${{ product.v_price|floatformat:2|intcomma }}</del></span>
+            </div>
+        </div>
+    </div>
+</div>
