@@ -1,6 +1,6 @@
 [
   {
-    "model": "app.homeslider",
+    "model": "app.slide",
     "fields": {
       "text1": "Flower Diamond",
       "text2": "Collection",
@@ -8,7 +8,7 @@
     }
   },
   {
-    "model": "app.homeslider",
+    "model": "app.slide",
     "fields": {
       "text1": "New Diamond",
       "text2": "& Wedding Rings",
@@ -16,7 +16,7 @@
     }
   },
   {
-    "model": "app.homeslider",
+    "model": "app.slide",
     "fields": {
       "text1": "Grace Designer",
       "text2": "Jewellery",
@@ -24,7 +24,7 @@
     }
   },
   {
-    "model": "app.companydata",
+    "model": "app.company",
     "fields": {
       "name": "Sabadiaz Jewerly",
       "description": "We are a team of designers and developers that create high quality wordpress, shopify, Opencart",
@@ -32,6 +32,53 @@
       "email": "demo@yourdomain.com",
       "phone": "(012) 800 456 789-987"
     }
+  },
+  {
+    "model": "app.testimonial",
+    "fields": {
+      "name": "Lindsy Niloms",
+      "testimonial": "Vivamus a lobortis ipsum, vel condimentum magna. Etiam id turpis tortor. Nunc scelerisque, nisi a blandit varius, nunc purus venenatis ligula, sed venenatis orci augue nec sapien. Cum sociis natoque"
+    }
+  },
+  {
+    "model": "app.testimonial",
+    "fields": {
+      "name": "Anamika Lusy",
+      "testimonial": "Vivamus a lobortis ipsum, vel condimentum magna. Etiam id turpis tortor. Nunc scelerisque, nisi a blandit varius, nunc purus venenatis ligula, sed venenatis orci augue nec sapien. Cum sociis natoque"
+    }
+  },
+  {
+    "model": "app.testimonial",
+    "fields": {
+     "name": "Daisy Millan",
+      "testimonial": "Vivamus a lobortis ipsum, vel condimentum magna. Etiam id turpis tortor. Nunc scelerisque, nisi a blandit varius, nunc purus venenatis ligula, sed venenatis orci augue nec sapien. Cum sociis natoque"
+    }
+  },
+  {
+    "model": "app.testimonial",
+    "fields": {
+     "name": "Maria Pons",
+      "testimonial": "Vivamus a lobortis ipsum, vel condimentum magna. Etiam id turpis tortor. Nunc scelerisque, nisi a blandit varius, nunc purus venenatis ligula, sed venenatis orci augue nec sapien. Cum sociis natoque"
+    }
+  },
+  {
+    "model": "app.material",
+    "fields": {
+      "name": "Gold"
+    }
+  },
+  {
+    "model": "app.material",
+    "fields": {
+      "name": "Silver"
+    }
+  },
+  {
+    "model": "app.material",
+    "fields": {
+     "name": "Diamond"
+    }
   }
-
 ]
+
+// TODO: Add Gender, Categories and Sample Products

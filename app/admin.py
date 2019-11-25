@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from app.models import Category, Product, WishList, Slide, CompanyData, Testimonial
+from app.models import Category, Product, WishList, Slide, Company, Testimonial, Material, Gender
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -12,12 +12,30 @@ class CategoryAdmin(admin.ModelAdmin):
 admin.site.register(Category, CategoryAdmin)
 
 
+class MaterialAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name')
+    ordering = ('name', )
+    search_fields = ('name', )
+
+
+admin.site.register(Material, MaterialAdmin)
+
+
+class GenderAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name')
+    ordering = ('name', )
+    search_fields = ('name', )
+
+
+admin.site.register(Gender, GenderAdmin)
+
+
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('id', 'category', 'material', 'title', 'description', 'created_at',
                     'price', 'v_price', 'stock', 'is_new', 'is_featured', 'is_bestseller', 'is_onsale')
     ordering = ('-created_at', )
-    search_fields = ('category__name', 'title', 'description')
-    list_filter = ('gender', 'material', 'is_new', 'is_featured', 'is_bestseller', 'is_onsale')
+    search_fields = ('category__name', 'material__name', 'title', 'description')
+    list_filter = ('gender', 'material', 'category', 'is_new', 'is_featured', 'is_bestseller', 'is_onsale')
 
 
 admin.site.register(Product, ProductAdmin)
@@ -33,13 +51,13 @@ admin.site.register(WishList, WishListAdmin)
 
 
 # Company
-class CompanyDataAdmin(admin.ModelAdmin):
+class CompanyAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 'address', 'email', 'phone', 'logo',
                     'facebook', 'twitter', 'instagram', 'youtube')
     search_fields = ('name', 'description', 'email')
 
 
-admin.site.register(CompanyData, CompanyDataAdmin)
+admin.site.register(Company, CompanyAdmin)
 
 
 # Slides

@@ -70,10 +70,18 @@
                                     <!-- main menu navbar start -->
                                     <nav class="desktop-menu">
                                         <ul>
-                                            <li class="{% ifequal option 'index' %}active{% endifequal %}"><a href="{% url 'index' %}">Home</a></li>
-                                            <li class="{% ifequal option 'shop' %}active{% endifequal %}"><a href="{% url 'shop' %}">Shop</a></li>
-                                            <li class="{% ifequal option 'about' %}active{% endifequal %}"><a href="{% url 'about' %}">About Us</a></li>
-                                            <li class="{% ifequal option 'contact' %}active{% endifequal %}"><a href="{% url 'contact' %}">Contact</a></li>
+                                            <li class="{% ifequal option 'index' %}active{% endifequal %}">
+                                                <a href="{% url 'index' %}">Home</a>
+                                            </li>
+                                            <li class="{% ifequal option 'products' %}active{% endifequal %}">
+                                                <a href="{% url 'products' %}">Our Products</a>
+                                            </li>
+                                            <li class="{% ifequal option 'about' %}active{% endifequal %}">
+                                                <a href="{% url 'about' %}">About Us</a>
+                                            </li>
+                                            <li class="{% ifequal option 'contact' %}active{% endifequal %}">
+                                                <a href="{% url 'contact' %}">Contact</a>
+                                            </li>
                                         </ul>
                                     </nav>
                                     <!-- main menu navbar end -->
@@ -169,17 +177,11 @@
                     <div class="col-12">
                         <div class="mobile-main-header">
                             <div class="mobile-logo">
-                                <a href="index.html">
+                                <a href="{% url 'index' %}">
                                     <img src="{% static 'img/logo/logo.png' %}" alt="Brand Logo">
                                 </a>
                             </div>
                             <div class="mobile-menu-toggler">
-{#                                <div class="mini-cart-wrap">#}
-{#                                    <a href="cart.html">#}
-{#                                        <i class="pe-7s-shopbag"></i>#}
-{#                                        <div class="notification">0</div>#}
-{#                                    </a>#}
-{#                                </div>#}
                                 <button class="mobile-menu-btn">
                                     <span></span>
                                     <span></span>
@@ -228,8 +230,8 @@
                                 <li class="{% ifequal option 'index' %}active{% endifequal %}">
                                     <a href="{% url 'index' %}">Home</a>
                                 </li>
-                                <li class="{% ifequal option 'shop' %}active{% endifequal %}">
-                                    <a href="{% url 'shop' %}">Shop</a>
+                                <li class="{% ifequal option 'products' %}active{% endifequal %}">
+                                    <a href="{% url 'products' %}">Our Products</a>
                                 </li>
                                 <li class="{% ifequal option 'about' %}active{% endifequal %}">
                                     <a href="{% url 'about' %}">About Us</a>

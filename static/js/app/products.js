@@ -41,8 +41,8 @@ let PRODUCTS = {
         let title = inputTitle.val();
         let description = inputDescription.val();
         let category_id = selectCategory.val();
-        let gender = selectGender.val();
-        let material = selectMaterial.val();
+        let gender_id = selectGender.val();
+        let material_id = selectMaterial.val();
         let price = parseFloat(inputPrice.val());
 
         // optional fields
@@ -59,8 +59,8 @@ let PRODUCTS = {
         formData.append('title', title);
         formData.append('description', description);
         formData.append('category_id', category_id);
-        formData.append('gender', gender);
-        formData.append('material', material);
+        formData.append('material_id', material_id);
+        formData.append('gender_id', gender_id);
         formData.append('price', price);
         formData.append('stock', stock);
         formData.append('discount', discount);

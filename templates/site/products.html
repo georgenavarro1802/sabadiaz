@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
+{% load extras %}
 
 {% block main %}
 
@@ -7,28 +9,29 @@
     <div class="shop-main-wrapper section-padding">
         <div class="container">
             <div class="row">
-                <!-- sidebar area start -->
+
+                <!-- Menu Filters -->
                 <div class="col-lg-3 order-2 order-lg-1">
                     <aside class="sidebar-wrapper">
-                        <!-- single sidebar start -->
+
+                        <!-- Categories Filter -->
                         <div class="sidebar-single">
-                            <h5 class="sidebar-title">categories</h5>
+                            <h5 class="sidebar-title">Categories</h5>
                             <div class="sidebar-body">
                                 <ul class="shop-categories">
-                                    <li><a href="#">fashionware <span>(10)</span></a></li>
-                                    <li><a href="#">kitchenware <span>(5)</span></a></li>
-                                    <li><a href="#">electronics <span>(8)</span></a></li>
-                                    <li><a href="#">accessories <span>(4)</span></a></li>
-                                    <li><a href="#">shoe <span>(5)</span></a></li>
-                                    <li><a href="#">toys <span>(2)</span></a></li>
+                                    {% for category in categories %}
+                                        <li>
+                                            <a href="#">{{ category }} <span>({{ category.count_of_available_products|floatformat:0 }})</span></a>
+                                        </li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                         </div>
-                        <!-- single sidebar end -->
+                        <!-- Categories Filter end -->
 
-                        <!-- single sidebar start -->
+                        <!-- Prices Filter -->
                         <div class="sidebar-single">
-                            <h5 class="sidebar-title">price</h5>
+                            <h5 class="sidebar-title">Price</h5>
                             <div class="sidebar-body">
                                 <div class="price-range-wrap">
                                     <div class="price-range" data-min="1" data-max="1000"></div>
@@ -38,53 +41,31 @@
                                                 <label for="amount">Price: </label>
                                                 <input type="text" id="amount">
                                             </div>
-                                            <button class="filter-btn">filter</button>
+                                            <button class="filter-btn">Filter</button>
                                         </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- single sidebar end -->
+                        <!-- Price Filter -->
 
-                        <!-- single sidebar start -->
+                        <!-- Materials Filter -->
                         <div class="sidebar-single">
-                            <h5 class="sidebar-title">Brand</h5>
+                            <h5 class="sidebar-title">Material</h5>
                             <div class="sidebar-body">
                                 <ul class="checkbox-container categories-list">
-                                    <li>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                            <label class="custom-control-label" for="customCheck2">Studio (3)</label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck3">
-                                            <label class="custom-control-label" for="customCheck3">Hastech (4)</label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck4">
-                                            <label class="custom-control-label" for="customCheck4">Quickiin (15)</label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                            <label class="custom-control-label" for="customCheck1">Graphic corner (10)</label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck5">
-                                            <label class="custom-control-label" for="customCheck5">devItems (12)</label>
-                                        </div>
-                                    </li>
+                                    {% for material in materials %}
+                                        <li>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="checkboxMaterial_{{ material.id }}">
+                                                <label class="custom-control-label" for="checkboxMaterial_{{ material.id }}">{{ material }} ({{ material.count_of_available_products|floatformat:0 }})</label>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                         </div>
-                        <!-- single sidebar end -->
+                        <!-- Materials Filter end -->
 
                         <!-- single sidebar start -->
                         <div class="sidebar-single">
@@ -126,39 +107,23 @@
                         </div>
                         <!-- single sidebar end -->
 
-                        <!-- single sidebar start -->
+                        <!-- Genders Filter -->
                         <div class="sidebar-single">
-                            <h5 class="sidebar-title">size</h5>
+                            <h5 class="sidebar-title">Gender</h5>
                             <div class="sidebar-body">
                                 <ul class="checkbox-container categories-list">
-                                    <li>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck111">
-                                            <label class="custom-control-label" for="customCheck111">S (4)</label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck222">
-                                            <label class="custom-control-label" for="customCheck222">M (5)</label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck333">
-                                            <label class="custom-control-label" for="customCheck333">L (7)</label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck444">
-                                            <label class="custom-control-label" for="customCheck444">XL (3)</label>
-                                        </div>
-                                    </li>
+                                    {% for gender in genders %}
+                                        <li>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="checkboxGender_{{ gender.id }}">
+                                                <label class="custom-control-label" for="checkboxGender_{{ gender.id }}">{{ gender }} ({{ gender.count_of_available_products|floatformat:0 }})</label>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                         </div>
-                        <!-- single sidebar end -->
+                        <!-- Genders Filter end -->
 
                         <!-- single sidebar start -->
                         <div class="sidebar-banner">
@@ -173,7 +138,7 @@
                 </div>
                 <!-- sidebar area end -->
 
-                <!-- shop main wrapper start -->
+                <!-- PRODUCTS Main Wrapper  -->
                 <div class="col-lg-9 order-1 order-lg-2">
                     <div class="shop-product-wrapper">
                         <!-- shop product top wrap start -->
@@ -1908,7 +1873,8 @@
                         <!-- end pagination area -->
                     </div>
                 </div>
-                <!-- shop main wrapper end -->
+                <!-- PRODUCTS Main Wrapper end -->
+
             </div>
         </div>
     </div>

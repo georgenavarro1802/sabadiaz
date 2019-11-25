@@ -5,11 +5,15 @@ from django.db import transaction
 from django.shortcuts import render
 from django.urls import reverse
 
-from app.helpers import GENDERS, ok_json, bad_json, MATERIALS
-from app.models import Product, Category
+from app.helpers import ok_json, bad_json
+from app.models import Product, Category, Material, Gender
+from app.views import addUserData
 
 
 def view(request):
+    data = {'title': 'Sabadiaz Jewelry Admin - All Products'}
+    addUserData(request, data)
+
     products = Product.objects.all()
     page = request.GET.get('page', 1)
 
@@ -21,26 +25,13 @@ def view(request):
     except EmptyPage:
         products = paginator.page(paginator.num_pages)
 
-    return render(request,
-                  'administration/products/view.html',
-                  {
-                      'title': 'Sabadiaz Jewelry Admin - All Products',
-                      'option': 'admin_all_products',
-                      'user': request.user,
-                      'products': products,
-                  })
+    data['products'] = products
+    return render(request, 'administration/products/view.html', data)
 
 
 def create_product(request):
-    data = {
-        'title': 'Sabadiaz Jewelry Admin - Create Product',
-        'option': 'admin_create_product',
-        'user': request.user,
-        'materials': MATERIALS,
-        'genders': GENDERS,
-        'categories': Category.objects.all(),
-        'product': None
-    }
+    data = {'title': 'Sabadiaz Jewelry Admin - Create Product'}
+    addUserData(request, data)
 
     if request.method == 'POST':
         try:
@@ -48,8 +39,8 @@ def create_product(request):
                 title = request.POST['title']
                 description = request.POST['description']
                 category_id = int(request.POST['category_id'])
-                gender = int(request.POST['gender'])
-                material = int(request.POST['material'])
+                gender_id = int(request.POST['gender_id'])
+                material_id = int(request.POST['material_id'])
                 price = float(request.POST['price'])
                 stock = int(request.POST['stock'])
                 discount = float(request.POST['discount'])
@@ -61,8 +52,8 @@ def create_product(request):
                 is_onsale = True if request.POST['is_onsale'] == 'on' else False
 
                 product = Product(category_id=category_id,
-                                  gender=gender,
-                                  material=material,
+                                  material_id=material_id,
+                                  gender_id=gender_id,
                                   title=title,
                                   description=description,
                                   information=information,
@@ -87,30 +78,28 @@ def create_product(request):
         except Exception as ex:
             return bad_json(message=ex.__str__())
 
+    data['option'] = 'admin_create_product'
+    data['categories'] = Category.objects.all()
+    data['materials'] = Material.objects.all()
+    data['genders'] = Gender.objects.all()
+    data['product'] = None
     return render(request, 'administration/products/product.html', data)
 
 
 def edit_product(request, product_id):
-    product = Product.objects.get(id=product_id)
+    data = {'title': 'Sabadiaz Jewelry Admin - Edit Product'}
+    addUserData(request, data)
 
-    data = {
-        'title': 'Sabadiaz Jewelry Admin - Edit Product',
-        'option': 'admin_edit_product',
-        'user': request.user,
-        'materials': MATERIALS,
-        'genders': GENDERS,
-        'categories': Category.objects.all(),
-        'product': product
-    }
+    product = Product.objects.get(id=product_id)
 
     if request.method == 'POST':
         try:
             with transaction.atomic():
+                product.category_id = int(request.POST['category_id'])
+                product.material_id = int(request.POST['material_id'])
+                product.gender_id = int(request.POST['gender_id'])
                 product.title = request.POST['title']
                 product.description = request.POST['description']
-                product.category_id = int(request.POST['category_id'])
-                product.gender = int(request.POST['gender'])
-                product.material = int(request.POST['material'])
                 product.price = float(request.POST['price'])
                 product.stock = int(request.POST['stock'])
                 product.discount = float(request.POST['discount'])
@@ -129,6 +118,10 @@ def edit_product(request, product_id):
         except Exception as ex:
             return bad_json(message=ex.__str__())
 
+    data['option'] = 'admin_edit_product'
+    data['categories'] = Category.objects.all()
+    data['materials'] = Material.objects.all()
+    data['product'] = product
     return render(request, 'administration/products/product.html', data)
 
 

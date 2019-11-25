@@ -4125,7 +4125,8 @@ textarea:focus {
 
 .price-range-wrap .range-slider button.filter-btn:hover {
   color: #fff;
-  background-color: #c29958;
+  background-color: #7386d5;
+  /*background-color: #c29958;*/
 }
 
 /*------ pricing filter slider end ------*/

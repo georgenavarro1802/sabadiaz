@@ -26,7 +26,7 @@ urlpatterns = [
     path('account', views.account, name='account'),
 
     # Shop
-    path('shop', views.shop, name='shop'),
+    path('products', views.products, name='products'),
 
     # About Us
     path('about', views.about, name='about'),

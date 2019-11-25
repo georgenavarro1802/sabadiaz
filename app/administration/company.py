@@ -2,12 +2,12 @@ from django.db import transaction
 from django.shortcuts import render
 
 from app.helpers import ok_json, bad_json
-from app.models import CompanyData
+from app.models import Company
 
 
 def company_data(request):
 
-    company = CompanyData.objects.all()[0]
+    company = Company.objects.all()[0]
 
     if request.method == 'POST':
         try:
@@ -38,7 +38,7 @@ def company_data(request):
 
 
 def company_logo(request):
-    company = CompanyData.objects.first()
+    company = Company.objects.first()
 
     try:
         with transaction.atomic():

@@ -61,7 +61,7 @@
                                                     <img src="{{ elem.image_url }}" class="figure-img img-fluid rounded" alt="product_image{{ forloop.counter }}" style="width: 110px; height: 110px">
                                                 </a>
                                             </figure>
-                                            <input id="uploadImage_{{ forloop.counter }}" class="inputImages" onchange="PRODUCTS.edit_image('{{ forloop.counter }}', '{{ product.id }}');" type="file" style="display: none"/>
+                                            <input id="uploadImage_{{ forloop.counter }}" class="inputImages" onchange="PRODUCTS.update_image('{{ forloop.counter }}', '{{ product.id }}');" type="file" style="display: none"/>
                                         </div>
                                     {% endfor %}
                                 </div>
@@ -108,8 +108,8 @@
                             <label for="selectGender">Gender</label>
                             <select id="selectGender" class="selectpicker show-tick form-control" data-style="btn-primary">
                                 {% for gender in genders %}
-                                    <option value="{{ gender.0 }}" {% if product.gender == gender.0 %}selected{% endif %}>
-                                        {{ gender.1 }}
+                                    <option value="{{ gender.id }}" {% if product.gender.id == gender.id %}selected{% endif %}>
+                                        {{ gender }}
                                     </option>
                                 {% endfor %}
                             </select>
@@ -118,8 +118,8 @@
                             <label for="selectMaterial">Material</label>
                             <select id="selectMaterial" class="selectpicker show-tick form-control" data-style="btn-primary">
                                 {% for material in materials %}
-                                    <option value="{{ material.0 }}" {% if product.material == material.0 %}selected{% endif %}>
-                                        {{ material.1 }}
+                                    <option value="{{ material.id }}" {% if product.material.id == material.id %}selected{% endif %}>
+                                        {{ material }}
                                     </option>
                                 {% endfor %}
                             </select>

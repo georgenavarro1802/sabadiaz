@@ -1,5 +1,3 @@
-import datetime
-
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
@@ -7,12 +5,12 @@ from django.shortcuts import render
 from django.urls import reverse
 
 from app.helpers import ok_json, bad_json
-from app.models import Product, Slide, Category, CompanyData, Testimonial
+from app.models import Product, Slide, Category, Company, Testimonial, Material
 
 
 def addUserData(request, data):
     data['user'] = request.user
-    data['company'] = CompanyData.objects.first()
+    data['company'] = Company.objects.first()
 
 
 # Website Views
@@ -39,12 +37,14 @@ def about(request):
     return render(request, 'site/about.html', data)
 
 
-def shop(request):
-    data = {'title': 'Sabadiaz Jewelry - Shop'}
+def products(request):
+    data = {'title': 'Sabadiaz Jewelry - Our Products'}
     addUserData(request, data)
-    data['option'] = 'shop'
-    data['current_page'] = 'Shop'
-    return render(request, 'site/shop.html', data)
+    data['option'] = 'products'
+    data['current_page'] = 'Our Products'
+    data['categories'] = Category.objects.filter(product__stock__gt=0).distinct()
+    data['materials'] = Material.objects.filter(product__stock__gt=0).distinct()
+    return render(request, 'site/products.html', data)
 
 
 def contact(request):

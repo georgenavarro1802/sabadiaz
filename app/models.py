@@ -2,7 +2,6 @@ from PIL import Image
 from django.contrib.auth.models import User
 from django.db import models
 
-from app.helpers import GENDERS, MATERIALS, MATERIAL_GOLD, GENDER_UNISEX
 from sabadiaz.settings import STATIC_URL
 
 
@@ -22,17 +21,71 @@ class Category(models.Model):
     def get_my_first_products(self):
         return self.product_set.all()[:10]
 
+    def get_available_products(self):
+        return self.product_set.filter(stock__gt=0)
+
+    def count_of_available_products(self):
+        return self.get_available_products().count()
+
     def save(self, force_insert=False, force_update=False, using=None, **kwargs):
         self.name = self.name.capitalize()
         super(Category, self).save(force_insert, force_update, using)
+
+
+class Material(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Material'
+        verbose_name_plural = 'Materials'
+        db_table = "materials"
+        ordering = ('name', )
+        unique_together = ('name', )
+
+    def get_available_products(self):
+        return self.product_set.filter(stock__gt=0)
+
+    def count_of_available_products(self):
+        return self.get_available_products().count()
+
+    def save(self, force_insert=False, force_update=False, using=None, **kwargs):
+        self.name = self.name.capitalize()
+        super(Material, self).save(force_insert, force_update, using)
+
+
+class Gender(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Gender'
+        verbose_name_plural = 'Genders'
+        db_table = "genders"
+        ordering = ('name', )
+        unique_together = ('name', )
+
+    def get_available_products(self):
+        return self.product_set.filter(stock__gt=0)
+
+    def count_of_available_products(self):
+        return self.get_available_products().count()
+
+    def save(self, force_insert=False, force_update=False, using=None, **kwargs):
+        self.name = self.name.capitalize()
+        super(Gender, self).save(force_insert, force_update, using)
 
 
 class Product(models.Model):
 
     # main fields
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    gender = models.IntegerField(choices=GENDERS, default=GENDER_UNISEX, blank=True, null=True)
-    material = models.IntegerField(choices=MATERIALS, default=MATERIAL_GOLD, blank=True, null=True)
+    material = models.ForeignKey(Material, on_delete=models.CASCADE)
+    gender = models.ForeignKey(Gender, on_delete=models.CASCADE)
 
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=300)
@@ -179,7 +232,7 @@ class WishList(models.Model):
 
 
 # WebSite Pages and Content
-class CompanyData(models.Model):
+class Company(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=200)
     address = models.CharField(max_length=100)
@@ -195,9 +248,9 @@ class CompanyData(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = 'Company Data'
-        verbose_name_plural = 'Company Data'
-        db_table = "company_data"
+        verbose_name = 'Company'
+        verbose_name_plural = 'Company'
+        db_table = "company"
 
     def get_logo(self):
         return self.logo.url if self.logo else f"{STATIC_URL}/img/logo/logo.png"
