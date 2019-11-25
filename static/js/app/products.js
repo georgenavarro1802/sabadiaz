@@ -13,7 +13,6 @@ let inputFiles = $("#inputFiles");
 let checkboxIsNew = $("#checkboxIsNew");
 let checkboxIsFeatured = $("#checkboxIsFeatured");
 let checkboxIsBestSeller = $("#checkboxIsBestSeller");
-let checkboxIsOnSale = $("#checkboxIsOnSale");
 
 // edit images
 let uploadImage_1 = $("#uploadImage_1");
@@ -41,7 +40,7 @@ let PRODUCTS = {
         let title = inputTitle.val();
         let description = inputDescription.val();
         let category_id = selectCategory.val();
-        let gender_id = selectGender.val();
+            let gender_id = selectGender.val();
         let material_id = selectMaterial.val();
         let price = parseFloat(inputPrice.val());
 
@@ -53,7 +52,6 @@ let PRODUCTS = {
         let is_new = checkboxIsNew.val();
         let is_featured = checkboxIsFeatured.val();
         let is_bestseller = checkboxIsBestSeller.val();
-        let is_onsale = checkboxIsOnSale.val();
 
         let formData = new FormData();
         formData.append('title', title);
@@ -69,7 +67,6 @@ let PRODUCTS = {
         formData.append('is_new', is_new);
         formData.append('is_featured', is_featured);
         formData.append('is_bestseller', is_bestseller);
-        formData.append('is_onsale', is_onsale);
 
         if (!pid){
             $.each(inputFiles[0].files, function(i, file) {
@@ -77,7 +74,7 @@ let PRODUCTS = {
             });
         }
 
-        if (title && description && category_id && gender && material && price > 0){
+        if (title && description && category_id && gender_id && material_id && price > 0){
             let spinnerText = "<i class='fa fa-circle-o-notch fa-spin'></i> Saving ...";
             let originalText = elem.html();
 

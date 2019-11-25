@@ -1,0 +1,343 @@
+[
+  {
+    "model": "app.product",
+    "fields": {
+      "category_id": 1,
+      "material_id": 3,
+      "gender_id": 2,
+      "title": "Perfect Diamond Jewelry 4",
+      "description": "Perfect Diamond Jewelry desc 4",
+      "price": 60.00,
+      "v_price": 70.00,
+      "p_discount": 10,
+      "stock": 3,
+      "is_new": true,
+      "is_featured": true,
+      "is_bestseller": true
+    }
+  },
+  {
+    "model": "app.product",
+    "fields": {
+      "category_id": 1,
+      "material_id": 2,
+      "gender_id": 3,
+      "title": "Perfect Diamond Jewelry 2 ",
+      "description": "Perfect Diamond Jewelry 2 desc",
+      "price": 80.00,
+      "v_price": 90.00,
+      "p_discount": 0,
+      "stock": 5,
+      "is_new": true,
+      "is_featured": false,
+      "is_bestseller": true
+    }
+  },
+  {
+    "model": "app.product",
+    "fields": {
+      "category_id": 1,
+      "material_id": 2,
+      "gender_id": 1,
+      "title": "Perfect Diamond Jewelry 3",
+      "description": "Perfect Diamond Jewelry 3 desc",
+      "price": 50.00,
+      "v_price": 55.00,
+      "p_discount": 15,
+      "stock": 2,
+      "is_new": false,
+      "is_featured": false,
+      "is_bestseller": true
+    }
+  },
+  {
+    "model": "app.product",
+    "fields": {
+      "category_id": 1,
+      "material_id": 3,
+      "gender_id": 2,
+      "title": "Perfect Diamond Jewelry 444",
+      "description": "Perfect Diamond Jewelry 444 desc",
+      "price": 100.00,
+      "v_price": 170.00,
+      "p_discount": 0,
+      "stock": 1,
+      "is_new": true,
+      "is_featured": false,
+      "is_bestseller": false
+    }
+  },
+  {
+    "model": "app.product",
+    "fields": {
+      "category_id": 1,
+      "material_id": 3,
+      "gender_id": 2,
+      "title": "Perfect Diamond Jewelry 5",
+      "description": "Perfect Diamond Jewelry 5 desc",
+      "price": 40.00,
+      "v_price": 50.00,
+      "p_discount": 0,
+      "stock": 3,
+      "is_new": true,
+      "is_featured": false,
+      "is_bestseller": true
+    }
+  },
+  {
+    "model": "app.product",
+    "fields": {
+      "category_id": 2,
+      "material_id": 1,
+      "gender_id": 1,
+      "title": "Perfect Diamond Jewelry 11",
+      "description": "Perfect Diamond Jewelry 11 desc",
+      "price": 60.00,
+      "v_price": 70.00,
+      "p_discount": 10,
+      "stock": 3,
+      "is_new": true,
+      "is_featured": true,
+      "is_bestseller": true
+    }
+  },
+  {
+    "model": "app.product",
+    "fields": {
+      "category_id": 2,
+      "material_id": 1,
+      "gender_id": 2,
+      "title": "Perfect Diamond Jewelry 2 ",
+      "description": "Perfect Diamond Jewelry 2 desc",
+      "price": 80.00,
+      "v_price": 90.00,
+      "p_discount": 0,
+      "stock": 5,
+      "is_new": true,
+      "is_featured": false,
+      "is_bestseller": true
+    }
+  },
+  {
+    "model": "app.product",
+    "fields": {
+      "category_id": 2,
+      "material_id": 2,
+      "gender_id": 1,
+      "title": "Perfect Diamond Jewelry 3",
+      "description": "Perfect Diamond Jewelry 3 desc",
+      "price": 50.00,
+      "v_price": 55.00,
+      "p_discount": 15,
+      "stock": 2,
+      "is_new": false,
+      "is_featured": false,
+      "is_bestseller": true
+    }
+  },
+  {
+    "model": "app.product",
+    "fields": {
+      "category_id": 2,
+      "material_id": 3,
+      "gender_id": 2,
+      "title": "Perfect Diamond Jewelry 4",
+      "description": "Perfect Diamond Jewelry 4 desc",
+      "price": 100.00,
+      "v_price": 170.00,
+      "p_discount": 0,
+      "stock": 1,
+      "is_new": true,
+      "is_featured": false,
+      "is_bestseller": false
+    }
+  },
+  {
+    "model": "app.product",
+    "fields": {
+      "category_id": 2,
+      "material_id": 3,
+      "gender_id": 2,
+      "title": "Perfect Diamond Jewelry 5",
+      "description": "Perfect Diamond Jewelry 5 desc",
+      "price": 40.00,
+      "v_price": 50.00,
+      "p_discount": 0,
+      "stock": 3,
+      "is_new": true,
+      "is_featured": false,
+      "is_bestseller": true
+    }
+  },
+  {
+    "model": "app.product",
+    "fields": {
+      "category_id": 3,
+      "material_id": 1,
+      "gender_id": 1,
+      "title": "Perfect Diamond Jewelry EX1",
+      "description": "Perfect Diamond Jewelry EX1 desc",
+      "price": 60.00,
+      "v_price": 70.00,
+      "p_discount": 10,
+      "stock": 3,
+      "is_new": true,
+      "is_featured": true,
+      "is_bestseller": true
+    }
+  },
+  {
+    "model": "app.product",
+    "fields": {
+      "category_id": 3,
+      "material_id": 1,
+      "gender_id": 2,
+      "title": "Perfect Diamond Jewelry 2 ",
+      "description": "Perfect Diamond Jewelry 2 desc",
+      "price": 80.00,
+      "v_price": 90.00,
+      "p_discount": 0,
+      "stock": 5,
+      "is_new": true,
+      "is_featured": false,
+      "is_bestseller": true
+    }
+  },
+  {
+    "model": "app.product",
+    "fields": {
+      "category_id": 3,
+      "material_id": 2,
+      "gender_id": 1,
+      "title": "Perfect Diamond Jewelry 3",
+      "description": "Perfect Diamond Jewelry 3 desc",
+      "price": 50.00,
+      "v_price": 55.00,
+      "p_discount": 15,
+      "stock": 2,
+      "is_new": false,
+      "is_featured": false,
+      "is_bestseller": true
+    }
+  },
+  {
+    "model": "app.product",
+    "fields": {
+      "category_id": 3,
+      "material_id": 3,
+      "gender_id": 2,
+      "title": "Perfect Diamond Jewelry 4",
+      "description": "Perfect Diamond Jewelry 4 desc",
+      "price": 100.00,
+      "v_price": 170.00,
+      "p_discount": 0,
+      "stock": 1,
+      "is_new": true,
+      "is_featured": false,
+      "is_bestseller": false
+    }
+  },
+  {
+    "model": "app.product",
+    "fields": {
+      "category_id": 3,
+      "material_id": 3,
+      "gender_id": 2,
+      "title": "Perfect Diamond Jewelry 5",
+      "description": "Perfect Diamond Jewelry 5 desc",
+      "price": 40.00,
+      "v_price": 50.00,
+      "p_discount": 0,
+      "stock": 3,
+      "is_new": true,
+      "is_featured": false,
+      "is_bestseller": true
+    }
+  },
+  {
+    "model": "app.product",
+    "fields": {
+      "category_id": 4,
+      "material_id": 1,
+      "gender_id": 1,
+      "title": "Perfect Diamond Jewelry",
+      "description": "Perfect Diamond Jewelry desc",
+      "price": 60.00,
+      "v_price": 70.00,
+      "p_discount": 10,
+      "stock": 3,
+      "is_new": true,
+      "is_featured": true,
+      "is_bestseller": true
+    }
+  },
+  {
+    "model": "app.product",
+    "fields": {
+      "category_id": 4,
+      "material_id": 1,
+      "gender_id": 2,
+      "title": "Perfect Diamond Jewelry 2 ",
+      "description": "Perfect Diamond Jewelry 2 desc",
+      "price": 80.00,
+      "v_price": 90.00,
+      "p_discount": 0,
+      "stock": 5,
+      "is_new": true,
+      "is_featured": false,
+      "is_bestseller": true
+    }
+  },
+  {
+    "model": "app.product",
+    "fields": {
+      "category_id": 4,
+      "material_id": 2,
+      "gender_id": 1,
+      "title": "Perfect Diamond Jewelry 3",
+      "description": "Perfect Diamond Jewelry 3 desc",
+      "price": 50.00,
+      "v_price": 55.00,
+      "p_discount": 15,
+      "stock": 2,
+      "is_new": false,
+      "is_featured": false,
+      "is_bestseller": true
+    }
+  },
+  {
+    "model": "app.product",
+    "fields": {
+      "category_id": 4,
+      "material_id": 3,
+      "gender_id": 2,
+      "title": "Perfect Diamond Jewelry 4",
+      "description": "Perfect Diamond Jewelry 4 desc",
+      "price": 100.00,
+      "v_price": 170.00,
+      "p_discount": 0,
+      "stock": 1,
+      "is_new": true,
+      "is_featured": false,
+      "is_bestseller": false
+    }
+  },
+  {
+    "model": "app.product",
+    "fields": {
+      "category_id": 4,
+      "material_id": 3,
+      "gender_id": 2,
+      "title": "Perfect Diamond Jewelry 5",
+      "description": "Perfect Diamond Jewelry 5 desc",
+      "price": 40.00,
+      "v_price": 50.00,
+      "p_discount": 0,
+      "stock": 3,
+      "is_new": true,
+      "is_featured": false,
+      "is_bestseller": true
+    }
+  }
+]
+

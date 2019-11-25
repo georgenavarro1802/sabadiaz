@@ -32,10 +32,10 @@ admin.site.register(Gender, GenderAdmin)
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('id', 'category', 'material', 'title', 'description', 'created_at',
-                    'price', 'v_price', 'stock', 'is_new', 'is_featured', 'is_bestseller', 'is_onsale')
+                    'price', 'v_price', 'stock', 'is_new', 'is_featured', 'is_bestseller')
     ordering = ('-created_at', )
     search_fields = ('category__name', 'material__name', 'title', 'description')
-    list_filter = ('gender', 'material', 'category', 'is_new', 'is_featured', 'is_bestseller', 'is_onsale')
+    list_filter = ('gender', 'material', 'category', 'is_new', 'is_featured', 'is_bestseller')
 
 
 admin.site.register(Product, ProductAdmin)

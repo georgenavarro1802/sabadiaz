@@ -40,10 +40,9 @@
                                     <th class="text-center w-100px">Category</th>
                                     <th class="text-center w-100px">Material</th>
                                     <th class="text-center w-100px">Gender</th>
-                                    <th class="text-center w-80px">Stock</th>
-                                    <th class="text-center w-80px">Price</th>
-                                    <th class="text-center w-80px">VPrice</th>
-                                    <th class="text-center w-60px">IsNew?</th>
+                                    <th class="text-center w-60px">Stock</th>
+                                    <th class="text-center w-60px">Price</th>
+                                    <th class="text-center w-60px">VPrice</th>
                                     <th class="text-center w-100px"></th>
                                 </tr>
                                 </thead>
@@ -62,18 +61,42 @@
                                             <p class="font-12 text-dark _600">{{ product.code }}</p>
                                             <p class="font-12 text-dark _600 no-line-height">{{ product.title }}</p>
                                             <p class="font-11 text-muted" style="line-height: 0">{{ product.description }}</p>
+                                            {% if product.is_new %}
+                                                <span class="badge badge-success">New</span>
+                                            {% endif %}
+                                            {% if product.is_featured %}
+                                                <span class="badge badge-info">Featured</span>
+                                            {% endif %}
+                                            {% if product.is_bestseller %}
+                                                <span class="badge badge-primary">BestSeller</span>
+                                            {% endif %}
+                                            {% if product.p_discount %}
+                                                <span class="badge badge-dark">
+                                                    {{ product.p_discount|floatformat:0 }}%
+                                                </span>
+                                            {% endif %}
                                         </td>
                                         <td class="text-center">{{ product.category }}</td>
                                         <td class="text-center">{{ product.material }}</td>
-                                        <td class="text-center">{{ product.get_gender_display }}</td>
+                                        <td class="text-center">{{ product.gender }}</td>
                                         <td class="text-center">{{ product.stock }}</td>
                                         <td class="text-center">${{ product.price|floatformat:2|intcomma }}</td>
                                         <td class="text-center">${{ product.v_price|floatformat:2|intcomma }}</td>
-                                        <td class="text-center">
-                                            {% if product.is_new %}
-                                                <i class="fa fa-check text-success"></i>
-                                            {% endif %}
-                                        </td>
+{#                                        <td class="text-center">#}
+{#                                            {% if product.is_new %}#}
+{#                                                <i class="fa fa-check text-success"></i>#}
+{#                                            {% endif %}#}
+{#                                        </td>#}
+{#                                        <td class="text-center">#}
+{#                                            {% if product.is_featured %}#}
+{#                                                <i class="fa fa-check text-success"></i>#}
+{#                                            {% endif %}#}
+{#                                        </td>#}
+{#                                        <td class="text-center">#}
+{#                                            {% if product.is_bestseller %}#}
+{#                                                <i class="fa fa-check text-success"></i>#}
+{#                                            {% endif %}#}
+{#                                        </td>#}
                                         <td class="text-center">
                                             <a href="{% url 'admin_edit_product' product.id %}" class="btn btn-outline-primary btn-sm tt" title="Edit">
                                                 <i class="fa fa-pencil"></i>

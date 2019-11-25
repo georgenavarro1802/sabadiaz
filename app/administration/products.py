@@ -14,7 +14,7 @@ def view(request):
     data = {'title': 'Sabadiaz Jewelry Admin - All Products'}
     addUserData(request, data)
 
-    products = Product.objects.all()
+    products = Product.objects.order_by('-id')
     page = request.GET.get('page', 1)
 
     paginator = Paginator(products, 5)
@@ -49,7 +49,6 @@ def create_product(request):
                 is_new = True if request.POST['is_new'] == 'on' else False
                 is_featured = True if request.POST['is_featured'] == 'on' else False
                 is_bestseller = True if request.POST['is_bestseller'] == 'on' else False
-                is_onsale = True if request.POST['is_onsale'] == 'on' else False
 
                 product = Product(category_id=category_id,
                                   material_id=material_id,
@@ -63,8 +62,7 @@ def create_product(request):
                                   stock=stock,
                                   is_new=is_new,
                                   is_featured=is_featured,
-                                  is_bestseller=is_bestseller,
-                                  is_onsale=is_onsale)
+                                  is_bestseller=is_bestseller)
                 product.save()
 
                 for index, key in enumerate(request.FILES):
@@ -108,10 +106,9 @@ def edit_product(request, product_id):
                 product.is_new = True if request.POST['is_new'] == 'on' else False
                 product.is_featured = True if request.POST['is_featured'] == 'on' else False
                 product.is_bestseller = True if request.POST['is_bestseller'] == 'on' else False
-                product.is_onsale = True if request.POST['is_onsale'] == 'on' else False
                 product.save()
 
-                time.sleep(1)
+                time.sleep(0.5)
                 return ok_json(data={'message': 'Product has been succesfully edited!',
                                      'redirect_url': reverse('admin_products')})
 
@@ -121,6 +118,7 @@ def edit_product(request, product_id):
     data['option'] = 'admin_edit_product'
     data['categories'] = Category.objects.all()
     data['materials'] = Material.objects.all()
+    data['genders'] = Gender.objects.all()
     data['product'] = product
     return render(request, 'administration/products/product.html', data)
 

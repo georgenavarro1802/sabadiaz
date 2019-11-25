@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse
 
 from app.helpers import ok_json, bad_json
-from app.models import Product, Slide, Category, Company, Testimonial, Material
+from app.models import Product, Slide, Category, Company, Testimonial, Material, Gender
 
 
 def addUserData(request, data):
@@ -24,7 +24,7 @@ def index(request):
     data['categories'] = Category.objects.filter(product__isnull=False).distinct()
     data['featured_products'] = Product.objects.filter(is_featured=True)[:10]
     data['bestseller_products'] = Product.objects.filter(is_bestseller=True)[:8]
-    data['onsale_products'] = Product.objects.filter(is_onsale=True)[:8]
+    data['new_products'] = Product.objects.filter(is_new=True)[:8]
     return render(request, 'site/home.html', data)
 
 
@@ -42,8 +42,9 @@ def products(request):
     addUserData(request, data)
     data['option'] = 'products'
     data['current_page'] = 'Our Products'
-    data['categories'] = Category.objects.filter(product__stock__gt=0).distinct()
-    data['materials'] = Material.objects.filter(product__stock__gt=0).distinct()
+    data['categories'] = Category.objects.filter(product__stock__gt=0).distinct().order_by('id')
+    data['materials'] = Material.objects.filter(product__stock__gt=0).distinct().order_by('id')
+    data['genders'] = Gender.objects.filter(product__stock__gt=0).distinct().order_by('id')
     return render(request, 'site/products.html', data)
 
 

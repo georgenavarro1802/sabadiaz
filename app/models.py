@@ -100,7 +100,6 @@ class Product(models.Model):
     is_new = models.BooleanField(default=False)
     is_featured = models.BooleanField(default=False)
     is_bestseller = models.BooleanField(default=False)
-    is_onsale = models.BooleanField(default=False)
 
     # images fields
     image1 = models.ImageField(upload_to='products', blank=True, null=True)
@@ -254,6 +253,31 @@ class Company(models.Model):
 
     def get_logo(self):
         return self.logo.url if self.logo else f"{STATIC_URL}/img/logo/logo.png"
+
+    @staticmethod
+    def get_available_products():
+        return Product.objects.filter(stock__gt=0)
+
+    def count_of_available_products(self):
+        return self.get_available_products().count()
+
+    def get_available_new_products(self):
+        return self.get_available_products().filter(is_new=True)
+
+    def count_of_available_new_products(self):
+        return self.get_available_new_products().count()
+
+    def get_available_featured_products(self):
+        return self.get_available_products().filter(is_featured=True)
+
+    def count_of_available_featured_products(self):
+        return self.get_available_featured_products().count()
+
+    def get_available_bestseller_products(self):
+        return self.get_available_products().filter(is_bestseller=True)
+
+    def count_of_available_bestseller_products(self):
+        return self.get_available_bestseller_products().count()
 
 
 class Slide(models.Model):

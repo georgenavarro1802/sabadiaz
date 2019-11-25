@@ -154,19 +154,22 @@ textarea:focus {
 }
 
 .form-control:focus {
-  border-color: #c29958;
+  border-color: #7386d5;
+  /*border-color: #c29958;*/
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
 ::-moz-selection {
   color: #fff;
-  background: #c29958;
+  background: #7386d5;
+  /*background: #c29958;*/
 }
 
 ::selection {
   color: #fff;
-  background: #c29958;
+  background: #7386d5;
+  /*background: #c29958;*/
 }
 
 ::-webkit-input-placeholder {
@@ -314,7 +317,8 @@ textarea:focus {
 }
 
 .slick-arrow-style button.slick-arrow:hover {
-  color: #c29958;
+  color: #7386d5;
+  /*color: #c29958;*/
 }
 
 .slick-arrow-style:hover button.slick-arrow {
@@ -362,7 +366,8 @@ textarea:focus {
 }
 
 .slick-arrow-style_hero button.slick-arrow:hover {
-  color: #c29958;
+  color: #7386d5;
+  /*color: #c29958;*/
   background-color: transparent;
 }
 
@@ -390,7 +395,8 @@ textarea:focus {
 }
 
 .slick-append button:hover {
-  color: #c29958;
+  color: #7386d5;
+  /*color: #c29958;*/
 }
 
 /*--------- slick slider dot style start -------*/
@@ -416,7 +422,6 @@ textarea:focus {
   width: 14px;
   height: 14px;
   padding: 0;
-  border: none;
   display: block;
   text-indent: -5000px;
   cursor: pointer;
@@ -429,8 +434,10 @@ textarea:focus {
 }
 
 .slick-dot-style ul.slick-dots li.slick-active button {
-  border-color: #c29958;
-  background-color: #c29958;
+  border-color: #7386d5;
+  /*border-color: #c29958;*/
+  background-color: #7386d5;
+  /*background-color: #c29958;*/
 }
 
 .slick-row-3 .slick-list {
@@ -1151,7 +1158,8 @@ textarea:focus {
 }
 
 .header-top-settings ul li .dropdown-list li a:hover {
-  color: #c29958;
+  color: #7386d5;
+  /*color: #c29958;*/
 }
 
 .header-top-settings ul li .dropdown-list li a img {
@@ -1218,7 +1226,8 @@ textarea:focus {
 }
 
 .header-configure-area ul li a:hover {
-  color: #c29958;
+  color: #7386d5;
+  /*color: #c29958;*/
 }
 
 .header-configure-area ul li:first-child {
@@ -1263,7 +1272,8 @@ textarea:focus {
 }
 
 .header-configure-area ul li.user-hover .dropdown-list li a:hover {
-  color: #c29958;
+  color: #7386d5;
+  /*color: #c29958;*/
 }
 
 .header-configure-area ul li.user-hover:hover .dropdown-list {
@@ -1286,7 +1296,8 @@ textarea:focus {
 }
 
 .header-search-box:hover .header-search-btn {
-  color: #c29958;
+  color: #7386d5;
+  /*color: #c29958;*/
 }
 
 .header-search-btn {
@@ -1343,7 +1354,8 @@ textarea:focus {
 }
 
 .header-social-link a:hover {
-  color: #c29958;
+  color: #7386d5;
+  /*color: #c29958;*/
 }
 
 /*-------- header social link end --------*/
@@ -1381,7 +1393,8 @@ textarea:focus {
 }
 
 .main-menu ul li:hover > a, .main-menu ul li.active > a {
-  color: #c29958;
+  color: #7386d5;
+  /*color: #c29958;*/
 }
 
 .main-menu ul li ul.dropdown {
@@ -1429,7 +1442,8 @@ textarea:focus {
   top: 50%;
   content: ' ';
   position: absolute;
-  background-color: #c29958;
+  background-color: #7386d5;
+  /*background-color: #c29958;*/
   -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
           transform: translateY(-50%);
@@ -1447,7 +1461,8 @@ textarea:focus {
 }
 
 .main-menu ul li ul.dropdown li:hover > a {
-  color: #c29958;
+  color: #7386d5;
+  /*color: #c29958;*/
   background-color: #fff;
   padding-left: 35px;
 }
@@ -1523,7 +1538,8 @@ textarea:focus {
 
 .main-menu ul li ul.megamenu li.mega-title span:after {
   width: 50%;
-  background-color: #c29958;
+  background-color: #7386d5;
+  /*background-color: #c29958;*/
 }
 
 .main-menu ul li ul.megamenu li a {
@@ -1542,7 +1558,8 @@ textarea:focus {
 }
 
 .main-menu ul li ul.megamenu li:hover > a {
-  color: #c29958;
+  color: #7386d5;
+  /*color: #c29958;*/
   padding-left: 15px;
 }
 
@@ -4448,7 +4465,8 @@ textarea:focus {
 }
 
 .blog-sidebar .blog-archive li a:hover {
-  color: #c29958;
+  color: #7386d5;
+  /*color: #c29958;*/
 }
 
 .blog-sidebar .blog-archive li:last-child a {
@@ -4527,7 +4545,8 @@ textarea:focus {
 }
 
 .recent-post-item .recent-post-description h6 a:hover {
-  color: #c29958;
+  color: #7386d5;
+  /*color: #c29958;*/
 }
 
 .recent-post-item .recent-post-description p {

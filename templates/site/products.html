@@ -18,36 +18,19 @@
                         <div class="sidebar-single">
                             <h5 class="sidebar-title">Categories</h5>
                             <div class="sidebar-body">
-                                <ul class="shop-categories">
+                                <ul class="checkbox-container categories-list">
                                     {% for category in categories %}
                                         <li>
-                                            <a href="#">{{ category }} <span>({{ category.count_of_available_products|floatformat:0 }})</span></a>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="checkboxCategory_{{ category.id }}">
+                                                <label class="custom-control-label" for="checkboxCategory_{{ category.id }}">{{ category }} ({{ category.count_of_available_products|floatformat:0 }})</label>
+                                            </div>
                                         </li>
                                     {% endfor %}
                                 </ul>
                             </div>
                         </div>
                         <!-- Categories Filter end -->
-
-                        <!-- Prices Filter -->
-                        <div class="sidebar-single">
-                            <h5 class="sidebar-title">Price</h5>
-                            <div class="sidebar-body">
-                                <div class="price-range-wrap">
-                                    <div class="price-range" data-min="1" data-max="1000"></div>
-                                    <div class="range-slider">
-                                        <form action="#" class="d-flex align-items-center justify-content-between">
-                                            <div class="price-input">
-                                                <label for="amount">Price: </label>
-                                                <input type="text" id="amount">
-                                            </div>
-                                            <button class="filter-btn">Filter</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Price Filter -->
 
                         <!-- Materials Filter -->
                         <div class="sidebar-single">
@@ -67,46 +50,6 @@
                         </div>
                         <!-- Materials Filter end -->
 
-                        <!-- single sidebar start -->
-                        <div class="sidebar-single">
-                            <h5 class="sidebar-title">color</h5>
-                            <div class="sidebar-body">
-                                <ul class="checkbox-container categories-list">
-                                    <li>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck12">
-                                            <label class="custom-control-label" for="customCheck12">black (20)</label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck13">
-                                            <label class="custom-control-label" for="customCheck13">red (6)</label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck14">
-                                            <label class="custom-control-label" for="customCheck14">blue (8)</label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck11">
-                                            <label class="custom-control-label" for="customCheck11">green (5)</label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck15">
-                                            <label class="custom-control-label" for="customCheck15">pink (4)</label>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- single sidebar end -->
-
                         <!-- Genders Filter -->
                         <div class="sidebar-single">
                             <h5 class="sidebar-title">Gender</h5>
@@ -120,6 +63,51 @@
                                             </div>
                                         </li>
                                     {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Genders Filter end -->
+
+                        <!-- Prices Filter -->
+                        <div class="sidebar-single">
+                            <h5 class="sidebar-title">Price</h5>
+                            <div class="sidebar-body">
+                                <div class="price-range-wrap">
+                                    <div class="price-range" data-min="1" data-max="1000"></div>
+                                    <div class="range-slider">
+                                        <div class="price-input">
+                                            <label for="amount">Price: </label>
+                                            <input type="text" id="amount">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Price Filter -->
+
+                        <!-- Genders Filter -->
+                        <div class="sidebar-single">
+                            <h5 class="sidebar-title">More Filters</h5>
+                            <div class="sidebar-body">
+                                <ul class="checkbox-container categories-list">
+                                    <li>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="checkboxIsNew">
+                                            <label class="custom-control-label" for="checkboxIsNew">Is New ({{ company.count_of_available_new_products|floatformat:0 }})</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="checkboxIsFeatured">
+                                            <label class="custom-control-label" for="checkboxIsFeatured">Is Featured ({{ company.count_of_available_featured_products|floatformat:0 }})</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="checkboxIsBestSeller">
+                                            <label class="custom-control-label" for="checkboxIsBestSeller">Is BestSeller ({{ company.count_of_available_bestseller_products|floatformat:0 }})</label>
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
