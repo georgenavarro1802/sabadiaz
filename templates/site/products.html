@@ -23,7 +23,7 @@
                                             <div class="custom-control custom-checkbox">
                                                 <input type="checkbox" class="checkboxCategories custom-control-input" cid="{{ category.id }}" id="checkboxCategory_{{ category.id }}" {% if category.id in category_ids %}checked{% endif %} />
                                                 <label class="custom-control-label" for="checkboxCategory_{{ category.id }}">
-                                                   {{ category }} ({{ category.count_of_available_products|floatformat:0 }})
+                                                    {{ category }} ({{ category.count_of_available_products|floatformat:0 }})
                                                 </label>
                                             </div>
                                         </li>
@@ -97,19 +97,19 @@
                                 <ul class="checkbox-container categories-list">
                                     <li>
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="checkboxIsNew">
+                                            <input type="checkbox" class="custom-control-input" id="checkboxIsNew" {% if is_new %}checked{% endif %}>
                                             <label class="custom-control-label" for="checkboxIsNew">New ({{ company.count_of_available_new_products|floatformat:0 }})</label>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="checkboxIsFeatured">
+                                            <input type="checkbox" class="custom-control-input" id="checkboxIsFeatured" {% if is_featured %}checked{% endif %}>
                                             <label class="custom-control-label" for="checkboxIsFeatured">Featured ({{ company.count_of_available_featured_products|floatformat:0 }})</label>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="checkboxIsBestSeller">
+                                            <input type="checkbox" class="custom-control-input" id="checkboxIsBestSeller" {% if is_bestseller %}checked{% endif %}>
                                             <label class="custom-control-label" for="checkboxIsBestSeller">Best Seller ({{ company.count_of_available_bestseller_products|floatformat:0 }})</label>
                                         </div>
                                     </li>
@@ -191,11 +191,33 @@
                         <!-- start pagination area -->
                         <div class="paginatoin-area text-center">
                             <ul class="pagination-box">
-                                <li><a class="previous" href="#"><i class="pe-7s-angle-left"></i></a></li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a class="next" href="#"><i class="pe-7s-angle-right"></i></a></li>
+
+                                <!-- Previous -->
+                                <li>
+                                    <a class="previous" href="{% if not products.has_previous %}javascript:void(0);{% else %}?page={{ products.previous_page_number }}{% endif %}">
+                                        <i class="pe-7s-angle-left"></i>
+                                    </a>
+                                </li>
+                                <!-- end Previous -->
+
+                                <!-- Pages -->
+                                {% for i in products.paginator.page_range %}
+                                    <li class="{% if products.number == i %}active{% endif %}">
+                                        <a href="{% if products.number == i %}#{% else %}?page={{ i }}{% endif %}">
+                                            {{ i }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                                <!-- end Pages -->
+
+                                <!-- Next -->
+                                <li>
+                                    <a class="next" href="{% if not products.has_next %}javascript:void(0);{% else %}?page={{ products.next_page_number }}{% endif %}">
+                                        <i class="pe-7s-angle-right"></i>
+                                    </a>
+                                </li>
+                                <!-- end Next -->
+
                             </ul>
                         </div>
                         <!-- end pagination area -->
@@ -216,6 +238,9 @@
         let checkboxCategories = $(".checkboxCategories");
         let checkboxMaterials = $(".checkboxMaterials");
         let checkboxGenders = $(".checkboxGenders");
+        let checkboxIsNew = $("#checkboxIsNew");
+        let checkboxIsFeatured = $("#checkboxIsFeatured");
+        let checkboxIsBestSeller = $("#checkboxIsBestSeller");
 
         $(function () {
 
@@ -254,7 +279,13 @@
                     genders_ids = genders_ids.substring(0, genders_ids.length-1);
                 }
 
-                location.href = "{% url 'products' %}?c="+categories_ids+"&m="+materials_ids+"&g="+genders_ids;
+                // Conditions
+                let isNew = checkboxIsNew.is(':checked');               // isNew
+                let isFeatured = checkboxIsFeatured.is(':checked');     // isFeatured
+                let isBestSeller = checkboxIsBestSeller.is(':checked'); // isBestSeller
+
+                // URL call with params
+                location.href = "{% url 'products' %}?c="+categories_ids+"&m="+materials_ids+"&g="+genders_ids+"&cn="+isNew+"&cf="+isFeatured+"&cb="+isBestSeller;
 
             };
 
@@ -264,11 +295,10 @@
             checkboxMaterials.click(apply_filters);
             // Genders
             checkboxGenders.click(apply_filters);
-
-            // hide loader once page is loaded
-            setTimeout(function () {
-                $('#divLoader').fadeOut(200);
-            }, 500);
+            // Conditions
+            checkboxIsNew.click(apply_filters);
+            checkboxIsFeatured.click(apply_filters);
+            checkboxIsBestSeller.click(apply_filters);
 
         });
     </script>

@@ -1,7 +1,6 @@
-import time
-
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -57,9 +56,17 @@ def products(request):
     if 'g' in request.GET and request.GET['g']:
         gender_ids = [int(x) for x in request.GET['g'].split(',')]
 
-    is_new = request.GET.get('cn', False)
-    is_featured = request.GET.get('cf', False)
-    is_bestseller = request.GET.get('cb', False)
+    is_new = False
+    if 'cn' in request.GET and request.GET['cn'] == 'true':
+        is_new = True
+
+    is_featured = False
+    if 'cf' in request.GET and request.GET['cf'] == 'true':
+        is_featured = True
+
+    is_bestseller = False
+    if 'cb' in request.GET and request.GET['cb'] == 'true':
+        is_bestseller = True
 
     if category_ids:
         products = products.filter(category_id__in=category_ids)
@@ -79,6 +86,18 @@ def products(request):
     if is_bestseller:
         products = products.filter(is_bestseller=True)
 
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(products, 12)
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
+
+    data['products'] = products
+
     data['option'] = 'products'
     data['current_page'] = 'Our Products'
     data['categories'] = Category.objects.filter(product__stock__gt=0).distinct().order_by('id')
@@ -87,6 +106,9 @@ def products(request):
     data['category_ids'] = category_ids
     data['gender_ids'] = gender_ids
     data['material_ids'] = material_ids
+    data['is_new'] = is_new
+    data['is_featured'] = is_featured
+    data['is_bestseller'] = is_bestseller
     data['products'] = products
     return render(request, 'site/products.html', data)
 

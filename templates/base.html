@@ -409,6 +409,15 @@
     <!-- Customs JS -->
     {% block script %}{% endblock %}
 
+    <script>
+        $(function () {
+            // hide loader once page is loaded
+            setTimeout(function () {
+                $('#divLoader').fadeOut(200);
+            }, 500);
+        })
+    </script>
+
 </body>
 
 </html>
