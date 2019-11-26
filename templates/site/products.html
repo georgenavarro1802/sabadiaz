@@ -80,10 +80,13 @@
                                 <div class="price-range-wrap">
                                     <div class="price-range" data-min="1" data-max="1000"></div>
                                     <div class="range-slider">
-                                        <div class="price-input">
-                                            <label for="amount">Price: </label>
-                                            <input type="text" id="amount">
-                                        </div>
+                                        <form class="d-flex align-items-center justify-content-between">
+                                            <div class="price-input">
+                                                <label for="amount">Price: </label>
+                                                <input type="text" id="amount">
+                                            </div>
+                                            <button id="btnFilterPrice" class="filter-btn">Filter</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -241,6 +244,8 @@
         let checkboxIsNew = $("#checkboxIsNew");
         let checkboxIsFeatured = $("#checkboxIsFeatured");
         let checkboxIsBestSeller = $("#checkboxIsBestSeller");
+        let amount = $("#amount");
+        let btnFilterPrice = $("#btnFilterPrice");
 
         $(function () {
 
@@ -284,8 +289,12 @@
                 let isFeatured = checkboxIsFeatured.is(':checked');     // isFeatured
                 let isBestSeller = checkboxIsBestSeller.is(':checked'); // isBestSeller
 
+                // Amount range
+                {#let price_range = 0;#}
+                let price_range = amount.val().split('-');
+
                 // URL call with params
-                location.href = "{% url 'products' %}?c="+categories_ids+"&m="+materials_ids+"&g="+genders_ids+"&cn="+isNew+"&cf="+isFeatured+"&cb="+isBestSeller;
+                location.href = "{% url 'products' %}?c="+categories_ids+"&m="+materials_ids+"&g="+genders_ids+"&cn="+isNew+"&cf="+isFeatured+"&cb="+isBestSeller+"&p="+price_range;
 
             };
 
@@ -299,6 +308,9 @@
             checkboxIsNew.click(apply_filters);
             checkboxIsFeatured.click(apply_filters);
             checkboxIsBestSeller.click(apply_filters);
+
+            // Price range
+            btnFilterPrice.click(apply_filters);
 
         });
     </script>

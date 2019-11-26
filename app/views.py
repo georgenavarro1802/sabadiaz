@@ -68,6 +68,10 @@ def products(request):
     if 'cb' in request.GET and request.GET['cb'] == 'true':
         is_bestseller = True
 
+    price_range = None
+    if 'p' in request.GET and request.GET['p']:
+        price_range = request.GET['p'].strip().replace('$', '').split(',')
+
     if category_ids:
         products = products.filter(category_id__in=category_ids)
 
@@ -85,6 +89,9 @@ def products(request):
 
     if is_bestseller:
         products = products.filter(is_bestseller=True)
+
+    if price_range:
+        products = products.filter(price__gte=float(price_range[0]), price__lte=float(price_range[1]))
 
     page = request.GET.get('page', 1)
 
