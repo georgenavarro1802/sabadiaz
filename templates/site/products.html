@@ -87,25 +87,25 @@
 
                         <!-- Genders Filter -->
                         <div class="sidebar-single">
-                            <h5 class="sidebar-title">More Filters</h5>
+                            <h5 class="sidebar-title">Condition</h5>
                             <div class="sidebar-body">
                                 <ul class="checkbox-container categories-list">
                                     <li>
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="checkboxIsNew">
-                                            <label class="custom-control-label" for="checkboxIsNew">Is New ({{ company.count_of_available_new_products|floatformat:0 }})</label>
+                                            <label class="custom-control-label" for="checkboxIsNew">New ({{ company.count_of_available_new_products|floatformat:0 }})</label>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="checkboxIsFeatured">
-                                            <label class="custom-control-label" for="checkboxIsFeatured">Is Featured ({{ company.count_of_available_featured_products|floatformat:0 }})</label>
+                                            <label class="custom-control-label" for="checkboxIsFeatured">Featured ({{ company.count_of_available_featured_products|floatformat:0 }})</label>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="checkboxIsBestSeller">
-                                            <label class="custom-control-label" for="checkboxIsBestSeller">Is BestSeller ({{ company.count_of_available_bestseller_products|floatformat:0 }})</label>
+                                            <label class="custom-control-label" for="checkboxIsBestSeller">Best Seller ({{ company.count_of_available_bestseller_products|floatformat:0 }})</label>
                                         </div>
                                     </li>
                                 </ul>
@@ -135,12 +135,16 @@
                                 <div class="col-lg-7 col-md-6 order-2 order-md-1">
                                     <div class="top-bar-left">
                                         <div class="product-view-mode">
-                                            <a class="active" href="#" data-target="grid-view" data-toggle="tooltip" title="Grid View"><i class="fa fa-th"></i></a>
-                                            <a href="#" data-target="list-view" data-toggle="tooltip" title="List View"><i class="fa fa-list"></i></a>
+                                            <a class="active" href="#" data-target="grid-view" data-toggle="tooltip" title="Grid View">
+                                                <i class="fa fa-th"></i>
+                                            </a>
+                                            <a href="#" data-target="list-view" data-toggle="tooltip" title="List View">
+                                                <i class="fa fa-list"></i>
+                                            </a>
                                         </div>
-                                        <div class="product-amount">
-                                            <p>Showing 1–16 of 21 results</p>
-                                        </div>
+{#                                        <div class="product-amount">#}
+{#                                            <p>Showing 1–16 of 21 results</p>#}
+{#                                        </div>#}
                                     </div>
                                 </div>
                                 <div class="col-lg-5 col-md-6 order-1 order-md-2">
@@ -148,13 +152,11 @@
                                         <div class="product-short">
                                             <p>Sort By : </p>
                                             <select class="nice-select" name="sortby">
-                                                <option value="trending">Relevance</option>
-                                                <option value="sales">Name (A - Z)</option>
-                                                <option value="sales">Name (Z - A)</option>
-                                                <option value="rating">Price (Low &gt; High)</option>
-                                                <option value="date">Rating (Lowest)</option>
-                                                <option value="price-asc">Model (A - Z)</option>
-                                                <option value="price-asc">Model (Z - A)</option>
+                                                <option value="1">Name (A - Z)</option>
+                                                <option value="2">Name (Z - A)</option>
+                                                <option value="3">Price: Low to High</option>
+                                                <option value="4">Price: High to Low</option>
+                                                <option value="5">Newest Arrivals</option>
                                             </select>
                                         </div>
                                     </div>

@@ -1,8 +1,8 @@
 {% load static %}
 {% load humanize %}
 
-<div class="product-item">
 
+<div class="product-item">
     <figure class="product-thumb">
         <a href="{% url 'product_details' product.id %}">
             <img class="pri-img" src="{{ product.get_image1 }}" alt="product_image1" width="200" height="200">
@@ -11,7 +11,7 @@
         <div class="product-badge">
             {% if product.is_new %}
                 <div class="product-label new">
-                    <span>New</span>
+                    <span>new</span>
                 </div>
             {% endif %}
             {% if product.p_discount %}
@@ -32,7 +32,7 @@
         </div>
     </figure>
 
-    <div class="product-caption text-center">
+    <div class="product-content-list">
         <div class="product-identity">
             <p class="manufacturer-name">
                 <a href="{% url 'product_details' product.id %}">
@@ -40,11 +40,9 @@
                 </a>
             </p>
         </div>
-        <h6 class="product-name">
-            <a href="{% url 'product_details' product.id %}">
-                {{ product.title }}
-            </a>
-        </h6>
+        <a href="{% url 'product_details' product.id %}">
+            {{ product.title }}
+        </a>
         <div class="price-box">
             <span class="price-regular">
                 ${{ product.price|floatformat:2|intcomma }}
