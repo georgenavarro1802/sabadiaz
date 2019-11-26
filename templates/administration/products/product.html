@@ -8,7 +8,13 @@
     <!-- Heading -->
     <div class="row mt-2">
         <div class="col-10">
-            <h4>{% if product %}Edit{% else %}Add{% endif %} Product</h4>
+            <h4>
+                {% if product %}
+                    Edit Product: {{ product.code }}
+                {% else %}
+                    Add Product
+                {% endif %}
+            </h4>
         </div>
         <div class="col-2 text-right text-white font-14">
             <a href="javascript:void(0);" onclick="PRODUCTS.submit($(this), {% if product %}{{ product.id }}{% else %}0{% endif %});" class="btn btn-success text-center">

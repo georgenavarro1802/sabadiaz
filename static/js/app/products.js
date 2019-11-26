@@ -40,7 +40,7 @@ let PRODUCTS = {
         let title = inputTitle.val();
         let description = inputDescription.val();
         let category_id = selectCategory.val();
-            let gender_id = selectGender.val();
+        let gender_id = selectGender.val();
         let material_id = selectMaterial.val();
         let price = parseFloat(inputPrice.val());
 
@@ -49,9 +49,9 @@ let PRODUCTS = {
         let discount = inputDiscount.val();
         let vprice = inputVPrice.val();
         let information = textareaInformation.val();
-        let is_new = checkboxIsNew.val();
-        let is_featured = checkboxIsFeatured.val();
-        let is_bestseller = checkboxIsBestSeller.val();
+        let is_new = checkboxIsNew.is(':checked');
+        let is_featured = checkboxIsFeatured.is(':checked');
+        let is_bestseller = checkboxIsBestSeller.is(':checked');
 
         let formData = new FormData();
         formData.append('title', title);
@@ -59,7 +59,7 @@ let PRODUCTS = {
         formData.append('category_id', category_id);
         formData.append('material_id', material_id);
         formData.append('gender_id', gender_id);
-        formData.append('price', price);
+        formData.append('price', price.toString());
         formData.append('stock', stock);
         formData.append('discount', discount);
         formData.append('vprice', vprice);

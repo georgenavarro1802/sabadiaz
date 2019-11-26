@@ -82,21 +82,6 @@
                                         <td class="text-center">{{ product.stock }}</td>
                                         <td class="text-center">${{ product.price|floatformat:2|intcomma }}</td>
                                         <td class="text-center">${{ product.v_price|floatformat:2|intcomma }}</td>
-{#                                        <td class="text-center">#}
-{#                                            {% if product.is_new %}#}
-{#                                                <i class="fa fa-check text-success"></i>#}
-{#                                            {% endif %}#}
-{#                                        </td>#}
-{#                                        <td class="text-center">#}
-{#                                            {% if product.is_featured %}#}
-{#                                                <i class="fa fa-check text-success"></i>#}
-{#                                            {% endif %}#}
-{#                                        </td>#}
-{#                                        <td class="text-center">#}
-{#                                            {% if product.is_bestseller %}#}
-{#                                                <i class="fa fa-check text-success"></i>#}
-{#                                            {% endif %}#}
-{#                                        </td>#}
                                         <td class="text-center">
                                             <a href="{% url 'admin_edit_product' product.id %}" class="btn btn-outline-primary btn-sm tt" title="Edit">
                                                 <i class="fa fa-pencil"></i>

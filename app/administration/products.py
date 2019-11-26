@@ -26,6 +26,7 @@ def view(request):
         products = paginator.page(paginator.num_pages)
 
     data['products'] = products
+    data['option'] = 'admin_all_products'
     return render(request, 'administration/products/view.html', data)
 
 
@@ -46,9 +47,9 @@ def create_product(request):
                 discount = float(request.POST['discount'])
                 vprice = float(request.POST['vprice'])
                 information = request.POST['information']
-                is_new = True if request.POST['is_new'] == 'on' else False
-                is_featured = True if request.POST['is_featured'] == 'on' else False
-                is_bestseller = True if request.POST['is_bestseller'] == 'on' else False
+                is_new = True if request.POST['is_new'] == 'true' else False
+                is_featured = True if request.POST['is_featured'] == 'true' else False
+                is_bestseller = True if request.POST['is_bestseller'] == 'true' else False
 
                 product = Product(category_id=category_id,
                                   material_id=material_id,
@@ -98,14 +99,14 @@ def edit_product(request, product_id):
                 product.gender_id = int(request.POST['gender_id'])
                 product.title = request.POST['title']
                 product.description = request.POST['description']
-                product.price = float(request.POST['price'])
                 product.stock = int(request.POST['stock'])
-                product.discount = float(request.POST['discount'])
+                product.price = float(request.POST['price'])
                 product.vprice = float(request.POST['vprice'])
+                product.discount = float(request.POST['discount'])
                 product.information = request.POST['information']
-                product.is_new = True if request.POST['is_new'] == 'on' else False
-                product.is_featured = True if request.POST['is_featured'] == 'on' else False
-                product.is_bestseller = True if request.POST['is_bestseller'] == 'on' else False
+                product.is_new = True if request.POST['is_new'] == 'true' else False
+                product.is_featured = True if request.POST['is_featured'] == 'true' else False
+                product.is_bestseller = True if request.POST['is_bestseller'] == 'true' else False
                 product.save()
 
                 time.sleep(0.5)
