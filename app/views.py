@@ -1,3 +1,5 @@
+import time
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
@@ -40,11 +42,52 @@ def about(request):
 def products(request):
     data = {'title': 'Sabadiaz Jewelry - Our Products'}
     addUserData(request, data)
+
+    products = Product.objects.filter(stock__gt=0)
+
+    category_ids = None
+    if 'c' in request.GET and request.GET['c']:
+        category_ids = [int(x) for x in request.GET['c'].split(',')]
+
+    material_ids = None
+    if 'm' in request.GET and request.GET['m']:
+        material_ids = [int(x) for x in request.GET['m'].split(',')]
+
+    gender_ids = None
+    if 'g' in request.GET and request.GET['g']:
+        gender_ids = [int(x) for x in request.GET['g'].split(',')]
+
+    is_new = request.GET.get('cn', False)
+    is_featured = request.GET.get('cf', False)
+    is_bestseller = request.GET.get('cb', False)
+
+    if category_ids:
+        products = products.filter(category_id__in=category_ids)
+
+    if material_ids:
+        products = products.filter(material_id__in=material_ids)
+
+    if gender_ids:
+        products = products.filter(gender_id__in=gender_ids)
+
+    if is_new:
+        products = products.filter(is_new=True)
+
+    if is_featured:
+        products = products.filter(is_featured=True)
+
+    if is_bestseller:
+        products = products.filter(is_bestseller=True)
+
     data['option'] = 'products'
     data['current_page'] = 'Our Products'
     data['categories'] = Category.objects.filter(product__stock__gt=0).distinct().order_by('id')
     data['materials'] = Material.objects.filter(product__stock__gt=0).distinct().order_by('id')
     data['genders'] = Gender.objects.filter(product__stock__gt=0).distinct().order_by('id')
+    data['category_ids'] = category_ids
+    data['gender_ids'] = gender_ids
+    data['material_ids'] = material_ids
+    data['products'] = products
     return render(request, 'site/products.html', data)
 
 

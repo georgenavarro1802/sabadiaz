@@ -316,7 +316,7 @@ thead tr:nth-child(1) th{
     text-align: center;
 }
 
-#imageLoader {
+.imageLoader {
     position: absolute;
     left: 45%;
     top: 45%;
