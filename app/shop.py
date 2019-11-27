@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db.models import Q
 from django.shortcuts import render
 
 from app.models import Product, Category, Material, Gender
@@ -92,5 +93,8 @@ def details(request, product_id):
     addUserData(request, data)
     data['option'] = 'product_details'
     data['current_page'] = 'Product Details'
-    data['product'] = Product.objects.get(id=product_id)
+    data['product'] = product = Product.objects.get(id=product_id)
+    data['related_products'] = Product.objects.filter(Q(category=product.category) |
+                                                      Q(material=product.material) |
+                                                      Q(gender=product.gender)).exclude(id=product_id)[:6]
     return render(request, 'site/product_details.html', data)

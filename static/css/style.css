@@ -5338,11 +5338,14 @@ blockquote {
 }
 
 .product-details-des .pro-desc {
-  margin-bottom: 20px;
+    margin-bottom: 25px;
+    text-align: justify;
+    height: 90px;
+    border-top: 1px solid #eee;
 }
 
 .product-details-des .availability {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .product-details-des .availability i {
@@ -5351,7 +5354,7 @@ blockquote {
 
 .product-details-des .availability span {
   color: #555555;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1;
   padding-left: 3px;
@@ -5359,11 +5362,11 @@ blockquote {
 }
 
 .product-details-des .useful-links {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  margin-bottom: 20px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 10px;
 }
 
 .product-details-des .useful-links a {
@@ -5658,22 +5661,22 @@ blockquote {
 /*----- product details content end ----*/
 /*----- reviews area start -----*/
 .product-review-info .nav.review-tab li a {
-  color: #fff;
+  color: #555555;
   display: block;
   font-size: 16px;
   line-height: 1;
   text-transform: capitalize;
   padding: 8px 10px;
-  border: 1px solid #7386d5;
-  /*border: 1px solid #c29958;*/
+  border: 1px solid #fff;
   border-bottom: none;
-  background-color: #7386d5;
-  /*background-color: #c29958;*/
+  background-color: #fff;
 }
 
 .product-review-info .nav.review-tab li a:hover, .product-review-info .nav.review-tab li a.active {
-  color: #555555;
-  background-color: #fff;
+  color: #fff;
+  /**/
+  background-color: #7386d5;
+  /**/
   border-color: #ddd;
 }
 
