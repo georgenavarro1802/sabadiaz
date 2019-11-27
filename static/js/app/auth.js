@@ -40,6 +40,8 @@ let AUTHENTICATION = {
                         setTimeout(function () {
                             location.href = response.redirect_url;
                         }, 500);
+                    }else{
+                        alertify.error(response.message);
                     }
                 },
                 error: function (response) {

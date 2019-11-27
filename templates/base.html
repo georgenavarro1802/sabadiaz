@@ -37,6 +37,8 @@
     <link rel="stylesheet" href="{% static 'css/plugins/nice-select.css' %}">
     <!-- jquery UI css -->
     <link rel="stylesheet" href="{% static 'css/plugins/jqueryui.min.css' %}">
+        <!-- Sweet Alert -->
+    <link rel="stylesheet" href="{% static 'css/vendor/sweetalert2.min.css' %}">
     <!-- main style css -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
@@ -403,6 +405,8 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfmCVTjRI007pC1Yk2o2d_EhgkjTsFVN8"></script>
     <!-- google map active js -->
     <script src="{% static 'js/plugins/google-map.js' %}"></script>
+    <!-- Sweet Alert 2 -->
+    <script src="{% static 'js/vendor/sweetalert2.min.js' %}"></script>
     <!-- Main JS -->
     <script src="{% static 'js/main.js' %}"></script>
 
@@ -411,10 +415,32 @@
 
     <script>
         $(function () {
+
+            // Add to Wishlist
+            $(".btnWishList").click(function () {
+                let pid = $(this).attr('pid');
+                if ('{{ is_visitor }}' === '0'){
+                    Swal.fire(
+                        'Alert',
+                        'To perfom this action you need to be authenticated. <br/>Log in and try again.',
+                        'info'
+                    );
+                }else{
+                    alert('do it')
+                }
+            });
+
             // hide loader once page is loaded
             setTimeout(function () {
                 $('#divLoader').fadeOut(200);
             }, 500);
+
+            // Tooltips
+            $('.tl').tooltip({ placement: 'left' });
+            $('.tr').tooltip({ placement: 'right' });
+            $('.tt').tooltip({ placement: 'top' });
+            $('.tb').tooltip({ placement: 'bottom' });
+
         })
     </script>
 

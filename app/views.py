@@ -11,6 +11,7 @@ from app.models import Product, Slide, Category, Company, Testimonial, Material,
 
 def addUserData(request, data):
     data['user'] = request.user
+    data['is_visitor'] = '0' if request.user and request.user.is_anonymous else '1'
     data['company'] = Company.objects.first()
 
 
