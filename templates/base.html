@@ -472,6 +472,7 @@
                     data: {},
                     dataType: 'json',
                     success: function (response) {
+                        // TODO: Implement response to fill the body content
                         {#modalQV.find(".modal-body").html(response);#}
                         modalQV.modal('show');
                     },
