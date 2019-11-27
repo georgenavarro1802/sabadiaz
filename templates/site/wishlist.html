@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block main %}
 
-    <!-- wishlist main wrapper start -->
     <div class="wishlist-main-wrapper section-padding">
         <div class="container">
-            <!-- Wishlist Page Content Start -->
             <div class="section-bg-color">
                 <div class="row">
                     <div class="col-lg-12">
@@ -19,56 +18,109 @@
                                     <th class="pro-title">Product</th>
                                     <th class="pro-price">Price</th>
                                     <th class="pro-quantity">Stock Status</th>
-                                    <th class="pro-subtotal">Add to Cart</th>
                                     <th class="pro-remove">Remove</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="{% static 'img/product/product-5.jpg' %}" alt="Product" /></a></td>
-                                    <td class="pro-title"><a href="#">Diamond Exclusive Ornament</a></td>
-                                    <td class="pro-price"><span>$295.00</span></td>
-                                    <td class="pro-quantity"><span class="text-success">In Stock</span></td>
-                                    <td class="pro-subtotal"><a href="cart.html" class="btn btn-sqr">Add to
-                                        Cart</a></td>
-                                    <td class="pro-remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="{% static 'img/product/product-6.jpg' %}" alt="Product" /></a></td>
-                                    <td class="pro-title"><a href="#">Perfect Diamond Jewellery</a></td>
-                                    <td class="pro-price"><span>$275.00</span></td>
-                                    <td class="pro-quantity"><span class="text-success">In Stock</span></td>
-                                    <td class="pro-subtotal"><a href="cart.html" class="btn btn-sqr">Add to
-                                        Cart</a></td>
-                                    <td class="pro-remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="{% static 'img/product/product-7.jpg' %}" alt="Product" /></a></td>
-                                    <td class="pro-title"><a href="#">Handmade Golden Necklace</a></td>
-                                    <td class="pro-price"><span>$295.00</span></td>
-                                    <td class="pro-quantity"><span class="text-danger">Stock Out</span></td>
-                                    <td class="pro-subtotal"><a href="cart.html" class="btn btn-sqr disabled">Add
-                                        to Cart</a></td>
-                                    <td class="pro-remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="{% static 'img/product/product-8.jpg' %}" alt="Product" /></a></td>
-                                    <td class="pro-title"><a href="#">Diamond Exclusive Ornament</a></td>
-                                    <td class="pro-price"><span>$110.00</span></td>
-                                    <td class="pro-quantity"><span class="text-success">In Stock</span></td>
-                                    <td class="pro-subtotal"><a href="cart.html" class="btn btn-sqr">Add to
-                                        Cart</a></td>
-                                    <td class="pro-remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                </tr>
+                                {% for item in my_wishlist %}
+                                    <tr>
+                                        <td class="pro-thumbnail">
+                                            <a href="#">
+                                                <img class="img-fluid" src="{{ item.product.get_image1 }}" alt="Image Product" />
+                                            </a>
+                                        </td>
+                                        <td class="pro-title">
+                                            <a href="#">
+                                                {{ item.product.title }}
+                                            </a>
+                                        </td>
+                                        <td class="pro-price">
+                                            <span>${{ item.product.price|floatformat:2|intcomma }}</span>
+                                        </td>
+                                        <td class="pro-quantity">
+                                            {% if item.product.stock %}
+                                                <span class="text-success">
+                                                    In Stock
+                                                </span>
+                                            {% else %}
+                                                <span class="text-success">
+                                                    Stock Out
+                                                </span>
+                                            {% endif %}
+                                        </td>
+                                        <td class="pro-remove">
+                                            <a class="btnDeleteWishlistItem" href="javascript:void(0);" wid="{{ item.id }}">
+                                                <i class="fa fa-2x fa-trash-o"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="10">
+                                            <h5 class="m-3">No Items Added yet.</h5>
+                                            <p>
+                                                Check <a href="{% url 'products' %}"><span class="text-primary _600"> Our Products </span></a> section and start selecting your favorites products.
+                                            </p>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Wishlist Page Content End -->
         </div>
     </div>
-    <!-- wishlist main wrapper end -->
 
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function () {
+
+            $(".btnDeleteWishlistItem").click(function () {
+                let item_id = $(this).attr('wid');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            type: "POST",
+                            url: "/wishlist/"+item_id+"/delete",
+                            data: {},
+                            dataType: 'json',
+                            success: function (response) {
+                                if (response.result === 'ok'){
+
+                                    Swal.fire(
+                                        'Deleted!',
+                                        response.message,
+                                        'success'
+                                    ).then((result) => {
+                                        if (result.value) {
+                                            location.reload();
+                                        }
+                                    });
+
+                                }else{
+                                    alertify.error(response.message);
+                                }
+                            },
+                            error: function () {
+                                alertify.error('Server Error');
+                            },
+                        });
+                    }
+                })
+            });
+
+        });
+    </script>
 {% endblock %}

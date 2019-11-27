@@ -122,7 +122,9 @@
                                             <li>
                                                 <a href="{% url 'wishlist' %}">
                                                     <i class="pe-7s-like"></i>
-                                                    <div class="notification">0</div>
+                                                    <div id="divWishlistNotification" class="notification">
+                                                        {{ wishlist_items|floatformat:0 }}
+                                                    </div>
                                                 </a>
                                             </li>
                                         {% endif %}
@@ -416,7 +418,7 @@
     <script>
         $(function () {
 
-            // Add to Wishlist
+            // Wishlist
             $(".btnWishList").click(function () {
                 let pid = $(this).attr('pid');
                 if ('{{ is_visitor }}' === '0'){
@@ -426,7 +428,24 @@
                         'info'
                     );
                 }else{
-                    alert('do it')
+                    // send to server
+                    $.ajax({
+                        type: "POST",
+                        url: "/wishlist/"+pid+"/add",
+                        data: {},
+                        dataType: 'json',
+                        success: function (response) {
+                            if (response.result === 'ok'){
+                                alertify.success(response.message);
+                                $("#divWishlistNotification").html(response.wishlist_items)
+                            }else{
+                                alertify.error(response.message);
+                            }
+                        },
+                        error: function () {
+                            alertify.error('Server Error');
+                        },
+                    });
                 }
             });
 

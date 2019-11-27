@@ -1,7 +1,7 @@
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
-from app import views
+from app import views, wishlist
 from app.administration import products, slides, company, testimonials
 from sabadiaz.settings import DEBUG, MEDIA_URL, MEDIA_ROOT, STATIC_URL, STATIC_ROOT
 
@@ -34,11 +34,14 @@ urlpatterns = [
     # Contact Us
     path('contact', views.contact, name='contact'),
 
-    # Wishlist
-    path('wishlist', views.wishlist, name='wishlist'),
-
     # Product Details
     path('products/<int:product_id>/details', views.product_details, name='product_details'),
+
+    # Wishlist
+    path('wishlist', wishlist.view, name='wishlist'),
+    path('wishlist/<int:product_id>/add', wishlist.add, name='wishlist_add'),
+    path('wishlist/<int:item_id>/delete', wishlist.delete, name='wishlist_delete'),
+
 
     # Administration - Products
     path('administration/products', products.view, name='admin_products'),

@@ -1,18 +1,22 @@
+import datetime
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db import transaction
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
 from app.helpers import ok_json, bad_json
-from app.models import Product, Slide, Category, Company, Testimonial, Material, Gender
+from app.models import Product, Slide, Category, Company, Testimonial, Material, Gender, WishList
 
 
 def addUserData(request, data):
     data['user'] = request.user
     data['is_visitor'] = '0' if request.user and request.user.is_anonymous else '1'
     data['company'] = Company.objects.first()
+    data['wishlist_items'] = WishList.objects.filter(user=data['user']).count() if int(data['is_visitor']) else 0
 
 
 # Website Views
@@ -127,14 +131,6 @@ def contact(request):
     data['option'] = 'contact'
     data['current_page'] = 'Contact'
     return render(request, 'site/contact.html', data)
-
-
-def wishlist(request):
-    data = {'title': 'Sabadiaz Jewelry - WishList'}
-    addUserData(request, data)
-    data['option'] = 'wishlist'
-    data['current_page'] = 'Wishlist'
-    return render(request, 'site/wishlist.html', data)
 
 
 def product_details(request, product_id):
