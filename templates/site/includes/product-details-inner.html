@@ -3,19 +3,17 @@
 
 <div class="product-details-inner">
     <div class="row">
-
         <div class="col-lg-5">
             <div class="product-large-slider">
                 {% for elem in product.get_images_list %}
                     {% if not elem.is_static_b %}
                         <div class="pro-large-img img-zoom">
-                            <img src="{{ elem.imageb_url }}" alt="product-details-image{{ forloop.counter }}"/>
+                            <img src="{{ elem.imageb_url }}" alt="product-details-imageb{{ forloop.counter }}"/>
                         </div>
                     {% endif %}
                 {% endfor %}
             </div>
         </div>
-
         <div class="col-lg-7">
             <div class="product-details-des">
                 <div class="manufacturer-name">

@@ -91,9 +91,11 @@ def view(request):
 def details(request, product_id):
     data = {'title': 'Sabadiaz Jewelry - Product Details'}
     addUserData(request, data)
+
     data['option'] = 'product_details'
     data['current_page'] = 'Product Details'
     data['product'] = product = Product.objects.get(id=product_id)
+
     data['related_products'] = Product.objects.filter(Q(category=product.category) |
                                                       Q(material=product.material) |
                                                       Q(gender=product.gender)).exclude(id=product_id)[:6]
