@@ -1,0 +1,73 @@
+{% load static %}
+{% load humanize %}
+
+<div class="product-details-inner">
+    <div class="row">
+
+        <div class="col-lg-5">
+            <div class="product-large-slider">
+                {% for elem in product.get_images_list %}
+                    {% if not elem.is_static_b %}
+                        <div class="pro-large-img img-zoom">
+                            <img src="{{ elem.imageb_url }}" alt="product-details-image{{ forloop.counter }}"/>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="col-lg-7">
+            <div class="product-details-des">
+                <div class="manufacturer-name">
+                    <a href="{% url 'products' %}">
+                        {{ product.material }}
+                    </a>
+                </div>
+                <h3 class="product-name">
+                    {{ product.title }}
+                </h3>
+                <div class="ratings d-flex">
+                    <span><i class="fa fa-star"></i></span>
+                    <span><i class="fa fa-star"></i></span>
+                    <span><i class="fa fa-star"></i></span>
+                    <span><i class="fa fa-star"></i></span>
+                    <span><i class="fa fa-star"></i></span>
+                    <div class="pro-review">
+                        <!-- TODO: Add reviews functionalities -->
+                        <span>{{ product.count_of_reviews|floatformat:0 }} Reviews</span>
+                    </div>
+                </div>
+                <div class="price-box">
+                                        <span class="price-regular">
+                                            ${{ product.price|floatformat:2|intcomma }}
+                                        </span>
+                    <span class="price-old">
+                                            <del>${{ product.v_price|floatformat:2|intcomma }}</del>
+                                        </span>
+                </div>
+                <div class="availability">
+                    <i class="fa fa-check-circle"></i>
+                    <span>{{ product.stock|floatformat:0 }} in stock</span>
+                </div>
+                <div class="useful-links">
+                    <a href="javascript:void(0);" class="btnWishList tl" pid="{{ product.id }}" title="Add to Wishlist">
+                        <i class="pe-7s-like"></i> Add to Wishlist
+                    </a>
+                </div>
+                <div class="pro-desc">
+                    <span class="font-14 font-weight-bold">Description<br/></span>
+                    {{ product.description }}
+                </div>
+                <div class="pro-nav slick-row-10 slick-arrow-style">
+                    {% for elem in product.get_images_list %}
+                        {% if not elem.is_static_b %}
+                            <div class="pro-nav-thumb">
+                                <img src="{{ elem.image_url }}" alt="product-details-{{ forloop.counter }}" />
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

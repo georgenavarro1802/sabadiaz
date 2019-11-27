@@ -68,6 +68,7 @@ def create_product(request):
 
                 for index, key in enumerate(request.FILES):
                     setattr(product, f'image{index+1}', request.FILES[key])
+                    setattr(product, f'image{index+1}_b', request.FILES[key])
                     product.save()
 
                 time.sleep(1)
@@ -177,6 +178,7 @@ def edit_product_image(request, product_id, image_id):
             with transaction.atomic():
                 product = Product.objects.get(id=product_id)
                 setattr(product, f'image{image_id}', request.FILES['file'])
+                setattr(product, f'image{image_id}_b', request.FILES['file'])
                 product.save()
                 return ok_json(data={'message': f'Image {image_id} succesfully edited!'})
 

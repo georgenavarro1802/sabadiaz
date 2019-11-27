@@ -1,6 +1,8 @@
 from PIL import Image
+
 from django.contrib.auth.models import User
 from django.db import models
+from django_resized import ResizedImageField
 
 from sabadiaz.settings import STATIC_URL
 
@@ -102,12 +104,18 @@ class Product(models.Model):
     is_bestseller = models.BooleanField(default=False)
 
     # images fields
-    image1 = models.ImageField(upload_to='products', blank=True, null=True)
-    image2 = models.ImageField(upload_to='products', blank=True, null=True)
-    image3 = models.ImageField(upload_to='products', blank=True, null=True)
-    image4 = models.ImageField(upload_to='products', blank=True, null=True)
-    image5 = models.ImageField(upload_to='products', blank=True, null=True)
-    image6 = models.ImageField(upload_to='products', blank=True, null=True)
+    image1 = ResizedImageField(size=[370, 370], upload_to='products', blank=True, null=True)
+    image1_b = ResizedImageField(size=[570, 570], upload_to='products', blank=True, null=True)
+    image2 = ResizedImageField(size=[370, 370], upload_to='products', blank=True, null=True)
+    image2_b = ResizedImageField(size=[570, 570], upload_to='products', blank=True, null=True)
+    image3 = ResizedImageField(size=[370, 370], upload_to='products', blank=True, null=True)
+    image3_b = ResizedImageField(size=[570, 570], upload_to='products', blank=True, null=True)
+    image4 = ResizedImageField(size=[370, 370], upload_to='products', blank=True, null=True)
+    image4_b = ResizedImageField(size=[570, 570], upload_to='products', blank=True, null=True)
+    image5 = ResizedImageField(size=[370, 370], upload_to='products', blank=True, null=True)
+    image5_b = ResizedImageField(size=[570, 570], upload_to='products', blank=True, null=True)
+    image6 = ResizedImageField(size=[370, 370], upload_to='products', blank=True, null=True)
+    image6_b = ResizedImageField(size=[570, 570], upload_to='products', blank=True, null=True)
 
     created_at = models.DateField(auto_now_add=True, blank=True, null=True)
 
@@ -127,91 +135,116 @@ class Product(models.Model):
     def get_image1(self):
         return self.image1.url if self.image1 else f"{STATIC_URL}/img/no_images.png"
 
+    def get_image1_b(self):
+        return self.image1_b.url if self.image1_b else f"{STATIC_URL}/img/no_images.png"
+
     def get_image2(self):
         return self.image2.url if self.image2 else f"{STATIC_URL}/img/no_images.png"
+
+    def get_image2_b(self):
+        return self.image2_b.url if self.image2_b else f"{STATIC_URL}/img/no_images.png"
 
     def get_image3(self):
         return self.image3.url if self.image3 else f"{STATIC_URL}/img/no_images.png"
 
+    def get_image3_b(self):
+        return self.image3_b.url if self.image3_b else f"{STATIC_URL}/img/no_images.png"
+
     def get_image4(self):
         return self.image4.url if self.image4 else f"{STATIC_URL}/img/no_images.png"
+
+    def get_image4_b(self):
+        return self.image4_b.url if self.image4_b else f"{STATIC_URL}/img/no_images.png"
 
     def get_image5(self):
         return self.image5.url if self.image5 else f"{STATIC_URL}/img/no_images.png"
 
+    def get_image5_b(self):
+        return self.image5_b.url if self.image5_b else f"{STATIC_URL}/img/no_images.png"
+
     def get_image6(self):
         return self.image6.url if self.image6 else f"{STATIC_URL}/img/no_images.png"
+
+    def get_image6_b(self):
+        return self.image6_b.url if self.image6_b else f"{STATIC_URL}/img/no_images.png"
 
     def get_images_list(self):
         return [
             {
                 'image_url': self.get_image1(),
-                'is_static': False if self.image1 else True
+                'imageb_url': self.get_image1_b(),
+                'is_static': False if self.image1 else True,
+                'is_static_b': False if self.image1_b else True
             },
             {
                 'image_url': self.get_image2(),
-                'is_static': False if self.image2 else True
+                'imageb_url': self.get_image2_b(),
+                'is_static': False if self.image2 else True,
+                'is_static_b': False if self.image2_b else True
             },
             {
                 'image_url': self.get_image3(),
-                'is_static': False if self.image3 else True
+                'imageb_url': self.get_image3_b(),
+                'is_static': False if self.image3 else True,
+                'is_static_b': False if self.image3_b else True
             },
             {
                 'image_url': self.get_image4(),
-                'is_static': False if self.image4 else True
+                'imageb_url': self.get_image4_b(),
+                'is_static': False if self.image4 else True,
+                'is_static_b': False if self.image4_b else True
             },
             {
                 'image_url': self.get_image5(),
-                'is_static': False if self.image5 else True
+                'imageb_url': self.get_image5_b(),
+                'is_static': False if self.image5 else True,
+                'is_static_b': False if self.image5_b else True
             },
             {
                 'image_url': self.get_image6(),
-                'is_static': False if self.image6 else True
+                'imageb_url': self.get_image6_b(),
+                'is_static': False if self.image6 else True,
+                'is_static_b': False if self.image6_b else True
             },
         ]
 
     def has_images(self):
         return self.image1 or self.image2 or self.image3 or self.image4 or self.image5 or self.image6
 
-    def save(self, force_insert=False, force_update=False, using=None, **kwargs):
-        super().save()
-        if self.image1:
-            img = Image.open(self.image1.path)
-            if img.height > 370 or img.width > 370:
-                img.thumbnail((370, 370))
-                img.save(self.image1.path)
+    # def save(self, force_insert=False, force_update=False, using=None, **kwargs):
+    #     super().save()
+        # if self.image1:
+        #     img = Image.open(self.image1.path)
+        #     if img.height > 600 or img.width > 600:
+        #         img.thumbnail((600, 600))
+        #         img.save(self.image1.path)
 
-        if self.image2:
-            img = Image.open(self.image2.path)
-            if img.height > 370 or img.width > 370:
-                img.thumbnail((370, 370))
-                img.save(self.image2.path)
+        # if self.image2:
+        #     img = Image.open(self.image2.path)
+        #     img.thumbnail((600, 600))
+        #     img.save(self.image2.path)
+        #
+        # if self.image3:
+        #     img = Image.open(self.image3.path)
+        #     img.thumbnail((600, 600))
+        #     img.save(self.image3.path)
+        #
+        # if self.image4:
+        #     img = Image.open(self.image4.path)
+        #     img.thumbnail((600, 600))
+        #     img.save(self.image4.path)
+        #
+        # if self.image5:
+        #     img = Image.open(self.image5.path)
+        #     img.thumbnail((600, 600))
+        #     img.save(self.image5.path)
+        #
+        # if self.image6:
+        #     img = Image.open(self.image6.path)
+        #     img.thumbnail((600, 600))
+        #     img.save(self.image6.path)
 
-        if self.image3:
-            img = Image.open(self.image3.path)
-            if img.height > 370 or img.width > 370:
-                img.thumbnail((370, 370))
-                img.save(self.image3.path)
-
-        if self.image4:
-            img = Image.open(self.image4.path)
-            if img.height > 370 or img.width > 370:
-                img.thumbnail((370, 370))
-                img.save(self.image4.path)
-
-        if self.image5:
-            img = Image.open(self.image5.path)
-            if img.height > 370 or img.width > 370:
-                img.thumbnail((370, 370))
-                img.save(self.image5.path)
-
-        if self.image6:
-            img = Image.open(self.image6.path)
-            if img.height > 370 or img.width > 370:
-                img.thumbnail((370, 370))
-                img.save(self.image6.path)
-
-        super(Product, self).save(force_insert, force_update, using)
+        # super(Product, self).save(force_insert, force_update, using)
 
 
 class WishList(models.Model):
