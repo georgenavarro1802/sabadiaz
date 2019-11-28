@@ -46,7 +46,6 @@ def create_product(request):
                 stock = int(request.POST['stock'])
                 discount = float(request.POST['discount'])
                 vprice = float(request.POST['vprice'])
-                information = request.POST['information']
                 is_new = True if request.POST['is_new'] == 'true' else False
                 is_featured = True if request.POST['is_featured'] == 'true' else False
                 is_bestseller = True if request.POST['is_bestseller'] == 'true' else False
@@ -56,7 +55,6 @@ def create_product(request):
                                   gender_id=gender_id,
                                   title=title,
                                   description=description,
-                                  information=information,
                                   price=price,
                                   v_price=vprice,
                                   p_discount=discount,
@@ -104,7 +102,6 @@ def edit_product(request, product_id):
                 product.price = float(request.POST['price'])
                 product.vprice = float(request.POST['vprice'])
                 product.discount = float(request.POST['discount'])
-                product.information = request.POST['information']
                 product.is_new = True if request.POST['is_new'] == 'true' else False
                 product.is_featured = True if request.POST['is_featured'] == 'true' else False
                 product.is_bestseller = True if request.POST['is_bestseller'] == 'true' else False

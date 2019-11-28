@@ -91,7 +91,6 @@ class Product(models.Model):
 
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=300)
-    information = models.TextField(blank=True, null=True)
 
     price = models.FloatField(default=0)
     v_price = models.FloatField(default=0)

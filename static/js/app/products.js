@@ -48,7 +48,6 @@ let PRODUCTS = {
         let stock = inputStock.val();
         let discount = inputDiscount.val();
         let vprice = inputVPrice.val();
-        let information = textareaInformation.val();
         let is_new = checkboxIsNew.is(':checked');
         let is_featured = checkboxIsFeatured.is(':checked');
         let is_bestseller = checkboxIsBestSeller.is(':checked');
@@ -63,7 +62,6 @@ let PRODUCTS = {
         formData.append('stock', stock);
         formData.append('discount', discount);
         formData.append('vprice', vprice);
-        formData.append('information', information);
         formData.append('is_new', is_new);
         formData.append('is_featured', is_featured);
         formData.append('is_bestseller', is_bestseller);
