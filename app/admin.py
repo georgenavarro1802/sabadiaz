@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from app.models import Category, Product, WishList, Slide, Company, Testimonial, Material, Gender
+from app.models import Category, Product, WishList, Slide, Company, Testimonial, Material, Gender, Review
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -42,12 +42,22 @@ admin.site.register(Product, ProductAdmin)
 
 
 class WishListAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'product', 'created_at')
+    list_display = ('user', 'product', 'created_at')
     ordering = ('-created_at', )
     search_fields = ('user__username', 'user__first_name', 'user__last_name', 'product__title', 'product__description')
 
 
 admin.site.register(WishList, WishListAdmin)
+
+
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('created_at', 'user', 'product', 'rating', 'review')
+    ordering = ('-created_at', )
+    search_fields = ('user__username', 'user__first_name', 'user__last_name', 'product__title', 'product__description')
+    list_filter = ('rating', )
+
+
+admin.site.register(Review, ReviewAdmin)
 
 
 # Company

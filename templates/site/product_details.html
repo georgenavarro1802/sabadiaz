@@ -15,9 +15,8 @@
             </div>
         </div>
     </div>
-    <!-- page main wrapper end -->
 
-    <!-- Reviews start -->
+    <!-- Reviews and Information start -->
     <div class="container section-padding">
         <div class="product-details-reviews pb-0">
             <div class="row">
@@ -25,34 +24,27 @@
                     <div class="product-review-info">
                         <ul class="nav review-tab">
                             <li>
-                                <a class="active" data-toggle="tab" href="#tabInformation">More Information</a>
+                                <a class="active" data-toggle="tab" href="#tabInformation">
+                                    More Information
+                                </a>
                             </li>
                             <li>
-                                <a data-toggle="tab" href="#tabReviews">Reviews ({{ product.count_of_reviews|floatformat:0 }})</a>
+                                <a data-toggle="tab" href="#tabReviews">
+                                    Reviews ({{ product.count_of_reviews|floatformat:0 }})
+                                </a>
                             </li>
                         </ul>
                         <div class="tab-content reviews-tab">
                             <div class="tab-pane fade show active" id="tabInformation">
-                                <table class="table table-bordered">
-                                    <tbody>
-                                    <tr>
-                                        <td>color</td>
-                                        <td>black, blue, red</td>
-                                    </tr>
-                                    <tr>
-                                        <td>size</td>
-                                        <td>L, M, S</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                                {% if not product.information %}
+                                    <p class="font-14">NO INFO</p>
+                                {% else %}
+                                    {{ product.information }}
+                                {% endif %}
                             </div>
                             <div class="tab-pane fade" id="tabReviews">
-                                <form action="#" class="review-form">
-                                    <h5>1 review for <span>Chaz Kangeroo</span></h5>
-                                    <div class="total-reviews">
-                                        <div class="rev-avatar">
-                                            <img src="{% static 'img/about/avatar.jpg' %}" alt="">
-                                        </div>
+                                <div class="total-reviews">
+                                    {% for review in product.get_reviews %}
                                         <div class="review-box">
                                             <div class="ratings">
                                                 <span class="good"><i class="fa fa-star"></i></span>
@@ -62,61 +54,51 @@
                                                 <span><i class="fa fa-star"></i></span>
                                             </div>
                                             <div class="post-author">
-                                                <p><span>admin -</span> 30 Mar, 2019</p>
+                                                <p>{{ review.user.first_name }} {{ review.user.last_name }}</p>
+                                                <p class="font-11" style="margin-top: -0.5em">
+                                                    {{ review.created_at|date:'m/d/Y' }} {{ review.created_at|date:'H:i' }}
+                                                </p>
                                             </div>
-                                            <p>Aliquam fringilla euismod risus ac bibendum. Sed sit
-                                                amet sem varius ante feugiat lacinia. Nunc ipsum nulla,
-                                                vulputate ut venenatis vitae, malesuada ut mi. Quisque
-                                                iaculis, dui congue placerat pretium, augue erat
-                                                accumsan lacus</p>
+                                            <p>{{ review.review }}</p>
+                                        </div>
+                                    {% empty %}
+                                        <div class="review-box">
+                                            <p class="font-14 text-center">
+                                                <b>NO REVIEWS YET</b>
+                                            </p>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <!-- New Review Form -->
+                                <div class="container">
+                                    <div class="form-group row">
+                                        <div class="col">
+                                            <label for="textAreaReview" class="col-form-label">
+                                                <h6>New Review</h6>
+                                            </label>
+                                            <textarea id="textAreaReview" class="form-control font-14" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col">
-                                            <label class="col-form-label"><span class="text-danger">*</span>
-                                                Your Name</label>
-                                            <input type="text" class="form-control" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col">
-                                            <label class="col-form-label"><span class="text-danger">*</span>
-                                                Your Email</label>
-                                            <input type="email" class="form-control" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col">
-                                            <label class="col-form-label"><span class="text-danger">*</span>
-                                                Your Review</label>
-                                            <textarea class="form-control" required></textarea>
-                                            <div class="help-block pt-10"><span
-                                                    class="text-danger">Note:</span>
-                                                HTML is not translated!
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col">
-                                            <label class="col-form-label"><span class="text-danger">*</span>
-                                                Rating</label>
-                                            &nbsp;&nbsp;&nbsp; Bad&nbsp;
-                                            <input type="radio" value="1" name="rating">
-                                            &nbsp;
-                                            <input type="radio" value="2" name="rating">
-                                            &nbsp;
-                                            <input type="radio" value="3" name="rating">
-                                            &nbsp;
-                                            <input type="radio" value="4" name="rating">
-                                            &nbsp;
-                                            <input type="radio" value="5" name="rating" checked>
-                                            &nbsp;Good
+                                            <label class="col-form-label">
+                                                <h6>Rating</h6>
+                                            </label>
+                                            <br/>
+                                            <input type="radio" value="1" name="inputRating" class="tt mr-2" title="Bad" style="width: 20px; height: 20px;">
+                                            <input type="radio" value="2" name="inputRating" class="tt mr-2" title="Regular" style="width: 20px; height: 20px;">
+                                            <input type="radio" value="3" name="inputRating" class="tt mr-2" title="Good" style="width: 20px; height: 20px;">
+                                            <input type="radio" value="4" name="inputRating" class="tt mr-2" title="Very Good" style="width: 20px; height: 20px;">
+                                            <input type="radio" value="5" name="inputRating" class="tt" title="Excellent" checked style="width: 20px; height: 20px;">
                                         </div>
                                     </div>
                                     <div class="buttons">
-                                        <button class="btn btn-sqr" type="submit">Continue</button>
+                                        <a id="btnSubmitReview" class="btn btn-sqr text-white" pid="{{ product.id }}">
+                                            Submit Review
+                                        </a>
                                     </div>
-                                </form> <!-- end of review-form -->
+                                </div>
+                                <!-- New Review Form end -->
                             </div>
                         </div>
                     </div>
@@ -150,4 +132,55 @@
     </div>
     <!-- Related Products end -->
 
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function () {
+
+            $("#btnSubmitReview").click(function () {
+                let elem = $(this);
+                let pid = elem.attr('pid');
+                let spinnerText = "<i class='fa fa-circle-o-notch fa-spin'></i> Submitting Review ...";
+                let originalText = elem.html();
+
+                let textAreaReview = $("#textAreaReview");
+                let review = textAreaReview.val();
+                let rating = $('input[name=inputRating]:radio:checked').val();
+                if (review && rating){
+                    $.ajax({
+                        type: "POST",
+                        url: "/products/"+pid+"/reviews",
+                        data: {
+                            "review": review,
+                            "rating": rating,
+                        },
+                        dataType: 'json',
+                        beforeSend: function (){
+                            elem.addClass('disabled').html(spinnerText);
+                        },
+                        success: function (response) {
+                            if (response.result === 'ok'){
+                                textAreaReview.val('');
+                                alertify.success(response.message);
+                                location.reload();
+                            }else{
+                                alertify.error(response.message);
+                            }
+                        },
+                        complete: function (){
+                            elem.removeClass('disabled').html(originalText);
+                        },
+                        error: function () {
+                            elem.removeClass('disabled').html(originalText);
+                            alertify.error('Server Error');
+                        },
+                    });
+                }else{
+                     alertify.error('Please write a review before submit');
+                }
+            });
+        });
+
+    </script>
 {% endblock %}

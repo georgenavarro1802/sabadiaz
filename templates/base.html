@@ -363,22 +363,6 @@
     {% include 'site/includes/footer_section.html' %}
     <!-- footer area end -->
 
-    <!-- Quick view modal start -->
-    <div class="modal" id="modalQuickView">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <!-- product details inner component goes here -->
-{#                    {% include 'site/includes/product-details-inner.html' %}#}
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Quick view modal end -->
-
     <!-- Loader -->
     <div id="divLoader">
         <img class="imageLoader" src="{% static 'img/loading.gif' %}" alt="Loading..." />
@@ -461,74 +445,6 @@
                     });
                 }
             });
-
-            // Quick View
-            $(".btnQuickView").click(function () {
-                let pid = $(this).attr('pid');
-                let modalQV = $("#modalQuickView");
-                $.ajax({
-                    type: "POST",
-                    url: "/products/"+pid+"/json",
-                    data: {},
-                    dataType: 'json',
-                    success: function (response) {
-                        // TODO: Implement response to fill the body content
-                        {#modalQV.find(".modal-body").html(response);#}
-                        modalQV.modal('show');
-                    },
-                    error: function () {
-                        alertify.error('Server Error');
-                    },
-                });
-            });
-
-            // BACKEND
-            {#data = {#}
-            {#    "results": [{#}
-            {#        "id": x.get_id_str(),#}
-            {#        "name": x.location_number,#}
-            {#        "company_name": x.company_name,#}
-            {#        "address1": x.address1,#}
-            {#        "address2": x.address2,#}
-            {#        "city": x.city,#}
-            {#        "state": x.state,#}
-            {#        "zip_code": x.zip_code,#}
-            {#    } for x in elements]#}
-            {# }#}
-            {#return ok_json(data=data)#}
-
-            // FRONTEND AJAX
-                {#$.ajax({#}
-                {#        url: "/{{ db_name }}/chargebacks/manual/purchaser_data",#}
-                {#        data: 'query=' + query,#}
-                {#        dataType: "json",#}
-                {#        type: "POST",#}
-                {#        success: function (response) {#}
-                {#            if (jQuery.isEmptyObject(response.results)){#}
-                {#                inputPurchaserNameAddLine.val('');#}
-                {#                inputPurchaserAddress1AddLine.val('');#}
-                {#                inputPurchaserAddress2AddLine.val('');#}
-                {#                inputPurchaserCityAddLine.val('');#}
-                {#                inputPurchaserStateAddLine.val('');#}
-                {#                inputPurchaserZipAddLine.val('');#}
-                {#                return ''#}
-                {#            }else{#}
-                {#                result($.map(response, function (item) {#}
-                {#                    return item;#}
-                {#                }));#}
-                {#            }#}
-                {#        }#}
-                {#    });#}
-                {# },#}
-                {#updater: function(item){#}
-                {#    inputPurchaserNameAddLine.val(item.company_name);#}
-                {#    inputPurchaserAddress1AddLine.val(item.address1);#}
-                {#    inputPurchaserAddress2AddLine.val(item.address2);#}
-                {#    inputPurchaserCityAddLine.val(item.city);#}
-                {#    inputPurchaserStateAddLine.val(item.state);#}
-                {#    inputPurchaserZipAddLine.val(item.zip_code);#}
-                {#    return item.name;#}
-                {#    #}
 
             // hide loader once page is loaded
             setTimeout(function () {

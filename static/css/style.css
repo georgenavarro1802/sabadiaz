@@ -5786,7 +5786,7 @@ blockquote {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  padding-bottom: 50px;
+  padding-bottom: 40px;
 }
 
 @media only screen and (max-width: 479.98px) {
@@ -5797,8 +5797,8 @@ blockquote {
 
 .total-reviews .rev-avatar {
   -webkit-flex-basis: 60px;
-      -ms-flex-preferred-size: 60px;
-          flex-basis: 60px;
+  -ms-flex-preferred-size: 60px;
+  flex-basis: 60px;
   max-height: 60px;
 }
 
@@ -6991,4 +6991,12 @@ blockquote {
     top: 45%;
     z-index: 100;
     width: 80px;
+}
+
+.w-80 {
+    width: 80%!important;
+}
+
+.w-90 {
+    width: 90%!important;
 }

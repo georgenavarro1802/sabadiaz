@@ -39,6 +39,7 @@ urlpatterns = [
     # Our Products
     path('products', shop.view, name='products'),
     path('products/<int:product_id>/details', shop.details, name='product_details'),
+    path('products/<int:product_id>/reviews', shop.reviews, name='product_reviews'),
 
     # Administration - Products
     path('administration/products', products.view, name='admin_products'),

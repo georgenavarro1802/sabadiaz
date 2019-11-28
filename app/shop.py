@@ -1,8 +1,11 @@
+import time
+
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models import Q
 from django.shortcuts import render
 
-from app.models import Product, Category, Material, Gender
+from app.helpers import ok_json, bad_json
+from app.models import Product, Category, Material, Gender, Review
 from app.views import addUserData
 
 
@@ -95,8 +98,24 @@ def details(request, product_id):
     data['option'] = 'product_details'
     data['current_page'] = 'Product Details'
     data['product'] = product = Product.objects.get(id=product_id)
-
     data['related_products'] = Product.objects.filter(Q(category=product.category) |
                                                       Q(material=product.material) |
                                                       Q(gender=product.gender)).exclude(id=product_id)[:6]
     return render(request, 'site/product_details.html', data)
+
+
+def reviews(request, product_id):
+    data = {'title': 'Sabadiaz Jewelry - Product Reviews'}
+    addUserData(request, data)
+
+    try:
+        review_obj, _ = Review.objects.get_or_create(product_id=product_id,
+                                                     user=data['user'],
+                                                     rating=int(request.POST['rating']))
+        review_obj.review = request.POST['review']
+        review_obj.save()
+        time.sleep(1)
+        return ok_json(data={'message': 'Review succesfully added!'})
+
+    except Exception as ex:
+        return bad_json(message=ex.__str__())
