@@ -262,6 +262,8 @@ class Company(models.Model):
     instagram = models.CharField(max_length=100, blank=True, null=True)
     youtube = models.CharField(max_length=100, blank=True, null=True)
     logo = models.ImageField(upload_to='logos', blank=True, null=True)
+    latitud = models.FloatField(default=0)
+    longitud = models.FloatField(default=0)
 
     def __str__(self):
         return self.name

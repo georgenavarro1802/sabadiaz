@@ -45,6 +45,7 @@
                         </form>
                     </div>
                 </div>
+
                 <div class="col-lg-6">
                     <div class="contact-info">
                         <h4 class="contact-title">Contact Us</h4>
@@ -66,5 +67,27 @@
         </div>
     </div>
     <!-- contact area end -->
+
+{% endblock %}
+
+{% block script %}
+
+    <script>
+        function initMap() {
+            let location = {
+                lat: {{ company.latitud }},
+                lng: {{ company.longitud }}
+            };
+            let map = new google.maps.Map(document.getElementById('google-map'), {
+                zoom: 17,
+                center: location
+            });
+            let marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAv0huDSi_DW5YKWNayPS0BIEj0nfSFc6Y&callback=initMap"></script>
 
 {% endblock %}

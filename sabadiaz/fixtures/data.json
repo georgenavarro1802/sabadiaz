@@ -34,7 +34,9 @@
       "description": "We are a team of designers and developers that create high quality wordpress, shopify, Opencart",
       "address": "4710-4890 Breckinridge USA",
       "email": "demo@yourdomain.com",
-      "phone": "(012) 800 456 789-987"
+      "phone": "(012) 800 456 789-987",
+      "latitud": 26.649291,
+      "longitud": -80.115595
     }
   },
   {
