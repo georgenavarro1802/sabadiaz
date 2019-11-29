@@ -1,12 +1,17 @@
+import time
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 from django.db import transaction
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.template.loader import render_to_string
 from django.urls import reverse
 
 from app.helpers import ok_json, bad_json
 from app.models import Product, Slide, Category, Company, Testimonial, WishList, Contact
+from sabadiaz.settings import EMAIL_ACTIVE, EMAIL_HOST_USER
 
 
 def addUserData(request, data):
@@ -54,6 +59,11 @@ def contact(request):
                                   subject=request.POST['subject'],
                                   message=request.POST['message'])
                 contact.save()
+
+                if EMAIL_ACTIVE:
+                    msg_html = render_to_string('site/includes/email_contact_message.html', {'contact': contact})
+                    send_mail("New Contact from Website", "", EMAIL_HOST_USER, [data['company'].email], html_message=msg_html)
+
                 return ok_json(data={'message': 'Message sent!. Thank you for your contact.'})
 
         except Exception as ex:

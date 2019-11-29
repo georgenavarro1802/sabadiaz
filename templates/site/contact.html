@@ -106,6 +106,10 @@
         $(function () {
 
             $("#btnContactSubmit").click(function () {
+                let elem = $(this);
+                let spinnerText = "<i class='fa fa-circle-o-notch fa-spin'></i> Sending Message ...";
+                let originalText = elem.html();
+
                 let c_name = $("#inputContactName").val();
                 let c_email = $("#inputContactEmail").val();
                 let c_phone = $("#inputContactPhone").val();
@@ -113,6 +117,7 @@
                 let c_message = $("#textareaContactMessage").val();
 
                 if (c_name && c_email && c_phone && c_subject && c_message){
+
                     // send to server
                     $.ajax({
                         type: "POST",
@@ -125,6 +130,9 @@
                             'message': c_message
                         },
                         dataType: 'json',
+                        beforeSend: function (){
+                            elem.addClass('disabled').html(spinnerText);
+                        },
                         success: function (response) {
                             if (response.result === 'ok'){
                                 alertify.success(response.message);
@@ -133,7 +141,11 @@
                                 alertify.error(response.message);
                             }
                         },
+                        complete: function (){
+                            elem.removeClass('disabled').html(originalText);
+                        },
                         error: function () {
+                            elem.removeClass('disabled').html(originalText);
                             alertify.error('Server Error');
                         },
                     });
