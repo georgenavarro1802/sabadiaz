@@ -1,11 +1,12 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.db import transaction
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
 from app.helpers import ok_json, bad_json
-from app.models import Product, Slide, Category, Company, Testimonial, WishList
+from app.models import Product, Slide, Category, Company, Testimonial, WishList, Contact
 
 
 def addUserData(request, data):
@@ -42,6 +43,22 @@ def about(request):
 def contact(request):
     data = {'title': 'Sabadiaz Jewelry - Contact Us'}
     addUserData(request, data)
+
+    if request.method == 'POST':
+        try:
+            with transaction.atomic():
+
+                contact = Contact(name=request.POST['name'],
+                                  email=request.POST['email'],
+                                  phone=request.POST['phone'],
+                                  subject=request.POST['subject'],
+                                  message=request.POST['message'])
+                contact.save()
+                return ok_json(data={'message': 'Message sent!. Thank you for your contact.'})
+
+        except Exception as ex:
+            return bad_json(message=ex.__str__())
+
     data['option'] = 'contact'
     data['current_page'] = 'Contact'
     return render(request, 'site/contact.html', data)
