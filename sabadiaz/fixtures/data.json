@@ -1,5 +1,18 @@
 [
   {
+    "model": "app.company",
+    "fields": {
+      "id": 1,
+      "name": "Sabadiaz Jewerly",
+      "description": "We are a team of designers and developers that create high quality wordpress, shopify, Opencart",
+      "address": "1941 S Military Trail, Local 4H, West Palm Beach, FL 33415",
+      "email": "olgaro2210@yahoo.com",
+      "phone": "+1 (561)906-2765",
+      "latitud": 26.649291,
+      "longitud": -80.115595
+    }
+  },
+  {
     "model": "app.slide",
     "id": 1,
     "fields": {
@@ -24,19 +37,6 @@
       "text1": "Grace Designer",
       "text2": "Jewellery",
       "description": "Rings, Occasion Pieces, Pandora & More"
-    }
-  },
-  {
-    "model": "app.company",
-    "fields": {
-      "id": 1,
-      "name": "Sabadiaz Jewerly",
-      "description": "We are a team of designers and developers that create high quality wordpress, shopify, Opencart",
-      "address": "4710-4890 Breckinridge USA",
-      "email": "demo@yourdomain.com",
-      "phone": "(012) 800 456 789-987",
-      "latitud": 26.649291,
-      "longitud": -80.115595
     }
   },
   {
@@ -69,76 +69,6 @@
       "id": 4,
      "name": "Maria Pons",
       "testimonial": "Vivamus a lobortis ipsum, vel condimentum magna. Etiam id turpis tortor. Nunc scelerisque, nisi a blandit varius, nunc purus venenatis ligula, sed venenatis orci augue nec sapien. Cum sociis natoque"
-    }
-  },
-  {
-    "model": "app.material",
-    "fields": {
-      "id": 1,
-      "name": "Gold"
-    }
-  },
-  {
-    "model": "app.material",
-    "fields": {
-      "id": 2,
-      "name": "Silver"
-    }
-  },
-  {
-    "model": "app.material",
-    "fields": {
-      "id": 3,
-     "name": "Diamond"
-    }
-  },
-  {
-    "model": "app.gender",
-    "fields": {
-      "id": 1,
-      "name": "Women"
-    }
-  },
-  {
-    "model": "app.gender",
-    "fields": {
-      "id": 2,
-      "name": "Men"
-    }
-  },
-  {
-    "model": "app.gender",
-    "fields": {
-      "id": 3,
-     "name": "N/A"
-    }
-  },
-  {
-    "model": "app.category",
-    "fields": {
-      "id": 1,
-     "name": "Bracelets"
-    }
-  },
-  {
-    "model": "app.category",
-    "fields": {
-      "id": 2,
-     "name": "Necklaces"
-    }
-  },
-  {
-    "model": "app.category",
-    "fields": {
-      "id": 3,
-     "name": "Rings"
-    }
-  },
-  {
-    "model": "app.category",
-    "fields": {
-      "id": 4,
-     "name": "Ornament"
     }
   }
 ]

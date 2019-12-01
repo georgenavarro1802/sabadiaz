@@ -1,0 +1,72 @@
+[
+  {
+    "model": "app.material",
+    "fields": {
+      "id": 1,
+      "name": "Gold"
+    }
+  },
+  {
+    "model": "app.material",
+    "fields": {
+      "id": 2,
+      "name": "Silver"
+    }
+  },
+  {
+    "model": "app.material",
+    "fields": {
+      "id": 3,
+     "name": "Diamond"
+    }
+  },
+  {
+    "model": "app.gender",
+    "fields": {
+      "id": 1,
+      "name": "Women"
+    }
+  },
+  {
+    "model": "app.gender",
+    "fields": {
+      "id": 2,
+      "name": "Men"
+    }
+  },
+  {
+    "model": "app.gender",
+    "fields": {
+      "id": 3,
+     "name": "N/A"
+    }
+  },
+  {
+    "model": "app.category",
+    "fields": {
+      "id": 1,
+     "name": "Bracelets"
+    }
+  },
+  {
+    "model": "app.category",
+    "fields": {
+      "id": 2,
+     "name": "Necklaces"
+    }
+  },
+  {
+    "model": "app.category",
+    "fields": {
+      "id": 3,
+     "name": "Rings"
+    }
+  },
+  {
+    "model": "app.category",
+    "fields": {
+      "id": 4,
+     "name": "Ornament"
+    }
+  }
+]
