@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.urls import path
 from app import views, wishlist, shop
 from app.administration import products, slides, company, testimonials
-from sabadiaz.settings import DEBUG, MEDIA_URL, MEDIA_ROOT, STATIC_URL, STATIC_ROOT
+from sabadiaz.settings import MEDIA_URL, MEDIA_ROOT, STATIC_URL, STATIC_ROOT
 
 urlpatterns = [
 
@@ -46,8 +46,10 @@ urlpatterns = [
     path('administration/products/create', products.create_product, name='admin_create_product'),
     path('administration/products/<int:product_id>/edit', products.edit_product, name='admin_edit_product'),
     path('administration/products/<int:product_id>/delete', products.delete_product, name='admin_delete_product'),
-    path('administration/products/<int:product_id>/images/<int:image_id>/delete', products.delete_product_image, name='admin_delete_product_image'),
-    path('administration/products/<int:product_id>/images/<int:image_id>/edit', products.edit_product_image, name='admin_edit_product_image'),
+    path('administration/products/<int:product_id>/images/<int:image_id>/delete', products.delete_product_image,
+         name='admin_delete_product_image'),
+    path('administration/products/<int:product_id>/images/<int:image_id>/edit', products.edit_product_image,
+         name='admin_edit_product_image'),
 
     # Administration
     # Company
@@ -56,16 +58,17 @@ urlpatterns = [
 
     # Slides
     path('administration/website/slides', slides.view, name='admin_website_slides'),
-    path('administration/website/slides/<int:slide_id>/update_image', slides.update_image, name='admin_website_slides_update_image'),
+    path('administration/website/slides/<int:slide_id>/update_image', slides.update_image,
+         name='admin_website_slides_update_image'),
 
     # Testimonials
     path('administration/website/testimonials', testimonials.view, name='admin_website_testimonials'),
-    path('administration/website/testimonials/<int:testimonial_id>/update_avatar', testimonials.update_avatar, name='admin_website_testimonials_update_avatar'),
+    path('administration/website/testimonials/<int:testimonial_id>/update_avatar', testimonials.update_avatar,
+         name='admin_website_testimonials_update_avatar'),
 
 
 ]
 
 
-if DEBUG:
-    urlpatterns += static(STATIC_URL, document_root=STATIC_ROOT)
-    urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
+urlpatterns += static(STATIC_URL, document_root=STATIC_ROOT)
+urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
