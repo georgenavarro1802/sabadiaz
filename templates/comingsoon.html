@@ -1,0 +1,71 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Coming Soon - Sabadiaz Jewelry</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'comingsoon/vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'comingsoon/vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'comingsoon/vendor/countdowntime/flipclock.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'comingsoon/css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'comingsoon/css/main.css' %}">
+<!--===============================================================================================-->
+</head>
+<body>
+	<div class="bg-img1 size1 overlay1 p-b-35 p-l-15 p-r-15" style="background-image: url('{% static 'comingsoon/images/bg01.jpg' %}');">
+		<div class="flex-col-c p-t-60 p-b-150 respon1">
+			<h3 class="l1-txt1 txt-center p-t-30 p-b-50">
+				SABADIAZ JEWELRY
+			</h3>
+
+			<div class="cd100"></div>
+
+            <p class="text-white text-center mt-4">
+                We're working hard to finish the development of our new website.
+                <br/>
+                Our target launch date is next week.
+            </p>
+
+		</div>
+	</div>
+
+<!--===============================================================================================-->	
+	<script src="{% static 'comingsoon/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'comingsoon/vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'comingsoon/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'comingsoon/vendor/countdowntime/flipclock.min.js' %}"></script>
+	<script src="{% static 'comingsoon/vendor/countdowntime/moment.min.js' %}"></script>
+	<script src="{% static 'comingsoon/vendor/countdowntime/moment-timezone.min.js' %}"></script>
+	<script src="{% static 'comingsoon/vendor/countdowntime/moment-timezone-with-data.min.js' %}"></script>
+	<script src="{% static 'comingsoon/vendor/countdowntime/countdowntime.js' %}"></script>
+
+    <script>
+		$('.cd100').countdown100({
+			/*Set Endtime here*/
+			/*Endtime must be > current time*/
+			endtimeYear: 0,
+			endtimeMonth: 0,
+			endtimeDate: 9,
+			endtimeHours: 2,
+			endtimeMinutes: 0,
+			endtimeSeconds: 0,
+			timeZone: "" 
+			// ex:  timeZone: "America/New_York"
+			//go to " http://momentjs.com/timezone/ " to get timezone
+		});
+
+		
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'comingsoon/vendor/tilt/tilt.jquery.min.js' %}"></script>
+
+</body>
+</html>

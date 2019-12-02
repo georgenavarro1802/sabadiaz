@@ -11,7 +11,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # index
-    path('', views.index, name='index'),
+    # path('', views.index, name='index'),
+    path('', views.coming_soon, name='index'),
 
     # Login
     path('login', views.login_user, name='login'),

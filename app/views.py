@@ -1,5 +1,3 @@
-import time
-
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
@@ -141,3 +139,9 @@ def register(request):
 def logout_user(request):
     logout(request)
     return HttpResponseRedirect("/")
+
+
+def coming_soon(request):
+    data = {'title': 'Sabadiaz Jewelry - Coming Soon'}
+    addUserData(request, data)
+    return render(request, 'comingsoon.html', data)
