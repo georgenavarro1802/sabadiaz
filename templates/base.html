@@ -1,5 +1,6 @@
 {% load static %}
 {% load humanize %}
+{% load i18n %}
 
 <!doctype html>
 <html class="no-js" lang="en">
@@ -38,7 +39,7 @@
     <link rel="stylesheet" href="{% static 'css/plugins/nice-select.css' %}">
     <!-- jquery UI css -->
     <link rel="stylesheet" href="{% static 'css/plugins/jqueryui.min.css' %}">
-        <!-- Sweet Alert -->
+    <!-- Sweet Alert -->
     <link rel="stylesheet" href="{% static 'css/vendor/sweetalert2.min.css' %}">
     <!-- main style css -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -46,415 +47,437 @@
 </head>
 
 <body>
-    <!-- Start Header Area -->
-    <header class="header-area header-wide bg-gray">
-        <!-- main header start -->
-        <div class="main-header d-none d-lg-block">
+<!-- Start Header Area -->
+<header class="header-area header-wide bg-gray">
+    <!-- main header start -->
+    <div class="main-header d-none d-lg-block">
 
-            <!-- header middle area start -->
-            <div class="header-main-area sticky">
-                <div class="container">
-                    <div class="row align-items-center position-relative">
+        <!-- header middle area start -->
+        <div class="header-main-area sticky">
+            <div class="container">
+                <div class="row align-items-center position-relative">
 
-                        <!-- start logo area -->
-                        <div class="col-lg-2">
-                            <div class="logo">
-                                <a href="{% url 'index' %}">
-                                    <img src="{% static 'img/logo/logo.png' %}" alt="brand logo">
-                                </a>
-                            </div>
+                    <!-- start logo area -->
+                    <div class="col-lg-2">
+                        <div class="logo">
+                            <a href="{% url 'index' %}">
+                                {#                                    <img src="{% static 'img/logo/logo.png' %}" alt="brand logo">#}
+                                <h5>SABADIAZ JEWELRY</h5>
+                            </a>
                         </div>
-                        <!-- start logo area -->
+                    </div>
+                    <!-- start logo area -->
 
-                        <!-- main menu area start -->
-                        <div class="col-lg-6 position-static">
-                            <div class="main-menu-area">
-                                <div class="main-menu">
-                                    <!-- main menu navbar start -->
-                                    <nav class="desktop-menu">
-                                        <ul>
-                                            <li class="{% ifequal option 'index' %}active{% endifequal %}">
-                                                <a href="{% url 'index' %}">Home</a>
-                                            </li>
-                                            <li class="{% ifequal option 'products' %}active{% endifequal %}">
-                                                <a href="{% url 'products' %}">Our Products</a>
-                                            </li>
-                                            <li class="{% ifequal option 'about' %}active{% endifequal %}">
-                                                <a href="{% url 'about' %}">About Us</a>
-                                            </li>
-                                            <li class="{% ifequal option 'contact' %}active{% endifequal %}">
-                                                <a href="{% url 'contact' %}">Contact</a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                    <!-- main menu navbar end -->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- main menu area end -->
-
-                        <!-- mini cart area start -->
-                        <div class="col-lg-4">
-                            <div class="header-right d-flex align-items-center justify-content-xl-between justify-content-lg-end">
-                                <div class="header-search-container">
-                                    <button class="search-trigger d-xl-none d-lg-block"><i class="pe-7s-search"></i></button>
-                                    <form class="header-search-box d-lg-none d-xl-block animated jackInTheBox">
-                                        <input type="text" placeholder="Search entire store hire" class="header-search-field bg-white">
-                                        <button class="header-search-btn"><i class="pe-7s-search"></i></button>
-                                    </form>
-                                </div>
-
-                                <div class="header-top-settings">
-                                    <ul class="nav align-items-center justify-content-end">
-                                        <li class="language">
-                                            <img src="{% static 'img/icon/en.png' %}" alt="flag"> English
-                                            <i class="fa fa-angle-down"></i>
-                                            <ul class="dropdown-list">
-                                                <li><a href="#"><img src="{% static 'img/icon/en.png' %}" alt="flag"> English</a></li>
-                                                <li><a href="#"><img src="{% static 'img/icon/fr.png' %}" alt="flag"> Spanish</a></li>
-                                            </ul>
+                    <!-- main menu area start -->
+                    <div class="col-lg-6 position-static">
+                        <div class="main-menu-area">
+                            <div class="main-menu">
+                                <!-- main menu navbar start -->
+                                <nav class="desktop-menu">
+                                    <ul>
+                                        <li class="{% ifequal option 'index' %}active{% endifequal %}">
+                                            <a href="{% url 'index' %}">{% trans 'Home'%}</a>
                                         </li>
-                                    </ul>
-                                </div>
-
-                                <div class="header-configure-area">
-                                    <ul class="nav justify-content-end">
-                                        {% if not user.is_anonymous %}
-                                            <li>
-                                                <a href="{% url 'wishlist' %}">
-                                                    <i class="pe-7s-like"></i>
-                                                    <div id="divWishlistNotification" class="notification">
-                                                        {{ wishlist_items|floatformat:0 }}
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        {% endif %}
-
-                                        <li class="user-hover">
-                                            <a href="javascript:void(0);">
-                                                <i class="pe-7s-user"></i>
-                                            </a>
-                                            <ul class="dropdown-list">
-                                                {% if not user.is_anonymous %}
-                                                    <li class="font-12 mb-3 text-center text-muted">
-                                                        Welcome <p style="color: #7386d5">{{ user.first_name }}</p>
-                                                    </li>
-                                                    <li class="mobile-settings"></li>
-                                                    <li>
-                                                        <a href="{% url 'account' %}">My Account</a>
-                                                    </li>
-                                                    {% if user.is_superuser %}
-                                                        <li>
-                                                            <a href="{% url 'admin_website_company_data' %}">Administration</a>
-                                                        </li>
-                                                    {% endif %}
-                                                    <li>
-                                                        <a href="{% url 'logout' %}">Logout</a>
-                                                    </li>
-                                                {% else %}
-                                                    <li>
-                                                        <a href="{% url 'login' %}"> Login</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="{% url 'register' %}"> Register</a>
-                                                    </li>
-                                                {% endif %}
-                                            </ul>
+                                        <li class="{% ifequal option 'products' %}active{% endifequal %}">
+                                            <a href="{% url 'products' %}">{% trans 'Our Products' %}</a>
                                         </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- mini cart area end -->
-
-                    </div>
-                </div>
-            </div>
-            <!-- header middle area end -->
-        </div>
-        <!-- main header start -->
-
-        <!-- mobile header start -->
-        <div class="mobile-header d-lg-none d-md-block sticky">
-            <!--mobile header top start -->
-            <div class="container-fluid">
-                <div class="row align-items-center">
-                    <div class="col-12">
-                        <div class="mobile-main-header">
-                            <div class="mobile-logo">
-                                <a href="{% url 'index' %}">
-                                    <img src="{% static 'img/logo/logo.png' %}" alt="Brand Logo">
-                                </a>
-                            </div>
-                            <div class="mobile-menu-toggler">
-                                <button class="mobile-menu-btn">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- mobile header top start -->
-        </div>
-        <!-- mobile header end -->
-
-        <!-- offcanvas mobile menu start -->
-        <aside class="off-canvas-wrapper">
-            <div class="off-canvas-overlay"></div>
-            <div class="off-canvas-inner-content">
-                <div class="btn-close-off-canvas">
-                    <i class="pe-7s-close"></i>
-                </div>
-
-                <div class="off-canvas-inner">
-
-                    {% if not user.is_anonymous %}
-                        <p class="font-12 mb-3 text-dark">
-                            Welcome <span style="color: #7386d5">{{ user.first_name }} {{ user.last_name }} </span>
-                        </p>
-                    {% endif %}
-
-                    <!-- search box start -->
-                    <div class="search-box-offcanvas">
-                        <form>
-                            <input type="text" placeholder="Search Here...">
-                            <button class="search-btn"><i class="pe-7s-search"></i></button>
-                        </form>
-                    </div>
-                    <!-- search box end -->
-
-                    <!-- mobile menu start -->
-                    <div class="mobile-navigation">
-
-                        <!-- mobile menu navigation start -->
-                        <nav>
-                            <ul class="mobile-menu">
-                                <li class="{% ifequal option 'index' %}active{% endifequal %}">
-                                    <a href="{% url 'index' %}">Home</a>
-                                </li>
-                                <li class="{% ifequal option 'products' %}active{% endifequal %}">
-                                    <a href="{% url 'products' %}">Our Products</a>
-                                </li>
-                                <li class="{% ifequal option 'about' %}active{% endifequal %}">
-                                    <a href="{% url 'about' %}">About Us</a>
-                                </li>
-                                <li class="{% ifequal option 'contact' %}active{% endifequal %}">
-                                    <a href="{% url 'contact' %}">Contact</a>
-                                </li>
-                            </ul>
-                        </nav>
-                        <!-- mobile menu navigation end -->
-                    </div>
-                    <!-- mobile menu end -->
-
-                    <div class="mobile-settings">
-                        <ul class="nav">
-                            {% if not user.is_anonymous %}
-                                <li>
-                                    <a href="{% url 'account' %}">My Account</a>
-                                 </li>
-                            {% else %}
-                                <li>
-                                    <a href="{% url 'login' %}"> Login</a>
-                                </li>
-                                <li>
-                                    <a href="{% url 'register' %}"> Register</a>
-                                </li>
-                                <li>
-                                    <a href="{% url 'wishlist' %}"> Wishlist</a>
-                                </li>
-                            {% endif %}
-                        </ul>
-                    </div>
-
-                    <div class="mobile-settings">
-                        <ul class="nav">
-                            <li class="ver">
-                                <div class="dropdown mobile-top-dropdown">
-                                    <a href="#" class="dropdown-toggle" id="myaccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Language
-                                        <i class="fa fa-angle-down"></i>
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="language">
-                                        <a href="#" class="dropdown-item">
-                                            <img src="{% static 'img/icon/en.png' %}" alt="flag"> English
-                                        </a>
-                                        <a href="#" class="dropdown-item">
-                                            <img src="{% static 'img/icon/fr.png' %}" alt="flag"> Spanish
-                                        </a>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- offcanvas widget area start -->
-                    <div class="offcanvas-widget-area">
-                        <div class="off-canvas-contact-widget">
-                            <ul>
-                                <li><i class="fa fa-mobile"></i>
-                                    <a href="#">0123456789</a>
-                                </li>
-                                <li><i class="fa fa-envelope-o"></i>
-                                    <a href="#">info@yourdomain.com</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="off-canvas-social-widget">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play"></i></a>
-                        </div>
-                    </div>
-                    <!-- offcanvas widget area end -->
-                </div>
-            </div>
-        </aside>
-        <!-- offcanvas mobile menu end -->
-    </header>
-    <!-- end Header Area -->
-
-    <main>
-
-        {% if option != 'index' %}
-            <!-- breadcrumb area start -->
-            <div class="breadcrumb-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="breadcrumb-wrap">
-                                <nav aria-label="breadcrumb">
-                                    <ul class="breadcrumb">
-                                        <li class="breadcrumb-item">
-                                            <a href="{% url 'index' %}">
-                                                <i class="fa fa-home"></i>
-                                            </a>
+                                        <li class="{% ifequal option 'about' %}active{% endifequal %}">
+                                            <a href="{% url 'about' %}">{% trans 'About Us' %}</a>
                                         </li>
-                                        <li class="breadcrumb-item active" aria-current="page">
-                                            {{ current_page }}
+                                        <li class="{% ifequal option 'contact' %}active{% endifequal %}">
+                                            <a href="{% url 'contact' %}">{% trans 'Contact' %}</a>
                                         </li>
                                     </ul>
                                 </nav>
+                                <!-- main menu navbar end -->
                             </div>
+                        </div>
+                    </div>
+                    <!-- main menu area end -->
+
+                    <!-- Header right start -->
+                    <div class="col-lg-4">
+
+                        <div class="header-right d-flex align-items-center justify-content-xl-between justify-content-lg-end">
+
+                            <!-- Search -->
+                            <div class="header-search-container">
+                                <button class="search-trigger d-xl-none d-lg-block"><i class="pe-7s-search"></i></button>
+                                <form class="header-search-box d-lg-none d-xl-block animated jackInTheBox">
+                                    <input type="text" placeholder="Search entire store hire" class="header-search-field bg-white">
+                                    <button class="header-search-btn"><i class="pe-7s-search"></i></button>
+                                </form>
+                            </div>
+
+                            <!-- Languages -->
+                            <div class="header-top-settings">
+                                <form id="formSetLanguage" action="{% url 'set_language' %}" method="post">
+                                    {% csrf_token %}
+                                    <input name="next" type="hidden" value="{{ redirect_to }}">
+                                    <select name="language" onchange="$('#formSetLanguage').submit();">
+                                        {% get_current_language as LANGUAGE_CODE %}
+                                        {% get_available_languages as LANGUAGES %}
+                                        {% get_language_info_list for LANGUAGES as languages %}
+                                        {% for language in languages %}
+                                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                                {{ language.name_local.capitalize }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </form>
+                            </div>
+
+                            <!-- Wishlist and User -->
+                            <div class="header-configure-area">
+                                <ul class="nav justify-content-end">
+                                    {% if not user.is_anonymous %}
+                                        <li>
+                                            <a href="{% url 'wishlist' %}">
+                                                <i class="pe-7s-like"></i>
+                                                <div id="divWishlistNotification" class="notification">
+                                                    {{ wishlist_items|floatformat:0 }}
+                                                </div>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+
+                                    <li class="user-hover">
+                                        <a href="javascript:void(0);">
+                                            <i class="pe-7s-user"></i>
+                                        </a>
+                                        <ul class="dropdown-list">
+                                            {% if not user.is_anonymous %}
+                                                <li class="font-12 mb-3 text-center text-muted">
+                                                    {% trans 'Welcome' %} <p style="color: #7386d5">{{ user.first_name }}</p>
+                                                </li>
+                                                <li class="mobile-settings"></li>
+                                                {#                                                    <li>#}
+                                                {#                                                        <a href="{% url 'account' %}">My Account</a>#}
+                                                {#                                                    </li>#}
+                                                {% if user.is_superuser %}
+                                                    <li>
+                                                        <a href="{% url 'admin_website_company_data' %}">
+                                                            {% trans 'Administration' %}
+                                                        </a>
+                                                    </li>
+                                                {% endif %}
+                                                <li>
+                                                    <a href="{% url 'logout' %}">
+                                                        {% trans 'Logout' %}
+                                                        Logout
+                                                    </a>
+                                                </li>
+                                            {% else %}
+                                                <li>
+                                                    <a href="{% url 'login' %}">
+                                                        {% trans 'Login' %}
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="{% url 'register' %}">
+                                                        {% trans 'Register' %}
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Header right end -->
+
+                </div>
+            </div>
+        </div>
+        <!-- header middle area end -->
+    </div>
+    <!-- main header start -->
+
+    <!-- mobile header start -->
+    <div class="mobile-header d-lg-none d-md-block sticky">
+        <!--mobile header top start -->
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="mobile-main-header">
+                        <div class="mobile-logo">
+                            <a href="{% url 'index' %}">
+                                <img src="{% static 'img/logo/logo.png' %}" alt="Brand Logo">
+                            </a>
+                        </div>
+                        <div class="mobile-menu-toggler">
+                            <button class="mobile-menu-btn">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- breadcrumb area end -->
-        {% endif %}
-
-        <!-- main section -->
-        {% block main %}{% endblock %}
-        <!-- main section end -->
-    </main>
-
-    <!-- Scroll to top start -->
-    <div class="scroll-top not-visible">
-        <i class="fa fa-angle-up"></i>
+        </div>
+        <!-- mobile header top start -->
     </div>
-    <!-- Scroll to Top End -->
+    <!-- mobile header end -->
 
-    <!-- Footer -->
-    {% include 'site/includes/footer_section.html' %}
-    <!-- footer area end -->
+    <!-- offcanvas mobile menu start -->
+    <aside class="off-canvas-wrapper">
+        <div class="off-canvas-overlay"></div>
+        <div class="off-canvas-inner-content">
+            <div class="btn-close-off-canvas">
+                <i class="pe-7s-close"></i>
+            </div>
 
-    <!-- Loader -->
-    <div id="divLoader">
-        <img class="imageLoader" src="{% static 'img/loading.gif' %}" alt="Loading..." />
-    </div>
-    <!-- Loader end -->
+            <div class="off-canvas-inner">
 
-    <!-- JS
+                {% if not user.is_anonymous %}
+                    <p class="font-12 mb-3 text-dark">
+                        {% trans 'Welcome' %} <span style="color: #7386d5">{{ user.first_name }} {{ user.last_name }} </span>
+                    </p>
+                {% endif %}
+
+                <!-- search box start -->
+                <div class="search-box-offcanvas">
+                    <form>
+                        <input type="text" placeholder="Search Here...">
+                        <button class="search-btn"><i class="pe-7s-search"></i></button>
+                    </form>
+                </div>
+                <!-- search box end -->
+
+                <!-- mobile menu start -->
+                <div class="mobile-navigation">
+
+                    <!-- mobile menu navigation start -->
+                    <nav>
+                        <ul class="mobile-menu">
+                            <li class="{% ifequal option 'index' %}active{% endifequal %}">
+                                <a href="{% url 'index' %}">{% trans 'Home' %}</a>
+                            </li>
+                            <li class="{% ifequal option 'products' %}active{% endifequal %}">
+                                <a href="{% url 'products' %}">{% trans 'Our Products' %}</a>
+                            </li>
+                            <li class="{% ifequal option 'about' %}active{% endifequal %}">
+                                <a href="{% url 'about' %}">{% trans 'About Us' %}</a>
+                            </li>
+                            <li class="{% ifequal option 'contact' %}active{% endifequal %}">
+                                <a href="{% url 'contact' %}">{% trans 'Contact' %}</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- mobile menu navigation end -->
+                </div>
+                <!-- mobile menu end -->
+
+                <div class="mobile-settings">
+                    <ul class="nav">
+                        {% if user.is_anonymous %}
+                            {#                                <li>#}
+                            {#                                    <a href="{% url 'account' %}">My Account</a>#}
+                            {#                                 </li>#}
+                            {#                            {% else %}#}
+                            <li>
+                                <a href="{% url 'login' %}">{% trans 'Login' %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'register' %}">{% trans 'Register' %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'wishlist' %}">{% trans 'Wishlist' %}</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+                <div class="mobile-settings">
+                    <ul class="nav">
+                        <li class="ver">
+                            <div class="dropdown mobile-top-dropdown">
+                                <form id="formSetLanguageMobile" action="{% url 'set_language' %}" method="post">
+                                    {% csrf_token %}
+                                    <input name="next" type="hidden" value="{{ redirect_to }}">
+                                    <select name="language" onchange="$('#formSetLanguageMobile').submit();">
+                                        {% get_current_language as LANGUAGE_CODE %}
+                                        {% get_available_languages as LANGUAGES %}
+                                        {% get_language_info_list for LANGUAGES as languages %}
+                                        {% for language in languages %}
+                                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                                {{ language.name_local.capitalize }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- offcanvas widget area start -->
+                <div class="offcanvas-widget-area">
+                    <div class="off-canvas-contact-widget">
+                        <ul>
+                            <li><i class="fa fa-mobile"></i>
+                                <a href="#">{{ company.phone }}</a>
+                            </li>
+                            <li><i class="fa fa-envelope-o"></i>
+                                <a href="#">{{ company.email }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="off-canvas-social-widget">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i> {{ company.twitter }}</a>
+                        <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                        <a href="#"><i class="fa fa-youtube-play"></i></a>
+                    </div>
+                </div>
+                <!-- offcanvas widget area end -->
+            </div>
+        </div>
+    </aside>
+    <!-- offcanvas mobile menu end -->
+</header>
+<!-- end Header Area -->
+
+<main>
+
+    {% if option != 'index' %}
+        <!-- breadcrumb area start -->
+        <div class="breadcrumb-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb-wrap">
+                            <nav aria-label="breadcrumb">
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a href="{% url 'index' %}">
+                                            <i class="fa fa-home"></i>
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item active" aria-current="page">
+                                        {{ current_page }}
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- breadcrumb area end -->
+    {% endif %}
+
+    <!-- main section -->
+    {% block main %}{% endblock %}
+    <!-- main section end -->
+</main>
+
+<!-- Scroll to top start -->
+<div class="scroll-top not-visible">
+    <i class="fa fa-angle-up"></i>
+</div>
+<!-- Scroll to Top End -->
+
+<!-- Footer -->
+{% include 'site/includes/footer_section.html' %}
+<!-- footer area end -->
+
+<!-- Loader -->
+<div id="divLoader">
+    <img class="imageLoader" src="{% static 'img/loading.gif' %}" alt="Loading..." />
+</div>
+<!-- Loader end -->
+
+<!-- JS
 ============================================ -->
 
-    <!-- Modernizer JS -->
-    <script src="{% static 'js/vendor/modernizr-3.6.0.min.js' %}"></script>
-    <!-- jQuery JS -->
-    <script src="{% static 'js/vendor/jquery-3.3.1.min.js' %}"></script>
-    <!-- Popper JS -->
-    <script src="{% static 'js/vendor/popper.min.js' %}"></script>
-    <!-- Bootstrap JS -->
-    <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
-    <!-- Alertify JS -->
-    <script src="{% static 'js/vendor/alertify.min.js' %}"></script>
-    <!-- slick Slider JS -->
-    <script src="{% static 'js/plugins/slick.min.js' %}"></script>
-    <!-- Countdown JS -->
-    <script src="{% static 'js/plugins/countdown.min.js' %}"></script>
-    <!-- Nice Select JS -->
-    <script src="{% static 'js/plugins/nice-select.min.js' %}"></script>
-    <!-- jquery UI JS -->
-    <script src="{% static 'js/plugins/jqueryui.min.js' %}"></script>
-    <!-- Image zoom JS -->
-    <script src="{% static 'js/plugins/image-zoom.min.js' %}"></script>
-    <!-- Imagesloaded JS -->
-    <script src="{% static 'js/plugins/imagesloaded.pkgd.min.js' %}"></script>
-    <!-- Instagram feed JS -->
-    <script src="{% static 'js/plugins/instagramfeed.min.js' %}"></script>
-    <!-- mailchimp active js -->
-    <script src="{% static 'js/plugins/ajaxchimp.js' %}"></script>
-    <!-- contact form dynamic js -->
-    <script src="{% static 'js/plugins/ajax-mail.js' %}"></script>
-    <!-- Sweet Alert 2 -->
-    <script src="{% static 'js/vendor/sweetalert2.min.js' %}"></script>
-    <!-- Main JS -->
-    <script src="{% static 'js/main.js' %}"></script>
+<!-- Modernizer JS -->
+<script src="{% static 'js/vendor/modernizr-3.6.0.min.js' %}"></script>
+<!-- jQuery JS -->
+<script src="{% static 'js/vendor/jquery-3.3.1.min.js' %}"></script>
+<!-- Popper JS -->
+<script src="{% static 'js/vendor/popper.min.js' %}"></script>
+<!-- Bootstrap JS -->
+<script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+<!-- Alertify JS -->
+<script src="{% static 'js/vendor/alertify.min.js' %}"></script>
+<!-- slick Slider JS -->
+<script src="{% static 'js/plugins/slick.min.js' %}"></script>
+<!-- Countdown JS -->
+<script src="{% static 'js/plugins/countdown.min.js' %}"></script>
+<!-- Nice Select JS -->
+<script src="{% static 'js/plugins/nice-select.min.js' %}"></script>
+<!-- jquery UI JS -->
+<script src="{% static 'js/plugins/jqueryui.min.js' %}"></script>
+<!-- Image zoom JS -->
+<script src="{% static 'js/plugins/image-zoom.min.js' %}"></script>
+<!-- Imagesloaded JS -->
+<script src="{% static 'js/plugins/imagesloaded.pkgd.min.js' %}"></script>
+<!-- Instagram feed JS -->
+<script src="{% static 'js/plugins/instagramfeed.min.js' %}"></script>
+<!-- mailchimp active js -->
+<script src="{% static 'js/plugins/ajaxchimp.js' %}"></script>
+<!-- contact form dynamic js -->
+<script src="{% static 'js/plugins/ajax-mail.js' %}"></script>
+<!-- Sweet Alert 2 -->
+<script src="{% static 'js/vendor/sweetalert2.min.js' %}"></script>
+<!-- Main JS -->
+<script src="{% static 'js/main.js' %}"></script>
 
-    <!-- Customs JS -->
-    {% block script %}{% endblock %}
+<!-- Customs JS -->
+{% block script %}{% endblock %}
 
-    <script>
-        $(function () {
+<script>
 
-            // Wishlist
-            $(".btnWishList").click(function () {
-                let pid = $(this).attr('pid');
-                if ('{{ is_visitor }}' === '0'){
-                    Swal.fire(
-                        'Alert',
-                        'To perfom this action you need to be authenticated. <br/>Log in and try again.',
-                        'info'
-                    );
-                }else{
-                    // send to server
-                    $.ajax({
-                        type: "POST",
-                        url: "/wishlist/"+pid+"/add",
-                        data: {},
-                        dataType: 'json',
-                        success: function (response) {
-                            if (response.result === 'ok'){
-                                alertify.success(response.message);
-                                $("#divWishlistNotification").html(response.wishlist_items)
-                            }else{
-                                alertify.error(response.message);
-                            }
-                        },
-                        error: function () {
-                            alertify.error('Server Error');
-                        },
-                    });
-                }
-            });
+    $(function () {
 
-            // hide loader once page is loaded
-            setTimeout(function () {
-                $('#divLoader').fadeOut(200);
-            }, 500);
+        // Wishlist
+        $(".btnWishList").click(function () {
+            let pid = $(this).attr('pid');
+            if ('{{ is_visitor }}' === '0'){
+                Swal.fire(
+                    'Alert',
+                    'To perfom this action you need to be authenticated. <br/>Log in and try again.',
+                    'info'
+                );
+            }else{
+                // send to server
+                $.ajax({
+                    type: "POST",
+                    url: "/wishlist/"+pid+"/add",
+                    data: {},
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response.result === 'ok'){
+                            alertify.success(response.message);
+                            $("#divWishlistNotification").html(response.wishlist_items)
+                        }else{
+                            alertify.error(response.message);
+                        }
+                    },
+                    error: function () {
+                        alertify.error('Server Error');
+                    },
+                });
+            }
+        });
 
-            // Tooltips
-            $('.tl').tooltip({ placement: 'left' });
-            $('.tr').tooltip({ placement: 'right' });
-            $('.tt').tooltip({ placement: 'top' });
-            $('.tb').tooltip({ placement: 'bottom' });
+        // hide loader once page is loaded
+        setTimeout(function () {
+            $('#divLoader').fadeOut(200);
+        }, 500);
 
-        })
-    </script>
+        // Tooltips
+        $('.tl').tooltip({ placement: 'left' });
+        $('.tr').tooltip({ placement: 'right' });
+        $('.tt').tooltip({ placement: 'top' });
+        $('.tb').tooltip({ placement: 'bottom' });
+
+    })
+</script>
 
 </body>
 

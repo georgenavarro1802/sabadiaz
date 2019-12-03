@@ -1,7 +1,10 @@
 import datetime
 import json
 
-from django.http import HttpResponse
+from django.conf.global_settings import LANGUAGE_COOKIE_NAME
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import redirect
+from django.utils import translation
 
 
 def bad_json(message=None):
@@ -39,3 +42,5 @@ def generate_filename(prefix, original):
     :return:
     """
     return f"{prefix}_{datetime.datetime.today().strftime('%Y%m%d%f')}.{original.split('.')[-1]}"
+
+

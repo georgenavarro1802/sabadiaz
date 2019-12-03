@@ -1,6 +1,7 @@
+from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from app import views, wishlist, shop
 from app.administration import products, slides, company, testimonials
 from sabadiaz.settings import MEDIA_URL, MEDIA_ROOT, STATIC_URL, STATIC_ROOT
@@ -10,9 +11,15 @@ urlpatterns = [
     # admin
     path('admin/', admin.site.urls),
 
+    # set languages
+    path('i18n/', include('django.conf.urls.i18n')),
+]
+
+urlpatterns += i18n_patterns(
+
     # index
-    # path('', views.index, name='index'),
-    path('', views.coming_soon, name='index'),
+    path('', views.index, name='index'),
+    # path('', views.coming_soon, name='index'),
 
     # Login
     path('login', views.login_user, name='login'),
@@ -66,10 +73,7 @@ urlpatterns = [
     path('administration/website/testimonials', testimonials.view, name='admin_website_testimonials'),
     path('administration/website/testimonials/<int:testimonial_id>/update_avatar', testimonials.update_avatar,
          name='admin_website_testimonials_update_avatar'),
-
-
-]
-
+)
 
 urlpatterns += static(STATIC_URL, document_root=STATIC_ROOT)
 urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)

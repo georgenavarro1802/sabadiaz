@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <footer class="footer-widget-area mt-4">
     <div class="footer-top section-padding">
@@ -20,7 +21,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="widget-item">
-                        <h6 class="widget-title">Contact Us</h6>
+                        <h6 class="widget-title">{% trans 'Contact Us' %}</h6>
                         <div class="widget-body">
                             <address class="contact-block">
                                 <ul>
@@ -43,14 +44,14 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="widget-item">
-                        <h6 class="widget-title">Information</h6>
+                        <h6 class="widget-title">{% trans 'Information' %}</h6>
                         <div class="widget-body">
                             <ul class="info-list">
                                 <li>
-                                    <a href="{% url 'about' %}">About Us</a>
+                                    <a href="{% url 'about' %}">{% trans 'About Us' %}</a>
                                 </li>
                                 <li>
-                                    <a href="{% url 'contact' %}">Contact Us</a>
+                                    <a href="{% url 'contact' %}">{% trans 'Contact Us' %}</a>
                                 </li>
 {#                                <li>#}
 {#                                    <a href="#">Privacy policy</a>#}
@@ -65,7 +66,7 @@
 
                 <div class="col-lg-3 col-md-6">
                     <div class="widget-item">
-                        <h6 class="widget-title">Follow Us</h6>
+                        <h6 class="widget-title">{% trans 'Follow Us' %}</h6>
                         <div class="widget-body social-link">
                             <a href="{% if company.facebook %}https://www.facebook.com/{{ company.facebook }}{% else %}javascript:void(0);{% endif %}">
                                 <i class="fa fa-facebook"></i>
@@ -92,7 +93,7 @@
                 <div class="col-12">
                     <div class="copyright-text text-center">
                         <p>
-                            <a href="{% url 'index' %}">{{ company.name }} </a> All rights reserved © 2019
+                            <a href="{% url 'index' %}">{{ company.name }} </a> {% trans 'All rights reserved' %} © 2019
                     </div>
                 </div>
             </div>
