@@ -38,8 +38,10 @@
                                     <div class="col-10">
                                         <label for="inputTestimonialName_{{ forloop.counter }}" class="font-12 _600">Name</label>
                                         <input  id="inputTestimonialName_{{ forloop.counter }}" type="text" class="form-control font-12 w-50" value="{{ testimonial.name }}">
-                                        <label for="textareaTestimonialText_{{ forloop.counter }}" class="font-12 _600">Testimonial</label>
-                                        <textarea  id="textareaTestimonialText_{{ forloop.counter }}" class="form-control font-12" rows="2" style="resize: none">{{ testimonial.testimonial }}</textarea>
+                                        <label for="textareaTestimonialTextEN_{{ forloop.counter }}" class="font-12 _600">Testimonial (EN)</label>
+                                        <textarea  id="textareaTestimonialTextEN_{{ forloop.counter }}" class="form-control font-12" rows="2" style="resize: none">{{ testimonial.testimonial_en }}</textarea>
+                                        <label for="textareaTestimonialTextES_{{ forloop.counter }}" class="font-12 _600">Testimonial (ES)</label>
+                                        <textarea  id="textareaTestimonialTextES_{{ forloop.counter }}" class="form-control font-12" rows="2" style="resize: none">{{ testimonial.testimonial_es }}</textarea>
                                     </div>
                                 </div>
                             </div>

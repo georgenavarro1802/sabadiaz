@@ -1,16 +1,20 @@
 // fields
 // Testimonial 1
 let inputTestimonialName_1 = $("#inputTestimonialName_1");
-let textareaTestimonialText_1 = $("#textareaTestimonialText_1");
+let textareaTestimonialTextEN_1 = $("#textareaTestimonialTextEN_1");
+let textareaTestimonialTextES_1 = $("#textareaTestimonialTextES_1");
 // Testimonial 2
 let inputTestimonialName_2 = $("#inputTestimonialName_2");
-let textareaTestimonialText_2 = $("#textareaTestimonialText_2");
+let textareaTestimonialTextEN_2 = $("#textareaTestimonialTextEN_2");
+let textareaTestimonialTextES_2 = $("#textareaTestimonialTextES_2");
 // Testimonial 3
 let inputTestimonialName_3 = $("#inputTestimonialName_3");
-let textareaTestimonialText_3 = $("#textareaTestimonialText_3");
+let textareaTestimonialTextEN_3 = $("#textareaTestimonialTextEN_3");
+let textareaTestimonialTextES_3 = $("#textareaTestimonialTextES_3");
 // Testimonial 4
 let inputTestimonialName_4 = $("#inputTestimonialName_4");
-let textareaTestimonialText_4 = $("#textareaTestimonialText_4");
+let textareaTestimonialTextEN_4 = $("#textareaTestimonialTextEN_4");
+let textareaTestimonialTextES_4 = $("#textareaTestimonialTextES_4");
 
 
 let TESTIMONIALS = {
@@ -21,36 +25,100 @@ let TESTIMONIALS = {
 
         // testimonial 1
         let testimonialname_1 = inputTestimonialName_1.val();
-        let testimonialtext_1 = textareaTestimonialText_1.val();
+        let testimonialtextEN_1 = textareaTestimonialTextEN_1.val();
+        let testimonialtextES_1 = textareaTestimonialTextES_1.val();
 
         // testimonial 2
         let testimonialname_2 = inputTestimonialName_2.val();
-        let testimonialtext_2 = textareaTestimonialText_2.val();
+        let testimonialtextEN_2 = textareaTestimonialTextEN_2.val();
+        let testimonialtextES_2 = textareaTestimonialTextES_2.val();
 
         // testimonial 3
         let testimonialname_3 = inputTestimonialName_3.val();
-        let testimonialtext_3 = textareaTestimonialText_3.val();
+        let testimonialtextEN_3 = textareaTestimonialTextEN_3.val();
+        let testimonialtextES_3 = textareaTestimonialTextES_3.val();
 
         // testimonial 4
         let testimonialname_4 = inputTestimonialName_4.val();
-        let testimonialtext_4 = textareaTestimonialText_4.val();
+        let testimonialtextEN_4 = textareaTestimonialTextEN_4.val();
+        let testimonialtextES_4 = textareaTestimonialTextES_4.val();
 
-        if (testimonialname_1 && testimonialtext_1 && testimonialname_2 && testimonialtext_2 &&
-            testimonialname_3 && testimonialtext_3 && testimonialname_4 && testimonialtext_4){
+        // testimonial 1
+        if (!testimonialname_1){
+            alertify.error('Name in Testimonial 1 is required');
+            inputTestimonialName_1.addClass('is-invalid');
+            return false;
+        }
+
+        else if (!testimonialtextEN_1){
+            alertify.error('Testimonial 1 (EN) is required');
+            textareaTestimonialTextEN_1.addClass('is-invalid');
+            return false;
+        }
+
+        else if (!testimonialtextES_1){
+            alertify.error('Testimonial 1 (ES) is required');
+            textareaTestimonialTextES_1.addClass('is-invalid');
+            return false;
+        }
+
+        // testimonial 2
+        if (!testimonialname_2){
+            alertify.error('Name in Testimonial 2 is required');
+            inputTestimonialName_2.addClass('is-invalid');
+            return false;
+        }
+
+        else if (!testimonialtextEN_2){
+            alertify.error('Testimonial 2 (EN) is required');
+            textareaTestimonialTextEN_2.addClass('is-invalid');
+            return false;
+        }
+
+        else if (!testimonialtextES_2){
+            alertify.error('Testimonial 2 (ES) is required');
+            textareaTestimonialTextES_2.addClass('is-invalid');
+            return false;
+        }
+
+        // testimonial 3
+        if (!testimonialname_3){
+            alertify.error('Name in Testimonial 3 is required');
+            inputTestimonialName_3.addClass('is-invalid');
+            return false;
+        }
+
+        else if (!testimonialtextEN_3){
+            alertify.error('Testimonial 3 (EN) is required');
+            textareaTestimonialTextEN_3.addClass('is-invalid');
+            return false;
+        }
+
+        else if (!testimonialtextES_3){
+            alertify.error('Testimonial 3 (ES) is required');
+            textareaTestimonialTextES_3.addClass('is-invalid');
+            return false;
+        }
+
+        else{
 
             let formData = new FormData();
             // testimonial 1
             formData.append('testimonialname_1', testimonialname_1);
-            formData.append('testimonialtext_1', testimonialtext_1);
+            formData.append('testimonialtext_1_en', testimonialtextEN_1);
+            formData.append('testimonialtext_1_es', testimonialtextES_1);
             // testimonial 2
             formData.append('testimonialname_2', testimonialname_2);
-            formData.append('testimonialtext_2', testimonialtext_2);
+            formData.append('testimonialtext_2_en', testimonialtextEN_2);
+            formData.append('testimonialtext_2_es', testimonialtextES_2);
             // testimonial 3
             formData.append('testimonialname_3', testimonialname_3);
-            formData.append('testimonialtext_3', testimonialtext_3);
+            formData.append('testimonialtext_3_en', testimonialtextEN_3);
+            formData.append('testimonialtext_3_es', testimonialtextES_3);
             // testimonial 4
             formData.append('testimonialname_4', testimonialname_4);
-            formData.append('testimonialtext_4', testimonialtext_4);
+            formData.append('testimonialtext_4_en', testimonialtextEN_4);
+            formData.append('testimonialtext_4_es', testimonialtextES_4);
 
             let spinnerText = "<i class='fa fa-circle-o-notch fa-spin'></i> Saving ...";
             let originalText = elem.html();
@@ -91,9 +159,6 @@ let TESTIMONIALS = {
                     alertify.error('Server Error');
                 },
             });
-
-        }else{
-            alertify.error('Missing required fields');
         }
 
     },

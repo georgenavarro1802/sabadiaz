@@ -13,7 +13,8 @@ def company_data(request):
         try:
             with transaction.atomic():
                 company.name = request.POST['c_name']
-                company.description = request.POST['c_description']
+                company.description_en = request.POST['c_description_en']
+                company.description_es = request.POST['c_description_es']
                 company.address = request.POST['c_address']
                 company.email = request.POST['c_email']
                 company.phone = request.POST['c_phone']

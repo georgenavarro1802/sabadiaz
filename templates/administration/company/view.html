@@ -40,8 +40,12 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputCompanyDataDescription" class="font-12 _600">Description</label>
-                            <input  id="inputCompanyDataDescription" type="text" class="form-control font-12" value="{{ company.description|default_if_none:'' }}" />
+                            <label for="inputCompanyDataDescriptionEN" class="font-12 _600">Description (EN)</label>
+                            <input  id="inputCompanyDataDescriptionEN" type="text" class="form-control font-12" value="{{ company.description_en|default_if_none:'' }}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="inputCompanyDataDescriptionES" class="font-12 _600">Description (ES) </label>
+                            <input  id="inputCompanyDataDescriptionES" type="text" class="form-control font-12" value="{{ company.description_es|default_if_none:'' }}" />
                         </div>
                         <div class="form-group">
                             <label for="inputCompanyDataAddress" class="font-12 _600">Address</label>

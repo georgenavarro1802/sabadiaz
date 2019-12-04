@@ -24,28 +24,32 @@ def view(request):
                 # testimonial 1
                 testimonial1 = objects[0]
                 testimonial1.name = request.POST['testimonialname_1']
-                testimonial1.testimonial = request.POST['testimonialtext_1']
+                testimonial1.testimonial_en = request.POST['testimonialtext_1_en']
+                testimonial1.testimonial_es = request.POST['testimonialtext_1_es']
                 testimonial1.save()
 
                 # testimonial 2
                 testimonial2 = objects[1]
                 testimonial2.name = request.POST['testimonialname_2']
-                testimonial2.testimonial = request.POST['testimonialtext_2']
+                testimonial2.testimonial_en = request.POST['testimonialtext_2_en']
+                testimonial2.testimonial_es = request.POST['testimonialtext_2_es']
                 testimonial2.save()
 
                 # testimonial 3
                 testimonial3 = objects[2]
                 testimonial3.name = request.POST['testimonialname_3']
-                testimonial3.testimonial = request.POST['testimonialtext_3']
+                testimonial3.testimonial_en = request.POST['testimonialtext_3_en']
+                testimonial3.testimonial_es = request.POST['testimonialtext_3_es']
                 testimonial3.save()
 
                 # testimonial 4
                 testimonial4 = objects[3]
                 testimonial4.name = request.POST['testimonialname_4']
-                testimonial4.testimonial = request.POST['testimonialtext_4']
+                testimonial4.testimonial_en = request.POST['testimonialtext_4_en']
+                testimonial4.testimonial_es = request.POST['testimonialtext_4_es']
                 testimonial4.save()
 
-                time.sleep(0.5)
+                time.sleep(1)
                 return ok_json(data={'message': 'Testimonials updated!'})
 
         except Exception as ex:
