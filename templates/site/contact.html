@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block main %}
 
@@ -15,28 +16,28 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="contact-message">
-                        <h4 class="contact-title">Tell Us Your Project</h4>
+                        <h4 class="contact-title">{% trans 'Tell Us Your Project' %}</h4>
                         <form id="formContact" class="contact-form" autocomplete="off">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <input id="inputContactName" placeholder="Name *" type="text" required>
+                                    <input id="inputContactName" placeholder="{% trans 'Name' %} *" type="text" required>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <input id="inputContactPhone" placeholder="Phone *" type="text" required>
+                                    <input id="inputContactPhone" placeholder="{% trans 'Phone' %} *" type="text" required>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <input id="inputContactEmail" placeholder="Email *" type="email" required>
+                                    <input id="inputContactEmail" placeholder="{% trans 'Email' %} *" type="email" required>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <input id="inputContactSubject" placeholder="Subject *" type="text">
+                                    <input id="inputContactSubject" placeholder="{% trans 'Subject' %} *" type="text">
                                 </div>
                                 <div class="col-12">
                                     <div class="contact2-textarea text-center">
-                                        <textarea placeholder="Message *" id="textareaContactMessage" class="form-control2" required=""></textarea>
+                                        <textarea placeholder="{% trans 'Message' %} *" id="textareaContactMessage" class="form-control2" required=""></textarea>
                                     </div>
                                     <div class="contact-btn">
                                         <a class="btn btn-sqr text-white" id="btnContactSubmit">
-                                            <i class="fa fa-envelope mr-1"></i> Send Message
+                                            <i class="fa fa-envelope mr-1"></i> {% trans 'Send Message' %}
                                         </a>
                                     </div>
                                 </div>
@@ -50,27 +51,28 @@
 
                 <div class="col-lg-6">
                     <div class="contact-info">
-                        <h4 class="contact-title">Contact Us</h4>
+                        <h4 class="contact-title">{% trans 'Contact Us' %}</h4>
                         <p>
-                            Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum
-                            est notare quam littera gothica, quam nunc putamus parum claram anteposuerit litterarum
-                            formas human.
+                            {% blocktrans %}
+                                Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum.
+                                Mirum est notare quam littera gothica, quam nunc putamus parum claram anteposuerit litterarum.
+                            {% endblocktrans %}
                         </p>
                         <ul>
                             <li>
-                                <i class="fa fa-fax"></i> Address: {{ company.address }}
+                                <i class="fa fa-fax"></i> {% trans 'Address' %}: {{ company.address }}
                             </li>
                             <li>
-                                <i class="fa fa-phone"></i> E-mail: {{ company.email }}
+                                <i class="fa fa-phone"></i> {% trans 'Email' %}: {{ company.email }}
                             </li>
                             <li>
-                                <i class="fa fa-envelope-o"></i> Phone: {{ company.phone }}
+                                <i class="fa fa-envelope-o"></i> {% trans 'Phone' %}: {{ company.phone }}
                             </li>
                         </ul>
                         <div class="working-time">
-                            <h6>Working Hours</h6>
+                            <h6>{% trans 'Working Hours' %}</h6>
                             <p>
-                                <span>Wednesday – Sunday: </span> 10AM – 7PM
+                                <span>{% trans 'Wednesday' %} – {% trans 'Sunday' %}: </span> 10AM – 7PM
                             </p>
                         </div>
                     </div>

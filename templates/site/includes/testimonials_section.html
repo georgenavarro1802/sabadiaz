@@ -1,12 +1,13 @@
 {% load static %}
+{% load i18n %}
 
 <section class="testimonial-area section-padding bg-img" data-bg="{% static 'img/testimonial/testimonials-bg.jpg' %}">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="section-title text-center">
-                    <h2 class="title">Testimonials</h2>
-                    <p class="sub-title">What they say</p>
+                    <h2 class="title">{% trans 'Testimonials' %}</h2>
+                    <p class="sub-title">{% trans 'What they say' %}</p>
                 </div>
             </div>
         </div>

@@ -14,7 +14,7 @@ let AUTHENTICATION = {
 
     name: 'AUTHENTICATION',
 
-    login: function() {
+    login: function(url) {
 
         if (login_email.val() && login_password.val()){
 
@@ -24,7 +24,7 @@ let AUTHENTICATION = {
             // send to server
             $.ajax({
                 type: "POST",
-                url: "/login",
+                url: url,
                 data: {
                     'email': login_email.val(),
                     'password': login_password.val()
@@ -52,7 +52,7 @@ let AUTHENTICATION = {
 
     },
 
-    register: function() {
+    register: function(url) {
 
         // define alertify
         alertify.set('notifier','position', 'top-right');
@@ -65,7 +65,7 @@ let AUTHENTICATION = {
                 // send to server
                 $.ajax({
                     type: "POST",
-                    url: "/register",
+                    url: url,
                     data: {
                         'first_name': register_firstname.val(),
                         'last_name': register_lastname.val(),

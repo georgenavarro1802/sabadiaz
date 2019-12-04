@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <section class="group-product-area section-padding">
     <div class="container">
@@ -8,9 +9,11 @@
                     <figure class="banner-statistics">
                         <img src="{% static 'img/banner/img-bottom-banner.jpg' %}" alt="product banner">
                         <div class="banner-content banner-content_style3 text-center">
-                            <h6 class="banner-text1">BEAUTIFUL</h6>
-                            <h2 class="banner-text2">Wedding Rings</h2>
-                            <a href="{% url 'products' %}" class="btn btn-text">Shop Now</a>
+                            <h6 class="banner-text1">{% trans 'BEAUTIFUL' %}</h6>
+                            <h2 class="banner-text2">{% trans 'Wedding Rings' %}</h2>
+                            <a href="{% url 'products' %}" class="btn btn-text">
+                                {% trans 'View More' %}
+                            </a>
                         </div>
                     </figure>
                 </div>
@@ -19,7 +22,7 @@
             <div class="col-lg-3">
                 <div class="categories-group-wrapper">
                     <div class="section-title-append">
-                        <h4>Best Seller Products</h4>
+                        <h4>{% trans 'Best Seller Products' %}</h4>
                         <div class="slick-append"></div>
                     </div>
                     <div class="group-list-item-wrapper">
@@ -37,7 +40,7 @@
             <div class="col-lg-3">
                 <div class="categories-group-wrapper">
                     <div class="section-title-append">
-                        <h4>New Products</h4>
+                        <h4>{% trans 'New Products' %}</h4>
                         <div class="slick-append"></div>
                     </div>
                     <div class="group-list-item-wrapper">

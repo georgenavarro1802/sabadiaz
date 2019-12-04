@@ -2,6 +2,7 @@
 {% load static %}
 {% load humanize %}
 {% load extras %}
+{% load i18n %}
 
 {% block main %}
 
@@ -15,7 +16,7 @@
 
                         <!-- Categories Filter -->
                         <div class="sidebar-single">
-                            <h5 class="sidebar-title">Categories</h5>
+                            <h5 class="sidebar-title">{% trans 'Categories' %}</h5>
                             <div class="sidebar-body">
                                 <ul class="checkbox-container categories-list">
                                     {% for category in categories %}
@@ -35,7 +36,7 @@
 
                         <!-- Materials Filter -->
                         <div class="sidebar-single">
-                            <h5 class="sidebar-title">Material</h5>
+                            <h5 class="sidebar-title">{% trans 'Material' %}</h5>
                             <div class="sidebar-body">
                                 <ul class="checkbox-container categories-list">
                                     {% for material in materials %}
@@ -55,7 +56,7 @@
 
                         <!-- Genders Filter -->
                         <div class="sidebar-single">
-                            <h5 class="sidebar-title">Gender</h5>
+                            <h5 class="sidebar-title">{% trans 'Gender' %}</h5>
                             <div class="sidebar-body">
                                 <ul class="checkbox-container categories-list">
                                     {% for gender in genders %}
@@ -75,17 +76,17 @@
 
                         <!-- Prices Filter -->
                         <div class="sidebar-single">
-                            <h5 class="sidebar-title">Price</h5>
+                            <h5 class="sidebar-title">{% trans 'Price' %}</h5>
                             <div class="sidebar-body">
                                 <div class="price-range-wrap">
                                     <div class="price-range" data-min="1" data-max="1000"></div>
                                     <div class="range-slider">
                                         <form class="d-flex align-items-center justify-content-between">
                                             <div class="price-input">
-                                                <label for="amount">Price: </label>
+                                                <label for="amount">{% trans 'Price' %}: </label>
                                                 <input type="text" id="amount">
                                             </div>
-                                            <button id="btnFilterPrice" class="filter-btn">Filter</button>
+                                            <button id="btnFilterPrice" class="filter-btn">{% trans 'Filter' %}</button>
                                         </form>
                                     </div>
                                 </div>
@@ -95,25 +96,25 @@
 
                         <!-- Genders Filter -->
                         <div class="sidebar-single">
-                            <h5 class="sidebar-title">Condition</h5>
+                            <h5 class="sidebar-title">{% trans 'Condition' %}</h5>
                             <div class="sidebar-body">
                                 <ul class="checkbox-container categories-list">
                                     <li>
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="checkboxIsNew" {% if is_new %}checked{% endif %}>
-                                            <label class="custom-control-label" for="checkboxIsNew">New ({{ company.count_of_available_new_products|floatformat:0 }})</label>
+                                            <label class="custom-control-label" for="checkboxIsNew">{% trans 'New' %} ({{ company.count_of_available_new_products|floatformat:0 }})</label>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="checkboxIsFeatured" {% if is_featured %}checked{% endif %}>
-                                            <label class="custom-control-label" for="checkboxIsFeatured">Featured ({{ company.count_of_available_featured_products|floatformat:0 }})</label>
+                                            <label class="custom-control-label" for="checkboxIsFeatured">{% trans 'Featured' %} ({{ company.count_of_available_featured_products|floatformat:0 }})</label>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="checkboxIsBestSeller" {% if is_bestseller %}checked{% endif %}>
-                                            <label class="custom-control-label" for="checkboxIsBestSeller">Best Seller ({{ company.count_of_available_bestseller_products|floatformat:0 }})</label>
+                                            <label class="custom-control-label" for="checkboxIsBestSeller">{% trans 'Best Seller' %} ({{ company.count_of_available_bestseller_products|floatformat:0 }})</label>
                                         </div>
                                     </li>
                                 </ul>
@@ -156,13 +157,13 @@
                                 <div class="col-lg-5 col-md-6 order-1 order-md-2">
                                     <div class="top-bar-right">
                                         <div class="product-short">
-                                            <label for="selectSortBy" class="mr-1">Sort By : </label>
+                                            <label for="selectSortBy" class="mr-1">{% trans 'Sort By' %} : </label>
                                             <select id="selectSortBy" class="nice-select" name="sortby">
-                                                <option value="1">Name (A - Z)</option>
-                                                <option value="2">Name (Z - A)</option>
-                                                <option value="3">Price: Low to High</option>
-                                                <option value="4">Price: High to Low</option>
-                                                <option value="5">Newest Arrivals</option>
+                                                <option value="1">{% trans 'Name' %}: A - Z</option>
+                                                <option value="2">{% trans 'Name' %}: Z - A</option>
+                                                <option value="3">{% trans 'Price' %}: {% trans 'Low to High' %}</option>
+                                                <option value="4">{% trans 'Price' %}: {% trans 'High to Low' %}</option>
+                                                <option value="5">{% trans 'Newest Arrivals' %}</option>
                                             </select>
                                         </div>
                                     </div>

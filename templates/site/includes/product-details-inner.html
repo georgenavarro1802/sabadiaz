@@ -1,5 +1,6 @@
 {% load static %}
 {% load humanize %}
+{% load i18n %}
 
 <div class="product-details-inner">
     <div class="row">
@@ -32,7 +33,7 @@
                     <span><i class="fa fa-star"></i></span>
                     <div class="pro-review">
                         <!-- TODO: Add reviews functionalities -->
-                        <span>{{ product.count_of_reviews|floatformat:0 }} Reviews</span>
+                        <span>{{ product.count_of_reviews|floatformat:0 }} {% trans 'Reviews' %}</span>
                     </div>
                 </div>
                 <div class="price-box">
@@ -45,15 +46,15 @@
                 </div>
                 <div class="availability">
                     <i class="fa fa-check-circle"></i>
-                    <span>{{ product.stock|floatformat:0 }} in stock</span>
+                    <span>{{ product.stock|floatformat:0 }} {% trans 'in stock' %}</span>
                 </div>
                 <div class="useful-links">
                     <a href="javascript:void(0);" class="btnWishList tl" pid="{{ product.id }}" title="Add to Wishlist">
-                        <i class="pe-7s-like"></i> Add to Wishlist
+                        <i class="pe-7s-like"></i> {% trans 'Add to Wishlist' %}
                     </a>
                 </div>
                 <div class="pro-desc">
-                    <span class="font-14 font-weight-bold">Description<br/></span>
+                    <span class="font-14 font-weight-bold">{% trans 'Description' %}<br/></span>
                     {{ product.description }}
                 </div>
                 <div class="pro-nav slick-row-10 slick-arrow-style">

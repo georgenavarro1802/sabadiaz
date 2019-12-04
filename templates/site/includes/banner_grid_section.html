@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <div class="banner-statistics-area">
     <div class="container">
@@ -9,9 +10,11 @@
                         <img src="{% static 'img/banner/img1-top.jpg' %}" alt="product banner">
                     </a>
                     <div class="banner-content text-right">
-                        <h5 class="banner-text1">BEAUTIFUL</h5>
-                        <h2 class="banner-text2">Wedding<span>Rings</span></h2>
-                        <a href="{% url 'products' %}" class="btn btn-text">Shop Now</a>
+                        <h5 class="banner-text1">{% trans 'BEAUTIFUL' %}</h5>
+                        <h2 class="banner-text2">{% trans 'Wedding' %}<span>{% trans 'Rings' %}</span></h2>
+                        <a href="{% url 'products' %}" class="btn btn-text">
+                            {% trans 'View More' %}
+                        </a>
                     </div>
                 </figure>
             </div>
@@ -21,9 +24,11 @@
                         <img src="{% static 'img/banner/img2-top.jpg' %}" alt="product banner">
                     </a>
                     <div class="banner-content text-center">
-                        <h5 class="banner-text1">EARRINGS</h5>
-                        <h2 class="banner-text2">Tangerine Floral <span>Earring</span></h2>
-                        <a href="{% url 'products' %}" class="btn btn-text">Shop Now</a>
+                        <h5 class="banner-text1">{% trans 'EARRINGS' %}</h5>
+                        <h2 class="banner-text2">{% trans 'Tangerine Floral' %} <span>{% trans 'Earring' %}</span></h2>
+                        <a href="{% url 'products' %}" class="btn btn-text">
+                            {% trans 'View More' %}
+                        </a>
                     </div>
                 </figure>
             </div>
@@ -33,9 +38,11 @@
                         <img src="{% static 'img/banner/img3-top.jpg' %}" alt="product banner">
                     </a>
                     <div class="banner-content text-center">
-                        <h5 class="banner-text1">NEW ARRIVALLS</h5>
-                        <h2 class="banner-text2">Pearl<span>Necklaces</span></h2>
-                        <a href="{% url 'products' %}" class="btn btn-text">Shop Now</a>
+                        <h5 class="banner-text1">{% trans 'NEW ARRIVALLS' %}</h5>
+                        <h2 class="banner-text2">{% trans 'Pearl' %} <span> {% trans 'Necklaces' %}</span></h2>
+                        <a href="{% url 'products' %}" class="btn btn-text">
+                            {% trans 'View More' %}
+                        </a>
                     </div>
                 </figure>
             </div>
@@ -45,9 +52,11 @@
                         <img src="{% static 'img/banner/img4-top.jpg' %}" alt="product banner">
                     </a>
                     <div class="banner-content text-right">
-                        <h5 class="banner-text1">NEW DESIGN</h5>
-                        <h2 class="banner-text2">Diamond<span>Jewelry</span></h2>
-                        <a href="{% url 'products' %}" class="btn btn-text">Shop Now</a>
+                        <h5 class="banner-text1">{% trans 'NEW DESIGN' %}</h5>
+                        <h2 class="banner-text2">{% trans 'Diamond' %} <span> {% trans 'Jewelry' %}</span></h2>
+                        <a href="{% url 'products' %}" class="btn btn-text">
+                            {% trans 'View More' %}
+                        </a>
                     </div>
                 </figure>
             </div>

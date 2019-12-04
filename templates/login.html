@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block main %}
 
@@ -15,25 +16,29 @@
                             <h5>Log In</h5>
                             <form>
                                 <div class="single-input-item">
-                                    <input id="inputLoginEmail" type="email" placeholder="Email" required value="" />
+                                    <input id="inputLoginEmail" type="email" placeholder="{% trans 'Email' %}" required value="" />
                                 </div>
                                 <div class="single-input-item">
-                                    <input id="inputLoginPassword" type="password" placeholder="Password" required />
+                                    <input id="inputLoginPassword" type="password" placeholder="{% trans 'Password' %}" required />
                                 </div>
                                 <div class="single-input-item">
                                     <div class="login-reg-form-meta d-flex align-items-center justify-content-between">
                                         <div class="remember-meta">
                                             <div class="custom-control custom-checkbox">
                                                 <input type="checkbox" class="custom-control-input" id="rememberMe">
-                                                <label class="custom-control-label" for="rememberMe">Remember Me</label>
+                                                <label class="custom-control-label" for="rememberMe">
+                                                    {% trans 'Remember Me' %}
+                                                </label>
                                             </div>
                                         </div>
-                                        <a href="#" class="forget-pwd">Forget Password?</a>
+                                        <a href="#" class="forget-pwd">
+                                            {% trans 'Forget Password' %}
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="single-input-item">
-                                    <a class="btn btn-sqr text-white" onclick="AUTHENTICATION.login();">
-                                        Login
+                                    <a class="btn btn-sqr text-white" onclick="AUTHENTICATION.login('{% url 'login' %}');">
+                                        {% trans 'Login' %}
                                     </a>
                                 </div>
                             </form>

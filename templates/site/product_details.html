@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load humanize %}
+{% load i18n %}
 
 {% block main %}
 
@@ -25,7 +26,7 @@
                         <ul class="nav review-tab">
                             <li>
                                 <a class="active" data-toggle="tab" href="#tabReviews">
-                                    Reviews ({{ product.count_of_reviews|floatformat:0 }})
+                                    {% trans 'Reviews' %} ({{ product.count_of_reviews|floatformat:0 }})
                                 </a>
                             </li>
                         </ul>
@@ -53,7 +54,7 @@
                                 {% empty %}
                                     <div class="review-box">
                                         <p class="font-14 text-center">
-                                            <b>NO REVIEWS YET</b>
+                                            <b>{% trans 'NO REVIEWS YET' %}</b>
                                         </p>
                                     </div>
                                 {% endfor %}
@@ -62,7 +63,7 @@
                                     <div class="form-group row">
                                         <div class="col">
                                             <label for="textAreaReview" class="col-form-label">
-                                                <h6>New Review</h6>
+                                                <h6>{% trans 'New Review' %}</h6>
                                             </label>
                                             <textarea id="textAreaReview" class="form-control font-14" rows="3"></textarea>
                                         </div>
@@ -70,19 +71,19 @@
                                     <div class="form-group row">
                                         <div class="col">
                                             <label class="col-form-label">
-                                                <h6>Rating</h6>
+                                                <h6>{% trans 'Rating' %}</h6>
                                             </label>
                                             <br/>
-                                            <input type="radio" value="1" name="inputRating" class="tt mr-2" title="Bad" style="width: 20px; height: 20px;">
-                                            <input type="radio" value="2" name="inputRating" class="tt mr-2" title="Regular" style="width: 20px; height: 20px;">
-                                            <input type="radio" value="3" name="inputRating" class="tt mr-2" title="Good" style="width: 20px; height: 20px;">
-                                            <input type="radio" value="4" name="inputRating" class="tt mr-2" title="Very Good" style="width: 20px; height: 20px;">
-                                            <input type="radio" value="5" name="inputRating" class="tt" title="Excellent" checked style="width: 20px; height: 20px;">
+                                            <input type="radio" value="1" name="inputRating" class="tt mr-2" title="{% trans 'Bad' %}" style="width: 20px; height: 20px;">
+                                            <input type="radio" value="2" name="inputRating" class="tt mr-2" title="{% trans 'Regular' %}" style="width: 20px; height: 20px;">
+                                            <input type="radio" value="3" name="inputRating" class="tt mr-2" title="{% trans 'Good' %}" style="width: 20px; height: 20px;">
+                                            <input type="radio" value="4" name="inputRating" class="tt mr-2" title="{% trans 'Very Good' %}" style="width: 20px; height: 20px;">
+                                            <input type="radio" value="5" name="inputRating" class="tt" title="{% trans 'Excellent' %}" checked style="width: 20px; height: 20px;">
                                         </div>
                                     </div>
                                     <div class="buttons">
                                         <a id="btnSubmitReview" class="btn btn-sqr text-white" pid="{{ product.id }}">
-                                            Submit Review
+                                            {% trans 'Submit Review' %}
                                         </a>
                                     </div>
                                 </div>
@@ -102,8 +103,8 @@
             <div class="col-12">
                 <!-- section title start -->
                 <div class="section-title text-center">
-                    <h2 class="title">Related Products</h2>
-                    <p class="sub-title">Add related products to weekly lineup</p>
+                    <h2 class="title">{% trans 'Related Products' %}</h2>
+                    <p class="sub-title">{% trans 'Add related products to weekly lineup' %}</p>
                 </div>
                 <!-- section title start -->
             </div>

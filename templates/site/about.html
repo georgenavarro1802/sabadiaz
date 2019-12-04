@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block main %}
     <!-- about us area start -->
@@ -13,12 +14,24 @@
                 </div>
                 <div class="col-lg-7">
                     <div class="about-content">
-                        <h2 class="about-title">About Us</h2>
+                        <h2 class="about-title">{% trans 'About Us' %}</h2>
                         <h5 class="about-sub-title">
-                            Founded in 1986, I.D. Jewelry, LLC, a family owned & operated business has become a house-hold name in states all over the USA as well as countries all over the world.
+                            {% blocktrans %}
+                                Founded in 1986, I.D. Jewelry, LLC, a family owned & operated business has become a house-hold name in states all over the USA as well as countries all over the world.
+                            {% endblocktrans %}
                         </h5>
-                        <p>For those that rather the full immersion of the in store experience we welcome your company and look forward to meeting you face to face. Being located in the 47 street diamond district, known to be the largest diamond.</p>
-                        <p>Based in the heart of New York’s Diamond District, also known as the NYC diamond district, I. D. Jewelry has some of the most competitively priced in the market. It is our goal to supply our clients.</p>
+                        <p>
+                            {% blocktrans %}
+                                For those that rather the full immersion of the in store experience we welcome your company and look forward to meeting you face to face.
+                                Being located in the 47 street diamond district, known to be the largest diamond.
+                            {% endblocktrans %}
+                        </p>
+                        <p>
+                            {% blocktrans %}
+                                Based in the heart of New York’s Diamond District, also known as the NYC diamond district, I. D.
+                                Jewelry has some of the most competitively priced in the market. It is our goal to supply our clients.
+                            {% endblocktrans %}
+                        </p>
                     </div>
                 </div>
             </div>
@@ -32,8 +45,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-title text-center">
-                        <h2 class="title">Why Choose Us</h2>
-                        <p>Accumsan vitae pede lacus ut ullamcorper sollicitudin quisque libero</p>
+                        <h2 class="title">{% trans 'Why Choose Us' %}</h2>
+                        <p>{% trans 'Accumsan vitae pede lacus ut ullamcorper sollicitudin quisque libero' %}</p>
                     </div>
                 </div>
             </div>
@@ -41,22 +54,22 @@
                 <div class="col-lg-4 col-md-4">
                     <div class="single-choose-item text-center mb-30">
                         <i class="fa fa-globe"></i>
-                        <h4>free shipping</h4>
-                        <p>Amadea Shop is a very slick and clean e-commerce template with endless possibilities.</p>
+                        <h4>{% trans 'Free Shipping' %}</h4>
+                        <p>{% trans 'Amadea Shop is a very slick and clean e-commerce template with endless possibilities.' %}</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4">
                     <div class="single-choose-item text-center mb-30">
                         <i class="fa fa-plane"></i>
-                        <h4>fast delivery</h4>
-                        <p>Amadea Shop is a very slick and clean e-commerce template with endless possibilities.</p>
+                        <h4>{% trans 'Fast Delivery' %}</h4>
+                        <p>{% trans 'Amadea Shop is a very slick and clean e-commerce template with endless possibilities.' %}</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4">
                     <div class="single-choose-item text-center mb-30">
                         <i class="fa fa-comments"></i>
-                        <h4>customers support</h4>
-                        <p>Amadea Shop is a very slick and clean e-commerce template with endless possibilities.</p>
+                        <h4>{% trans 'Customers Support' %}</h4>
+                        <p>{% trans 'Amadea Shop is a very slick and clean e-commerce template with endless possibilities.' %}</p>
                     </div>
                 </div>
             </div>

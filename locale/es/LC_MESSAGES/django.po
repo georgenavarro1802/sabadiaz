@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-02 11:22-0500\n"
+"POT-Creation-Date: 2019-12-04 10:21-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,55 +18,163 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: sabadiaz/settings.py:126 templates/base.html:112 templates/base.html:117
-#: templates/base.html:302
+#: sabadiaz/settings.py:126
 msgid "English"
 msgstr "Inglés"
 
-#: sabadiaz/settings.py:127 templates/base.html:122 templates/base.html:305
+#: sabadiaz/settings.py:127
 msgid "Spanish"
 msgstr "Español"
 
-#: templates/base.html:79 templates/base.html:255
+#: templates/base.html:79 templates/base.html:257
 msgid "Home"
 msgstr "Inicio"
 
-#: templates/base.html:82 templates/base.html:258
+#: templates/base.html:82 templates/base.html:260
+#: templates/site/includes/our_products_section.html:9
 msgid "Our Products"
 msgstr "Nuestros Productos"
 
-#: templates/base.html:85 templates/base.html:261
+#: templates/base.html:85 templates/base.html:263
 #: templates/site/includes/footer_section.html:51
 msgid "About Us"
 msgstr "Sobre Nosotros"
 
-#: templates/base.html:88 templates/base.html:264
+#: templates/base.html:88 templates/base.html:266
 msgid "Contact"
 msgstr "Contacto"
 
-#: templates/base.html:150 templates/base.html:235
+#: templates/base.html:151 templates/base.html:237
 msgid "Welcome"
 msgstr "Bienvenido(a)"
 
-#: templates/base.html:159
+#: templates/base.html:160
 msgid "Administration"
 msgstr "Administración"
 
-#: templates/base.html:165
+#: templates/base.html:166
 msgid "Logout"
 msgstr "Salir"
 
-#: templates/base.html:172 templates/base.html:280
+#: templates/base.html:173 templates/base.html:282 templates/login.html:41
 msgid "Login"
 msgstr "Ingresar"
 
-#: templates/base.html:177 templates/base.html:283
+#: templates/base.html:178 templates/base.html:285 templates/register.html:47
 msgid "Register"
-msgstr "RegistrO"
+msgstr "Registro"
 
-#: templates/base.html:286
+#: templates/base.html:288
 msgid "Wishlist"
 msgstr "Favoritos"
+
+#: templates/login.html:19 templates/register.html:31
+msgid "Email"
+msgstr "Correo Electrónico"
+
+#: templates/login.html:22 templates/register.html:36
+msgid "Password"
+msgstr "Contraseña"
+
+#: templates/login.html:30
+msgid "Remember Me"
+msgstr "Recordarme"
+
+#: templates/login.html:35
+msgid "Forget Password"
+msgstr "Olvidó Contraseña"
+
+#: templates/register.html:21
+msgid "Firstname"
+msgstr "Nombre"
+
+#: templates/register.html:26
+msgid "Lastname"
+msgstr "Apellido"
+
+#: templates/register.html:41
+msgid "Confirm Password"
+msgstr "Confirmar Contraseña"
+
+#: templates/site/includes/banner_grid_section.html:13
+#: templates/site/includes/bestseller_and_new_section.html:12
+msgid "BEAUTIFUL"
+msgstr "BELLEZA"
+
+#: templates/site/includes/banner_grid_section.html:14
+msgid "Wedding"
+msgstr "Boda"
+
+#: templates/site/includes/banner_grid_section.html:14
+msgid "Rings"
+msgstr "Anillos"
+
+#: templates/site/includes/banner_grid_section.html:16
+#: templates/site/includes/banner_grid_section.html:30
+#: templates/site/includes/banner_grid_section.html:44
+#: templates/site/includes/banner_grid_section.html:58
+#: templates/site/includes/bestseller_and_new_section.html:15
+msgid "Shop Now"
+msgstr "Comprar Ahora"
+
+#: templates/site/includes/banner_grid_section.html:27
+msgid "EARRINGS"
+msgstr "PENDIENTES"
+
+#: templates/site/includes/banner_grid_section.html:28
+msgid "Tangerine Floral"
+msgstr "Mandarina Floral"
+
+#: templates/site/includes/banner_grid_section.html:28
+msgid "Earring"
+msgstr "Pendiente"
+
+#: templates/site/includes/banner_grid_section.html:41
+msgid "NEW ARRIVALLS"
+msgstr "NUEVOS ARRIBOS"
+
+#: templates/site/includes/banner_grid_section.html:42
+msgid "Pearl"
+msgstr "Perla"
+
+#: templates/site/includes/banner_grid_section.html:42
+msgid "Necklaces"
+msgstr "Collares"
+
+#: templates/site/includes/banner_grid_section.html:55
+msgid "NEW DESIGN"
+msgstr "NUEVO DISEÑO"
+
+#: templates/site/includes/banner_grid_section.html:56
+msgid "Diamond"
+msgstr "Diamante"
+
+#: templates/site/includes/banner_grid_section.html:56
+msgid "Jewelry"
+msgstr "Joyería"
+
+#: templates/site/includes/bestseller_and_new_section.html:13
+msgid "Wedding Rings"
+msgstr "Anillos de boda"
+
+#: templates/site/includes/bestseller_and_new_section.html:25
+#| msgid "Our Products"
+msgid "Best Seller Products"
+msgstr "Mas Vendidos"
+
+#: templates/site/includes/bestseller_and_new_section.html:43
+#| msgid "New Products"
+msgid "New Products"
+msgstr "Nuevos"
+
+#: templates/site/includes/featured_products_section.html:9
+#| msgid "Featured Products"
+msgid "Featured Products"
+msgstr "Productos Destacados"
+
+#: templates/site/includes/featured_products_section.html:10
+msgid "Add featured products to weekly lineup"
+msgstr "Agregar productos destacados a la lista semanal"
 
 #: templates/site/includes/footer_section.html:24
 #: templates/site/includes/footer_section.html:54
@@ -85,17 +193,33 @@ msgstr "Siguénos"
 msgid "All rights reserved"
 msgstr "Todos los derechos reservados"
 
+#: templates/site/includes/our_products_section.html:10
+msgid "Add our products to weekly lineup"
+msgstr "Agregue nuestros productos a la lista semanal"
+
+#: templates/site/includes/slides_section.html:16
+msgid "View More"
+msgstr "Ver Mas"
+
+#: templates/site/includes/testimonials_section.html:9
+msgid "Testimonials"
+msgstr "Testimonios"
+
+#: templates/site/includes/testimonials_section.html:10
+msgid "What they say"
+msgstr "Lo que ellos dicen"
+
 #: venv/lib/python3.7/site-packages/django/contrib/messages/apps.py:7
 msgid "Messages"
-msgstr ""
+msgstr "Mensajes"
 
 #: venv/lib/python3.7/site-packages/django/contrib/sitemaps/apps.py:7
 msgid "Site Maps"
-msgstr ""
+msgstr "Mapa del Sitio"
 
 #: venv/lib/python3.7/site-packages/django/contrib/staticfiles/apps.py:9
 msgid "Static Files"
-msgstr ""
+msgstr "Ficheros Estaticos"
 
 #: venv/lib/python3.7/site-packages/django/contrib/syndication/apps.py:7
 msgid "Syndication"

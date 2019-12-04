@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block main %}
 
@@ -17,33 +18,33 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="single-input-item">
-                                            <input id="inputRegisterFirstName" type="text" placeholder="First Name" required />
+                                            <input id="inputRegisterFirstName" type="text" placeholder="{% trans 'Firstname' %}" required />
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="single-input-item">
-                                            <input id="inputRegisterLastName" type="text" placeholder="Last Name" required />
+                                            <input id="inputRegisterLastName" type="text" placeholder="{% trans 'Lastname' %}" required />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="single-input-item">
-                                    <input id="inputRegisterEmail" type="email" placeholder="Enter your Email" required />
+                                    <input id="inputRegisterEmail" type="email" placeholder="{% trans 'Email' %}" required />
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="single-input-item">
-                                            <input id="inputRegisterPassword1" type="password" placeholder="Enter your Password" required />
+                                            <input id="inputRegisterPassword1" type="password" placeholder="{% trans 'Password' %}" required />
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="single-input-item">
-                                            <input id="inputRegisterPassword2" type="password" placeholder="Confirm your Password" required />
+                                            <input id="inputRegisterPassword2" type="password" placeholder="{% trans 'Confirm Password' %}" required />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="single-input-item">
-                                    <a class="btn btn-sqr text-white" onclick="AUTHENTICATION.register();">
-                                        Register
+                                    <a class="btn btn-sqr text-white" onclick="AUTHENTICATION.register('{% url 'register' %}');">
+                                        {% trans 'Register' %}
                                     </a>
                                 </div>
                             </form>

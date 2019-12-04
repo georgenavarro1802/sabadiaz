@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load humanize %}
+{% load i18n %}
 
 {% block main %}
 
@@ -14,11 +15,11 @@
                             <table class="table table-bordered">
                                 <thead>
                                 <tr>
-                                    <th class="pro-thumbnail">Thumbnail</th>
-                                    <th class="pro-title">Product</th>
-                                    <th class="pro-price">Price</th>
-                                    <th class="pro-quantity">Stock Status</th>
-                                    <th class="pro-remove">Remove</th>
+                                    <th class="pro-thumbnail">{% trans 'Thumbnail' %}</th>
+                                    <th class="pro-title">{% trans 'Product' %}</th>
+                                    <th class="pro-price">{% trans 'Price' %}</th>
+                                    <th class="pro-quantity">{% trans 'Stock Status' %}</th>
+                                    <th class="pro-remove">{% trans 'Remove' %}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -40,11 +41,11 @@
                                         <td class="pro-quantity">
                                             {% if item.product.stock %}
                                                 <span class="text-success">
-                                                    In Stock
+                                                    {% trans 'In Stock' %}
                                                 </span>
                                             {% else %}
-                                                <span class="text-success">
-                                                    Stock Out
+                                                <span class="text-danger">
+                                                    {% trans 'Stock Out' %}
                                                 </span>
                                             {% endif %}
                                         </td>
@@ -57,9 +58,9 @@
                                 {% empty %}
                                     <tr>
                                         <td colspan="10">
-                                            <h5 class="m-3">No Items Added yet.</h5>
+                                            <h5 class="m-3">{% trans 'No Items Added yet.' %}</h5>
                                             <p>
-                                                Check <a href="{% url 'products' %}"><span class="text-primary _600"> Our Products </span></a> section and start selecting your favorites products.
+                                                {% trans 'Check' %} <a href="{% url 'products' %}"><span class="text-primary _600"> {% trans 'Our Products' %} </span></a> {% trans 'section and start selecting your favorites products' %}.
                                             </p>
                                         </td>
                                     </tr>

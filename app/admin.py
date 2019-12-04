@@ -1,40 +1,41 @@
 from django.contrib import admin
+from modeltranslation.admin import TranslationAdmin
 
 from app.models import Category, Product, WishList, Slide, Company, Testimonial, Material, Gender, Review, Contact
 
 
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
-    ordering = ('name', )
-    search_fields = ('name', )
+class CategoryAdmin(TranslationAdmin):
+    list_display = ('id', 'name_en', 'name_es')
+    search_fields = ('name_en', 'name_es',)
+    ordering = ('id', )
 
 
 admin.site.register(Category, CategoryAdmin)
 
 
-class MaterialAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
-    ordering = ('name', )
-    search_fields = ('name', )
+class MaterialAdmin(TranslationAdmin):
+    list_display = ('id', 'name_en', 'name_es')
+    search_fields = ('name_en', 'name_es',)
+    ordering = ('id',)
 
 
 admin.site.register(Material, MaterialAdmin)
 
 
-class GenderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')
-    ordering = ('name', )
-    search_fields = ('name', )
+class GenderAdmin(TranslationAdmin):
+    list_display = ('id', 'name_en', 'name_es')
+    search_fields = ('name_en', 'name_es',)
+    ordering = ('id',)
 
 
 admin.site.register(Gender, GenderAdmin)
 
 
-class ProductAdmin(admin.ModelAdmin):
-    list_display = ('id', 'category', 'material', 'title', 'description', 'created_at',
-                    'price', 'v_price', 'stock', 'is_new', 'is_featured', 'is_bestseller')
+class ProductAdmin(TranslationAdmin):
+    list_display = ('id', 'category', 'material', 'gender', 'title_en', 'title_es', 'description_en', 'description_es',
+                    'created_at', 'price', 'v_price', 'stock', 'is_new', 'is_featured', 'is_bestseller')
     ordering = ('-created_at', )
-    search_fields = ('category__name', 'material__name', 'title', 'description')
+    search_fields = ('category__name', 'material__name', 'title_en', 'title_es', 'description_en', 'description_es')
     list_filter = ('gender', 'material', 'category', 'is_new', 'is_featured', 'is_bestseller')
 
 
@@ -71,9 +72,9 @@ admin.site.register(Contact, ContactAdmin)
 
 # Company
 class CompanyAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'address', 'email', 'phone', 'logo',
+    list_display = ('name', 'description_en', 'description_es', 'address', 'email', 'phone', 'logo',
                     'facebook', 'twitter', 'instagram', 'youtube')
-    search_fields = ('name', 'description', 'email')
+    search_fields = ('name', 'description_en', 'description_es', 'email')
 
 
 admin.site.register(Company, CompanyAdmin)
@@ -81,8 +82,9 @@ admin.site.register(Company, CompanyAdmin)
 
 # Slides
 class SlideAdmin(admin.ModelAdmin):
-    list_display = ('text1', 'text2', 'description', 'image')
-    search_fields = ('text1', 'text2', 'description')
+    list_display = ('id', 'text1_en', 'text1_es', 'text2_en', 'text2_es', 'description_en', 'description_es', 'image')
+    search_fields = ('text1_en', 'text1_es', 'text2_en', 'text2_es', 'description_en', 'description_es')
+    ordering = ('id', )
 
 
 admin.site.register(Slide, SlideAdmin)
@@ -90,8 +92,8 @@ admin.site.register(Slide, SlideAdmin)
 
 # Testimonials
 class TestimonialAdmin(admin.ModelAdmin):
-    list_display = ('name', 'testimonial', 'avatar')
-    search_fields = ('name', 'testimonial')
+    list_display = ('id', 'name', 'testimonial_en', 'testimonial_es', 'avatar')
+    search_fields = ('name', 'testimonial_en', 'testimonial_es')
 
 
 admin.site.register(Testimonial, TestimonialAdmin)

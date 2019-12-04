@@ -1,10 +1,7 @@
 import datetime
 import json
 
-from django.conf.global_settings import LANGUAGE_COOKIE_NAME
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import redirect
-from django.utils import translation
+from django.http import HttpResponse
 
 
 def bad_json(message=None):
