@@ -1,4 +1,6 @@
-// fields
+// form
+let formTestimonials = $("#formTestimonials");
+
 // Testimonial 1
 let inputTestimonialName_1 = $("#inputTestimonialName_1");
 let textareaTestimonialTextEN_1 = $("#textareaTestimonialTextEN_1");
@@ -22,6 +24,8 @@ let TESTIMONIALS = {
     name: 'TESTIMONIALS',
 
     submit: function (elem) {
+
+        formTestimonials.find('input').removeClass('is-invalid');
 
         // testimonial 1
         let testimonialname_1 = inputTestimonialName_1.val();

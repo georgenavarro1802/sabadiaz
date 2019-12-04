@@ -1,4 +1,6 @@
-// fields
+// form
+let formSlides = $("#formSlides");
+
 // slide 1
 let inputHomeSliderText1EN_1 = $("#inputHomeSliderText1EN_1");
 let inputHomeSliderText2EN_1 = $("#inputHomeSliderText2EN_1");
@@ -32,6 +34,8 @@ let SLIDES = {
     name: 'SLIDES',
 
     submit: function (elem) {
+
+        formSlides.find('input').removeClass('is-invalid');
 
         // slide 1
         let HomeSliderText1EN_1 = inputHomeSliderText1EN_1.val();

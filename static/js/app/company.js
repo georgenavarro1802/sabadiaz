@@ -1,4 +1,6 @@
-// fields
+// form
+let formCompany = $("#formCompany");
+
 // required
 let inputCompanyDataName = $("#inputCompanyDataName");
 let inputCompanyDataDescriptionEN = $("#inputCompanyDataDescriptionEN");
@@ -18,6 +20,8 @@ let COMPANY = {
     name: 'COMPANY',
 
     submit: function (elem) {
+
+        formCompany.find('input').removeClass('is-invalid');
 
         // required fields
         let c_name = inputCompanyDataName.val();
