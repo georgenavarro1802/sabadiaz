@@ -28,15 +28,35 @@
             <!-- Left Side -->
             <div class="col-8">
 
-                <div class="card border-0 shadow">
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="inputTitle" class="font-14">Title</label>
-                            <input id="inputTitle" type="text" class="form-control font-12" value="{{ product.title }}">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card border-0 shadow">
+                            <div class="card-body">
+                                <h6 class="text-center mt-2">English</h6>
+                                <div class="form-group mt-4">
+                                    <label for="inputTitleEN" class="font-14">Title</label>
+                                    <input id="inputTitleEN" type="text" class="form-control font-12" value="{{ product.title_en }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputDescriptionEN" class="font-14">Description</label>
+                                    <textarea  id="inputDescriptionEN" class="form-control font-12" style="resize: none" rows="3">{{ product.description_en }}</textarea>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="inputDescription" class="font-14">Description</label>
-                            <textarea  id="inputDescription" class="form-control font-12" style="resize: none" rows="3">{{ product.description }}</textarea>
+                    </div>
+                    <div class="col-6">
+                        <div class="card border-0 shadow">
+                            <div class="card-body">
+                                <h6 class="text-center mt-2">Spanish</h6>
+                                <div class="form-group mt-4">
+                                    <label for="inputTitleES" class="font-14">Title</label>
+                                    <input id="inputTitleES" type="text" class="form-control font-12" value="{{ product.title_es }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputDescriptionES" class="font-14">Description</label>
+                                    <textarea  id="inputDescriptionES" class="form-control font-12" style="resize: none" rows="3">{{ product.description_es }}</textarea>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -97,31 +117,31 @@
                 <div class="card border-0 shadow">
                     <div class="card-body font-14">
                         <div class="form-group">
-                            <label for="selectCategory">Category</label>
+                            <label for="selectCategory" class="_600">Category</label>
                             <select id="selectCategory" class="selectpicker show-tick form-control" data-style="btn-primary">
                                 {% for category in categories %}
                                     <option value="{{ category.id }}" {% if product.category.id == category.id %}selected{% endif %}>
-                                        {{ category }}
+                                        {{ category.name_en }}
                                     </option>
                                 {% endfor %}
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="selectGender">Gender</label>
+                            <label for="selectGender" class="_600">Gender</label>
                             <select id="selectGender" class="selectpicker show-tick form-control" data-style="btn-primary">
                                 {% for gender in genders %}
                                     <option value="{{ gender.id }}" {% if product.gender.id == gender.id %}selected{% endif %}>
-                                        {{ gender }}
+                                        {{ gender.name_en }}
                                     </option>
                                 {% endfor %}
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="selectMaterial">Material</label>
+                            <label for="selectMaterial" class="_600">Material</label>
                             <select id="selectMaterial" class="selectpicker show-tick form-control" data-style="btn-primary">
                                 {% for material in materials %}
                                     <option value="{{ material.id }}" {% if product.material.id == material.id %}selected{% endif %}>
-                                        {{ material }}
+                                        {{ material.name_en }}
                                     </option>
                                 {% endfor %}
                             </select>
@@ -134,11 +154,11 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-6">
-                                    <label for="inputPrice">Real Price</label>
+                                    <label for="inputPrice" class="_600">Real Price</label>
                                     <input  id="inputPrice" type="text" class="form-control" value="{% if not product %}0.00{% else %}{{ product.price|floatformat:2|intcomma }}{% endif %}">
                                 </div>
                                 <div class="col-6">
-                                    <label for="inputVPrice">Virtual Price</label>
+                                    <label for="inputVPrice" class="_600">Virtual Price</label>
                                     <input id="inputVPrice" type="text" class="form-control" value="{% if not product %}0.00{% else %}{{ product.v_price|floatformat:2|intcomma }}{% endif %}">
                                 </div>
                             </div>
@@ -147,16 +167,17 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-6">
-                                    <label for="inputStock">Stock</label>
+                                    <label for="inputStock" class="_600">Stock</label>
                                     <input id="inputStock" type="text" class="form-control" value="{% if not product %}0{% else %}{{ product.stock|floatformat:0|intcomma }}{% endif %}">
                                 </div>
                                 <div class="col-6">
-                                    <label for="inputDiscount">% Discount</label>
+                                    <label for="inputDiscount" class="_600">% Discount</label>
                                     <input id="inputDiscount" type="text" class="form-control" value="{% if not product %}0{% else %}{{ product.p_discount|floatformat:0|intcomma }}{% endif %}">
                                 </div>
                             </div>
                         </div>
 
+                        <label class="_600">Condition</label>
                         <div class="form-check mt-1">
                             <input id="checkboxIsNew" type="checkbox" class="form-check-input big-checkbox" {% if product.is_new %}checked{% endif %}>
                             <label class="form-check-label m-2" for="checkboxIsNew">Is New?</label>
