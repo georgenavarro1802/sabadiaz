@@ -1,6 +1,11 @@
+// form
+let formProduct = $("#formProduct");
+
 // fields
-let inputTitle = $("#inputTitle");
-let inputDescription = $("#inputDescription");
+let inputTitleEN = $("#inputTitleEN");
+let inputTitleES = $("#inputTitleES");
+let inputDescriptionEN = $("#inputDescriptionEN");
+let inputDescriptionES = $("#inputDescriptionES");
 let selectCategory = $("#selectCategory");
 let selectGender = $("#selectGender");
 let selectMaterial = $("#selectMaterial");
@@ -8,7 +13,6 @@ let inputPrice = $("#inputPrice");
 let inputVPrice = $("#inputVPrice");
 let inputStock = $("#inputStock");
 let inputDiscount = $("#inputDiscount");
-let textareaInformation = $("#textareaInformation");
 let inputFiles = $("#inputFiles");
 let checkboxIsNew = $("#checkboxIsNew");
 let checkboxIsFeatured = $("#checkboxIsFeatured");
@@ -31,14 +35,18 @@ let PRODUCTS = {
         // pid = 0 -> Create
         // pid > 0 -> Edit
 
+        formProduct.find('input').removeClass('is-invalid');
+
         let url = '/administration/products/create';
         if (pid){
             url = '/administration/products/'+pid+'/edit';
         }
 
         // required fields
-        let title = inputTitle.val();
-        let description = inputDescription.val();
+        let title_en = inputTitleEN.val();
+        let description_en = inputDescriptionEN.val();
+        let title_es = inputTitleES.val();
+        let description_es = inputDescriptionES.val();
         let category_id = selectCategory.val();
         let gender_id = selectGender.val();
         let material_id = selectMaterial.val();
@@ -52,27 +60,61 @@ let PRODUCTS = {
         let is_featured = checkboxIsFeatured.is(':checked');
         let is_bestseller = checkboxIsBestSeller.is(':checked');
 
-        let formData = new FormData();
-        formData.append('title', title);
-        formData.append('description', description);
-        formData.append('category_id', category_id);
-        formData.append('material_id', material_id);
-        formData.append('gender_id', gender_id);
-        formData.append('price', price.toString());
-        formData.append('stock', stock);
-        formData.append('discount', discount);
-        formData.append('vprice', vprice);
-        formData.append('is_new', is_new);
-        formData.append('is_featured', is_featured);
-        formData.append('is_bestseller', is_bestseller);
-
-        if (!pid){
-            $.each(inputFiles[0].files, function(i, file) {
-                formData.append('file['+i+']', file);
-            });
+        // validations
+        if (!title_en){
+            alertify.error('Title (EN) is required');
+            inputTitleEN.addClass('is-invalid');
+            return false;
         }
 
-        if (title && description && category_id && gender_id && material_id && price > 0){
+        else if (!title_es){
+            alertify.error('Title (ES) is required');
+            inputTitleES.addClass('is-invalid');
+            return false;
+        }
+
+        else if (!description_en){
+            alertify.error('Description (EN) is required');
+            inputDescriptionEN.addClass('is-invalid');
+            return false;
+        }
+
+        else if (!description_es){
+            alertify.error('Description (ES) is required');
+            inputDescriptionES.addClass('is-invalid');
+            return false;
+        }
+
+        else if (!price){
+            alertify.error('Price has to be greater than zero');
+            inputPrice.addClass('is-invalid');
+            return false;
+        }
+
+        else{
+
+            let formData = new FormData();
+            formData.append('title_en', title_en);
+            formData.append('description_en', description_en);
+            formData.append('title_es', title_es);
+            formData.append('description_es', description_es);
+            formData.append('category_id', category_id);
+            formData.append('material_id', material_id);
+            formData.append('gender_id', gender_id);
+            formData.append('price', price.toString());
+            formData.append('stock', stock);
+            formData.append('discount', discount);
+            formData.append('vprice', vprice);
+            formData.append('is_new', is_new);
+            formData.append('is_featured', is_featured);
+            formData.append('is_bestseller', is_bestseller);
+
+            if (!pid){
+                $.each(inputFiles[0].files, function(i, file) {
+                    formData.append('file['+i+']', file);
+                });
+            }
+
             let spinnerText = "<i class='fa fa-circle-o-notch fa-spin'></i> Saving ...";
             let originalText = elem.html();
 
@@ -112,8 +154,7 @@ let PRODUCTS = {
                     alertify.error('Server Error');
                 },
             });
-        }else{
-            alertify.error('Missing required fields');
+
         }
 
     },

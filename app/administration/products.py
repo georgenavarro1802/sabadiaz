@@ -37,8 +37,10 @@ def create_product(request):
     if request.method == 'POST':
         try:
             with transaction.atomic():
-                title = request.POST['title']
-                description = request.POST['description']
+                title_en = request.POST['title_en']
+                description_en = request.POST['description_en']
+                title_es = request.POST['title_es']
+                description_es = request.POST['description_es']
                 category_id = int(request.POST['category_id'])
                 gender_id = int(request.POST['gender_id'])
                 material_id = int(request.POST['material_id'])
@@ -53,8 +55,10 @@ def create_product(request):
                 product = Product(category_id=category_id,
                                   material_id=material_id,
                                   gender_id=gender_id,
-                                  title=title,
-                                  description=description,
+                                  title_en=title_en,
+                                  description_en=description_en,
+                                  title_es=title_es,
+                                  description_es=description_es,
                                   price=price,
                                   v_price=vprice,
                                   p_discount=discount,
@@ -96,8 +100,10 @@ def edit_product(request, product_id):
                 product.category_id = int(request.POST['category_id'])
                 product.material_id = int(request.POST['material_id'])
                 product.gender_id = int(request.POST['gender_id'])
-                product.title = request.POST['title']
-                product.description = request.POST['description']
+                product.title_en = request.POST['title_en']
+                product.description_en = request.POST['description_en']
+                product.title_es = request.POST['title_es']
+                product.description_es = request.POST['description_es']
                 product.stock = int(request.POST['stock'])
                 product.price = float(request.POST['price'])
                 product.vprice = float(request.POST['vprice'])
