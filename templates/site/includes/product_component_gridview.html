@@ -1,5 +1,6 @@
 {% load static %}
 {% load humanize %}
+{% load i18n %}
 
 
 <div class="product-item">
@@ -11,17 +12,17 @@
         <div class="product-badge">
             {% if product.is_new %}
                 <div class="product-label new">
-                    <span>new</span>
+                    <span>{% trans 'new' %}</span>
                 </div>
             {% endif %}
             {% if product.p_discount %}
                 <div class="product-label discount">
-                    <span>10%</span>
+                    <span>{{ product.p_discount }}%</span>
                 </div>
             {% endif %}
         </div>
         <div class="button-group">
-            <a href="javascript:void(0);" class="btnWishList tl" pid="{{ product.id }}" title="Add to Wishlist">
+            <a href="javascript:void(0);" class="btnWishList tl" pid="{{ product.id }}" title="{% trans 'Add to Wishlist' %}">
                 <i class="pe-7s-like"></i>
             </a>
         </div>
