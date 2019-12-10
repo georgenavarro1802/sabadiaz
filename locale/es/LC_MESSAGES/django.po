@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-04 10:21-0500\n"
+"POT-Creation-Date: 2019-12-10 12:35-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: sabadiaz/settings.py:126
+#: sabadiaz/settings.py:127
 msgid "English"
 msgstr "Inglés"
 
-#: sabadiaz/settings.py:127
+#: sabadiaz/settings.py:128
 msgid "Spanish"
 msgstr "Español"
 
@@ -32,11 +32,12 @@ msgstr "Inicio"
 
 #: templates/base.html:82 templates/base.html:260
 #: templates/site/includes/our_products_section.html:9
+#: templates/site/wishlist.html:63
 msgid "Our Products"
 msgstr "Nuestros Productos"
 
-#: templates/base.html:85 templates/base.html:263
-#: templates/site/includes/footer_section.html:51
+#: templates/base.html:85 templates/base.html:263 templates/site/about.html:17
+#: templates/site/includes/footer_section.html:52
 msgid "About Us"
 msgstr "Sobre Nosotros"
 
@@ -69,6 +70,7 @@ msgid "Wishlist"
 msgstr "Favoritos"
 
 #: templates/login.html:19 templates/register.html:31
+#: templates/site/contact.html:29 templates/site/contact.html:66
 msgid "Email"
 msgstr "Correo Electrónico"
 
@@ -96,6 +98,126 @@ msgstr "Apellido"
 msgid "Confirm Password"
 msgstr "Confirmar Contraseña"
 
+#: templates/site/about.html:19
+msgid ""
+"\n"
+"                                Founded in 1986, I.D. Jewelry, LLC, a family "
+"owned & operated business has become a house-hold name in states all over "
+"the USA as well as countries all over the world.\n"
+"                            "
+msgstr ""
+
+#: templates/site/about.html:24
+msgid ""
+"\n"
+"                                For those that rather the full immersion of "
+"the in store experience we welcome your company and look forward to meeting "
+"you face to face.\n"
+"                                Being located in the 47 street diamond "
+"district, known to be the largest diamond.\n"
+"                            "
+msgstr ""
+
+#: templates/site/about.html:30
+msgid ""
+"\n"
+"                                Based in the heart of New York’s Diamond "
+"District, also known as the NYC diamond district, I. D.\n"
+"                                Jewelry has some of the most competitively "
+"priced in the market. It is our goal to supply our clients.\n"
+"                            "
+msgstr ""
+
+#: templates/site/about.html:48
+msgid "Why Choose Us"
+msgstr "Por qué elegirnos?"
+
+#: templates/site/about.html:49
+msgid "Accumsan vitae pede lacus ut ullamcorper sollicitudin quisque libero"
+msgstr ""
+
+#: templates/site/about.html:57
+msgid "Free Shipping"
+msgstr "Envio Gratis"
+
+#: templates/site/about.html:58 templates/site/about.html:65
+#: templates/site/about.html:72
+msgid ""
+"Amadea Shop is a very slick and clean e-commerce template with endless "
+"possibilities."
+msgstr ""
+
+#: templates/site/about.html:64
+msgid "Fast Delivery"
+msgstr "Entrega Rapida"
+
+#: templates/site/about.html:71
+msgid "Customers Support"
+msgstr "Atencion A Clientes"
+
+#: templates/site/contact.html:19
+msgid "Tell Us Your Project"
+msgstr "Cuentanos de tus proyectos"
+
+#: templates/site/contact.html:23 templates/site/products.html:162
+#: templates/site/products.html:163
+msgid "Name"
+msgstr "Nombre"
+
+#: templates/site/contact.html:26 templates/site/contact.html:69
+msgid "Phone"
+msgstr "Telefono"
+
+#: templates/site/contact.html:32
+msgid "Subject"
+msgstr "Asunto"
+
+#: templates/site/contact.html:36
+#, fuzzy
+#| msgid "Messages"
+msgid "Message"
+msgstr "Mensajes"
+
+#: templates/site/contact.html:40
+#, fuzzy
+#| msgid "Messages"
+msgid "Send Message"
+msgstr "Mensajes"
+
+#: templates/site/contact.html:54
+#: templates/site/includes/footer_section.html:25
+#: templates/site/includes/footer_section.html:55
+msgid "Contact Us"
+msgstr "Contacténos"
+
+#: templates/site/contact.html:56
+msgid ""
+"\n"
+"                                Claritas est etiam processus dynamicus, qui "
+"sequitur mutationem consuetudium lectorum.\n"
+"                                Mirum est notare quam littera gothica, quam "
+"nunc putamus parum claram anteposuerit litterarum.\n"
+"                            "
+msgstr ""
+
+#: templates/site/contact.html:63
+msgid "Address"
+msgstr "Dirección"
+
+#: templates/site/contact.html:73
+msgid "Working Hours"
+msgstr "Horas de Trabajo"
+
+#: templates/site/contact.html:75
+#: venv/lib/python3.7/site-packages/django/utils/dates.py:6
+msgid "Wednesday"
+msgstr "Miercoles"
+
+#: templates/site/contact.html:75
+#: venv/lib/python3.7/site-packages/django/utils/dates.py:7
+msgid "Sunday"
+msgstr "Domingo"
+
 #: templates/site/includes/banner_grid_section.html:13
 #: templates/site/includes/bestseller_and_new_section.html:12
 msgid "BEAUTIFUL"
@@ -114,8 +236,9 @@ msgstr "Anillos"
 #: templates/site/includes/banner_grid_section.html:44
 #: templates/site/includes/banner_grid_section.html:58
 #: templates/site/includes/bestseller_and_new_section.html:15
-msgid "Shop Now"
-msgstr "Comprar Ahora"
+#: templates/site/includes/slides_section.html:16
+msgid "View More"
+msgstr "Ver Mas"
 
 #: templates/site/includes/banner_grid_section.html:27
 msgid "EARRINGS"
@@ -158,17 +281,14 @@ msgid "Wedding Rings"
 msgstr "Anillos de boda"
 
 #: templates/site/includes/bestseller_and_new_section.html:25
-#| msgid "Our Products"
 msgid "Best Seller Products"
 msgstr "Mas Vendidos"
 
 #: templates/site/includes/bestseller_and_new_section.html:43
-#| msgid "New Products"
 msgid "New Products"
 msgstr "Nuevos"
 
 #: templates/site/includes/featured_products_section.html:9
-#| msgid "Featured Products"
 msgid "Featured Products"
 msgstr "Productos Destacados"
 
@@ -176,20 +296,15 @@ msgstr "Productos Destacados"
 msgid "Add featured products to weekly lineup"
 msgstr "Agregar productos destacados a la lista semanal"
 
-#: templates/site/includes/footer_section.html:24
-#: templates/site/includes/footer_section.html:54
-msgid "Contact Us"
-msgstr "Contacténos"
-
-#: templates/site/includes/footer_section.html:47
+#: templates/site/includes/footer_section.html:48
 msgid "Information"
 msgstr "Información"
 
-#: templates/site/includes/footer_section.html:69
+#: templates/site/includes/footer_section.html:70
 msgid "Follow Us"
 msgstr "Siguénos"
 
-#: templates/site/includes/footer_section.html:96
+#: templates/site/includes/footer_section.html:97
 msgid "All rights reserved"
 msgstr "Todos los derechos reservados"
 
@@ -197,9 +312,31 @@ msgstr "Todos los derechos reservados"
 msgid "Add our products to weekly lineup"
 msgstr "Agregue nuestros productos a la lista semanal"
 
-#: templates/site/includes/slides_section.html:16
-msgid "View More"
-msgstr "Ver Mas"
+#: templates/site/includes/product-details-inner.html:36
+#: templates/site/product_details.html:29
+msgid "Reviews"
+msgstr "Comentarios"
+
+#: templates/site/includes/product-details-inner.html:49
+msgid "in stock"
+msgstr "en inventario"
+
+#: templates/site/includes/product-details-inner.html:53
+#: templates/site/includes/product_component_gridview.html:25
+#: templates/site/includes/product_component_listview.html:24
+#, fuzzy
+#| msgid "Wishlist"
+msgid "Add to Wishlist"
+msgstr "Favoritos"
+
+#: templates/site/includes/product-details-inner.html:57
+msgid "Description"
+msgstr "Descripción"
+
+#: templates/site/includes/product_component_gridview.html:15
+#: templates/site/includes/product_component_listview.html:14
+msgid "new"
+msgstr "nuevo"
 
 #: templates/site/includes/testimonials_section.html:9
 msgid "Testimonials"
@@ -208,6 +345,150 @@ msgstr "Testimonios"
 #: templates/site/includes/testimonials_section.html:10
 msgid "What they say"
 msgstr "Lo que ellos dicen"
+
+#: templates/site/product_details.html:57
+msgid "NO REVIEWS YET"
+msgstr "NO COMENTARIOS"
+
+#: templates/site/product_details.html:66
+msgid "New Review"
+msgstr "Nuevo Comentario"
+
+#: templates/site/product_details.html:74
+msgid "Rating"
+msgstr "Calificación"
+
+#: templates/site/product_details.html:77
+msgid "Bad"
+msgstr "Mal"
+
+#: templates/site/product_details.html:78
+msgid "Regular"
+msgstr "Regular"
+
+#: templates/site/product_details.html:79
+msgid "Good"
+msgstr "Bueno"
+
+#: templates/site/product_details.html:80
+msgid "Very Good"
+msgstr "Muy Bueno"
+
+#: templates/site/product_details.html:81
+msgid "Excellent"
+msgstr "Excelente"
+
+#: templates/site/product_details.html:86
+msgid "Submit Review"
+msgstr "Enviar Comentario"
+
+#: templates/site/product_details.html:106
+#, fuzzy
+#| msgid "Featured Products"
+msgid "Related Products"
+msgstr "Productos Destacados"
+
+#: templates/site/product_details.html:107
+#, fuzzy
+#| msgid "Add featured products to weekly lineup"
+msgid "Add related products to weekly lineup"
+msgstr "Agregar productos destacados a la lista semanal"
+
+#: templates/site/products.html:19
+msgid "Categories"
+msgstr "Categorías"
+
+#: templates/site/products.html:39
+msgid "Material"
+msgstr "Material"
+
+#: templates/site/products.html:59
+msgid "Gender"
+msgstr "Género"
+
+#: templates/site/products.html:79 templates/site/products.html:86
+#: templates/site/products.html:164 templates/site/products.html:165
+#: templates/site/wishlist.html:20
+msgid "Price"
+msgstr "Precio"
+
+#: templates/site/products.html:89
+msgid "Filter"
+msgstr "Filtro"
+
+#: templates/site/products.html:99
+msgid "Condition"
+msgstr "Condición"
+
+#: templates/site/products.html:105
+msgid "New"
+msgstr "Nuevo"
+
+#: templates/site/products.html:111
+#, fuzzy
+#| msgid "Featured Products"
+msgid "Featured"
+msgstr "Productos Destacados"
+
+#: templates/site/products.html:117
+#, fuzzy
+#| msgid "Best Seller Products"
+msgid "Best Seller"
+msgstr "Mas Vendidos"
+
+#: templates/site/products.html:160
+msgid "Sort By"
+msgstr "Ordenar por"
+
+#: templates/site/products.html:164
+msgid "Low to High"
+msgstr "Bajo a Alto"
+
+#: templates/site/products.html:165
+msgid "High to Low"
+msgstr "Alto to Bajo"
+
+#: templates/site/products.html:166
+msgid "Newest Arrivals"
+msgstr "Nuevos Arribos"
+
+#: templates/site/wishlist.html:18
+msgid "Thumbnail"
+msgstr "Imagen"
+
+#: templates/site/wishlist.html:19
+#, fuzzy
+#| msgid "Our Products"
+msgid "Product"
+msgstr "Nuestros Productos"
+
+#: templates/site/wishlist.html:21
+msgid "Stock Status"
+msgstr "Estado de Inventario"
+
+#: templates/site/wishlist.html:22
+msgid "Remove"
+msgstr "Remover"
+
+#: templates/site/wishlist.html:44
+msgid "In Stock"
+msgstr "En Inventario"
+
+#: templates/site/wishlist.html:48
+msgid "Stock Out"
+msgstr "Sin Inventario"
+
+#: templates/site/wishlist.html:61
+msgid "No Items Added yet."
+msgstr "No Elementos Adcionados todavia"
+
+#: templates/site/wishlist.html:63
+msgid "Check"
+msgstr "Chequear"
+
+#: templates/site/wishlist.html:63
+msgid "section and start selecting your favorites products"
+msgstr "sección y comienza a seleccionar tus productos favoritos"
 
 #: venv/lib/python3.7/site-packages/django/contrib/messages/apps.py:7
 msgid "Messages"
@@ -885,10 +1166,6 @@ msgid "Tuesday"
 msgstr ""
 
 #: venv/lib/python3.7/site-packages/django/utils/dates.py:6
-msgid "Wednesday"
-msgstr ""
-
-#: venv/lib/python3.7/site-packages/django/utils/dates.py:6
 msgid "Thursday"
 msgstr ""
 
@@ -898,10 +1175,6 @@ msgstr ""
 
 #: venv/lib/python3.7/site-packages/django/utils/dates.py:7
 msgid "Saturday"
-msgstr ""
-
-#: venv/lib/python3.7/site-packages/django/utils/dates.py:7
-msgid "Sunday"
 msgstr ""
 
 #: venv/lib/python3.7/site-packages/django/utils/dates.py:10
@@ -1383,3 +1656,10 @@ msgstr ""
 #: venv/lib/python3.7/site-packages/django/views/templates/default_urlconf.html:408
 msgid "Connect, get help, or contribute"
 msgstr ""
+
+#: venv/lib/python3.7/site-packages/modeltranslation/widgets.py:25
+msgid "None"
+msgstr ""
+
+#~ msgid "Shop Now"
+#~ msgstr "Comprar Ahora"
