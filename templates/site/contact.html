@@ -87,10 +87,11 @@
 {% block script %}
 
     <script>
+
         function initMap() {
             let location = {
-                lat: {{ company.latitud }},
-                lng: {{ company.longitud }}
+                lat: parseFloat("{{ company.latitud }}".replace(/,/g, '.')),
+                lng: parseFloat("{{ company.longitud }}".replace(/,/g, '.'))
             };
             let map = new google.maps.Map(document.getElementById('google-map'), {
                 zoom: 17,
