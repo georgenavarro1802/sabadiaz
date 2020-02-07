@@ -69,16 +69,16 @@
                     <div class="widget-item">
                         <h6 class="widget-title">{% trans 'Follow Us' %}</h6>
                         <div class="widget-body social-link">
-                            <a href="{% if company.facebook %}https://www.facebook.com/{{ company.facebook }}{% else %}javascript:void(0);{% endif %}">
+                            <a href="{% if company.facebook %}https://www.facebook.com/{{ company.facebook }}{% else %}javascript:void(0);{% endif %}" target="_blank">
                                 <i class="fa fa-facebook"></i>
                             </a>
-                            <a href="{% if company.twitter %}https://www.twitter.com/{{ company.twitter }}{% else %}javascript:void(0);{% endif %}">
+                            <a href="{% if company.twitter %}https://www.twitter.com/{{ company.twitter }}{% else %}javascript:void(0);{% endif %}" target="_blank">
                                 <i class="fa fa-twitter"></i>
                             </a>
-                            <a href="{% if company.instagram %}https://www.instagram.com/{{ company.instagram }}{% else %}javascript:void(0);{% endif %}">
+                            <a href="{% if company.instagram %}https://www.instagram.com/{{ company.instagram }}{% else %}javascript:void(0);{% endif %}" target="_blank">
                                 <i class="fa fa-instagram"></i>
                             </a>
-                            <a href="{% if company.youtube %}https://www.youtube.com/{{ company.youtube }}{% else %}javascript:void(0);{% endif %}">
+                            <a href="{% if company.youtube %}https://www.youtube.com/{{ company.youtube }}{% else %}javascript:void(0);{% endif %}" target="_blank">
                                 <i class="fa fa-youtube"></i>
                             </a>
                         </div>
@@ -94,7 +94,7 @@
                 <div class="col-12">
                     <div class="copyright-text text-center">
                         <p>
-                            <a href="{% url 'index' %}">{{ company.name }} </a> {% trans 'All rights reserved' %} © 2019
+                            <a href="{% url 'index' %}">{{ company.name }} </a> {% trans 'All rights reserved' %} © 2020
                     </div>
                 </div>
             </div>

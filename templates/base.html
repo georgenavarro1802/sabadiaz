@@ -326,11 +326,18 @@
                         </ul>
                     </div>
                     <div class="off-canvas-social-widget">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i> {{ company.twitter }}</a>
-                        <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                        <a href="#"><i class="fa fa-linkedin"></i></a>
-                        <a href="#"><i class="fa fa-youtube-play"></i></a>
+                        <a href="{% if company.facebook %}https://www.facebook.com/{{ company.facebook }}{% else %}javascript:void(0);{% endif %}" target="_blank">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a href="{% if company.twitter %}https://www.twitter.com/{{ company.twitter }}{% else %}javascript:void(0);{% endif %}" target="_blank">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a href="{% if company.instagram %}https://www.instagram.com/{{ company.instagram }}{% else %}javascript:void(0);{% endif %}" target="_blank">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                        <a href="{% if company.youtube %}https://www.youtube.com/{{ company.youtube }}{% else %}javascript:void(0);{% endif %}" target="_blank">
+                            <i class="fa fa-youtube"></i>
+                        </a>
                     </div>
                 </div>
                 <!-- offcanvas widget area end -->
