@@ -55,7 +55,7 @@ let PRODUCTS = {
         // optional fields
         let stock = inputStock.val();
         let discount = inputDiscount.val();
-        let vprice = inputVPrice.val();
+        let vprice = parseFloat(inputVPrice.val());
         let is_new = checkboxIsNew.is(':checked');
         let is_featured = checkboxIsFeatured.is(':checked');
         let is_bestseller = checkboxIsBestSeller.is(':checked');
@@ -101,7 +101,7 @@ let PRODUCTS = {
             formData.append('category_id', category_id);
             formData.append('material_id', material_id);
             formData.append('gender_id', gender_id);
-            formData.append('price', price.toString());
+            formData.append('price', price);
             formData.append('stock', stock);
             formData.append('discount', discount);
             formData.append('vprice', vprice);
